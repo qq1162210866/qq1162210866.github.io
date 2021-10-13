@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记最近一段时间的学习​    最近一段时间在学习红黑树，中间也停过一段时间，本以为是一个简单的事情，最后发现并没有想象中的简单。还是太年轻了啊。学习中间遇到了一些问题，这里也列举出来，分析一下原因，后面防止再犯。 遇到的问题​    如果看到我之前的博客，可以看出这一段时间再梳理红黑树的相关知识点，中间还穿插了其他的东西。其实穿插不是我的本意，我以为一个星期就能啃完，但是中间的过程出乎我的意料，比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E5%BF%83%E5%BE%97/%E8%AE%B0%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="记最近一段时间的学习​    最近一段时间在学习红黑树，中间也停过一段时间，本以为是一个简单的事情，最后发现并没有想象中的简单。还是太年轻了啊。学习中间遇到了一些问题，这里也列举出来，分析一下原因，后面防止再犯。 遇到的问题​    如果看到我之前的博客，可以看出这一段时间再梳理红黑树的相关知识点，中间还穿插了其他的东西。其实穿插不是我的本意，我以为一个星期就能啃完，但是中间的过程出乎我的意料，比">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-13T13:28:21.197Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.197Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/心得/记最近一段时间的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E5%BF%83%E5%BE%97/%E8%AE%B0%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.197Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="记最近一段时间的学习"><a href="#记最近一段时间的学习" class="headerlink" title="记最近一段时间的学习"></a>记最近一段时间的学习</h2><p>​    最近一段时间在学习红黑树，中间也停过一段时间，本以为是一个简单的事情，最后发现并没有想象中的简单。还是太年轻了啊。学习中间遇到了一些问题，这里也列举出来，分析一下原因，后面防止再犯。</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>​    如果看到我之前的博客，可以看出这一段时间再梳理红黑树的相关知识点，中间还穿插了其他的东西。其实穿插不是我的本意，我以为一个星期就能啃完，但是中间的过程出乎我的意料，比我想象中的要麻烦和难缠。</p>
+<p>​    两篇博客其实没有远没有达到我想象中的要求，感觉还是差点意思。原因也很简单，中间因为一些事情困惑了很久，最后写出来的文章自然差点意思。下面就具体说一说这两篇博客中间遇到的问题。</p>
+<ul>
+<li>在编写博客时，查阅了很多的资料。但是国内的环境大家都懂，水平层次不齐，找文章也是找了很久，最后不得己在外网找到一些文章，通过多篇文章联合补充了自己的认知。</li>
+<li>写到一半就没有动力继续写了，只要打开编辑器就感觉知乎是这么好看，手头的工具是多么的不好用，指甲为什么没剪齐等等等。只要开始写，就没有了动力和激情。</li>
+<li>编写这类博客或者学习这类知识点时，没有一个框架去套这些东西。就是说自己的逻辑思维里很少有学习这些知识的套路，不清楚如何学、怎样写。说白了，没有建立起自己的知识体系。</li>
+<li>事情拖延太过于严重，总觉得写博客的紧张感没有工作时的紧张感大，也不强烈。可能也是导致没有动力的原因。</li>
+<li>以算法为例：自己这一块的知识储备很少，  和上面的问题类似，遇到这类知识的学习没有头脑。</li>
+</ul>
+<h3 id="建议的方法"><a href="#建议的方法" class="headerlink" title="建议的方法"></a>建议的方法</h3><p>​    给出问题只是第一步，根据这些问题想出自己的答案才是最重要的。这里的方法只是针对于我自己，每个人的问题表现可能一样，但是原因可能有很大不同，万不可直接对号入座。</p>
+<ul>
+<li><strong>资料的重要性。</strong>学习时，资料时非常重要的，我是已经吃过苦头了，这里给出自己对于资料的先后排序。纸质书籍&gt;电子书籍&gt;维基百科&gt;谷歌资料&gt;国内资料。这里简单说明一下，首先一个作者能够出书显然已经证明了自己的实力，要不然一般人不会去花这个时间和精力的，所以书籍应该在前面。书籍的选择要看个人，并不是所有的书籍都合适，有些水书还是不要看了。外网的资料是比较全面，维基百科上面还是比较准确的（就技术方面资料而言），谷歌搜集的资料相对于国内的资料还是比较准确的，国内因为搜索引擎的限制，搜出来的文章都是粘贴复制，这个是大家都能看到的事实，并没有刻意贬低的意思。</li>
+<li><strong>兴趣的重要性。</strong>兴趣是最好的老师，上学时，老师教导遇到困难要迎难而上，但是学习不是搞项目，兴趣才是最好的老师。所以尽量去专研哪些自己感兴趣的知识点，或者提升自己做事的兴趣，例如将自己的博客记录下来就是我编写这两篇博客最大的动力。想要将自己的知识展示出来或者说炫耀出来可能是我学习最大的动力。（。。。。汗颜）针对于每个人的情况，最好找到适合自己的兴趣，不要去做让自己痛苦并且毫无成就感的事，工作亦是如此。</li>
+<li><strong>逻辑的重要性。</strong>学习一样东西，最好是有类似的经验，知道怎么个套路去学习。但是套路都是摸索出来的，多记录就会让自己的逻辑感慢慢增强。（个人对于逻辑感的理解，可能这里形容的不是很准确）如何形成自己的逻辑感？1.将学习过程中的迷惑记录下来。2.还有就是学习中对于知识点的感悟也记录下来，用于形成知识体系。还是多记录吧。</li>
+<li><strong>一件事情最好三天内能够结束，要不然就可以放弃了。</strong>这个是我在《小狗钱钱》里面看到的一个理论（非常推荐这本书）。理论的正确性不去探讨，但是这个理论可以在一定程度上给予我们学习中的紧张感，所以在学习中间要制定一个里程碑，给出三天的时间，完不成就放弃，这样就可以让规则束缚自己去前进了。遇到大的问题，要进行细化，在将合理的小问题规划时间。（是不是和工作中的任务的制定类似，有没有那味了？）</li>
+<li><strong>考虑问题要全面。</strong>这个是在学习红黑树删除时意识到的，网上将删除只是列举了几种情况，但是不说情况的来由或者没有详细说，导致自己看的很迷惑。所以在遇到类似的问题时，可以通过穷举法列举出所有的可能，再逐一去排除这些可能，或者将这些可能中的几种整合到一起。达到最后融会贯通的目的。</li>
+</ul>
+<p>​    感觉写了很多东西，但是回头看并没有多少字。千言万语仿佛吐不出来，还是自己写作的水平需要提高啊。记录一下，给后来的自己提个醒。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E5%BF%83%E5%BE%97/%E8%AE%B0%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E5%AD%A6%E4%B9%A0/" data-id="ckupl1rre001h6rupg4jd6y02" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/spring%E9%A1%B9%E7%9B%AE%E5%BB%BA%E7%AB%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E5%BF%83%E5%BE%97/%E8%AE%B0%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E6%AC%A1%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9B%B0%E6%83%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

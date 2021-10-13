@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-qq1162210866.github.io/博客/Linux学习/第九章、vim程序编辑器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E4%B9%9D%E7%AB%A0%E3%80%81vim%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%BE%91%E5%99%A8/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第九章、vim程序编辑器"><a href="#第九章、vim程序编辑器" class="headerlink" title="第九章、vim程序编辑器"></a>第九章、vim程序编辑器</h2><ul>
+<li><p>vi的基础了解</p>
+<p>vi分为三种模式，<code>一般命令模式</code>，<code>编辑模式</code>，<code>指令列命令模式</code>。</p>
+<ul>
+<li>一般指令模式。默认就是一般指令模式，在该模式下可以使用上下左右进行光标移动，也可以使用指令对处理文本内容，如：复制，删除…</li>
+<li>编辑模式。按下<code>i,I,o,O,a,A,r,R</code>中任何一个字母后进入编辑模式，左下方会出现[INSERT],[REPLACE]的提示。退出编辑模式只需要按[esc]键即可。</li>
+<li>指令列命令模式。一般模式中，输入<code>:/?</code>三个按钮中任何一个就可以进入指令列命令模式。光标会移动到最底下那一列。对文档的额外操作可以通过指令列命令模式进行</li>
+</ul>
+</li>
+<li><p>按键说明</p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_938F47F946DA-1.jpeg" alt="IMG_938F47F946DA-1"></p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_0813AAE3737A-1.jpeg" alt="IMG_0813AAE3737A-1"></p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_26DFD8F9FEE6-1.jpeg" alt="IMG_26DFD8F9FEE6-1"></p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_17D2939DE8E2-1.jpeg" alt="IMG_17D2939DE8E2-1"></p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_6A4E09F4473D-1.jpeg" alt="IMG_6A4E09F4473D-1"></p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_28496E1077AB-1.jpeg" alt="IMG_28496E1077AB-1"></p>
+<p> 操作练习</p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_855740C3FF9C-1.jpeg" alt="IMG_855740C3FF9C-1"></p>
+</li>
+<li><p>vi的暂存档。当使用vi编辑时，会在同目录下创建一个.filename.swp的文件。当突然中断后，会出现这个页面。</p>
+<p> <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200426111858492.png" alt="image-20200426111858492"></p>
+<p> 按照需要的方式输入字母即可。</p>
+</li>
+<li><p>区块选择</p>
+</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_E542292E6459-1.jpeg" alt="IMG_E542292E6459-1"></p>
+<ul>
+<li><p>多文件编辑</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_FBF7D5BD084E-1.jpeg" alt="IMG_FBF7D5BD084E-1"></p>
+</li>
+<li><p>多窗口编辑</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_A658F1E6441A-1.jpeg" alt="IMG_A658F1E6441A-1"></p>
+</li>
+<li><p>vim的补全功能。没有搞明白，后续有知道的可以补充一下。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_2453B42FB883-1.jpeg" alt="IMG_2453B42FB883-1"></p>
+</li>
+<li><p>vim的环境设定与记录</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_F5422405CB23-1.jpeg" alt="IMG_F5422405CB23-1"></p>
+</li>
+<li><p>vim常用的命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_24AC0E8650BF-1.jpeg" alt="IMG_24AC0E8650BF-1"></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E4%B9%9D%E7%AB%A0%E3%80%81vim%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%BE%91%E5%99%A8/" data-id="ckupl1rql000y6rup4kft60og" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Linux学习/第八章、文件与文件系统的压缩、打包与备份" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%8B%E7%BC%A9%E3%80%81%E6%89%93%E5%8C%85%E4%B8%8E%E5%A4%87%E4%BB%BD/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第八章、文件与文件系统的压缩、打包和备份"><a href="#第八章、文件与文件系统的压缩、打包和备份" class="headerlink" title="第八章、文件与文件系统的压缩、打包和备份"></a>第八章、文件与文件系统的压缩、打包和备份</h2><ul>
+<li><p>Linux常见的压缩命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_BCF8665FBBD5-1.jpeg" alt="IMG_BCF8665FBBD5-1"></p>
+<ul>
+<li><p><code>gzip</code>压缩命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_6583B53AC8BC-1.jpeg" alt="IMG_6583B53AC8BC-1"></p>
+</li>
+<li><p><code>bzip2</code>压缩命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_5C7656007A22-1.jpeg" alt="IMG_5C7656007A22-1"></p>
+</li>
+<li><p><code>xz</code>压缩命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_C8C028350B6E-1.jpeg" alt="IMG_C8C028350B6E-1"></p>
+</li>
+</ul>
+</li>
+<li><p><code>tar</code>打包命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_A140720C58E7-1.jpeg" alt="IMG_A140720C58E7-1"></p>
+<ul>
+<li><p>压缩<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200425104505375.png" alt="image-20200425104505375"></p>
+</li>
+<li><p>解压</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200425105144263.png" alt="image-20200425105144263"></p>
+</li>
+<li><p>解压某个文件，这个压缩文件仍然在压缩包里面。<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200425105817037.png" alt="image-20200425105817037"></p>
+</li>
+<li><p>打包某个目录，但不打包某些文件</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200426091434124.png" alt="image-20200426091434124"></p>
+</li>
+<li><p>利用管线命令将目录复制到另外的地方。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_DA0A5D46ECC1-1.jpeg" alt="IMG_DA0A5D46ECC1-1"></p>
+</li>
+</ul>
+</li>
+<li><p>XFS文件系统的备份和还原</p>
+<ul>
+<li><p><code>xfsdump</code>对XFS文件系统备份</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_88F902852F05-1.jpeg" alt="IMG_88F902852F05-1"></p>
+</li>
+<li><p><code>xfsrestore</code>对XFS文件系统还原</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_96D8641A09A2-1.jpeg" alt="IMG_96D8641A09A2-1"></p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%8B%E7%BC%A9%E3%80%81%E6%89%93%E5%8C%85%E4%B8%8E%E5%A4%87%E4%BB%BD/" data-id="ckupl1rqm000z6rupffbz3rjl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Linux学习/第六章、Linux文件与目录管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81Linux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><h2 id="第六章、Linux文件与目录管理"><a href="#第六章、Linux文件与目录管理" class="headerlink" title="第六章、Linux文件与目录管理"></a>第六章、Linux文件与目录管理</h2><h3 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h3><ul>
+<li><p><code>ls</code>命令</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_E867F1DE7BD3-1.jpeg" alt="IMG_E867F1DE7BD3-1"></p>
+</li>
+<li><p>复制、删除与移动  <code>cp</code>,<code>rm</code>,<code>mv</code><br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_83380C6DF2B8-1.jpeg" alt="IMG_83380C6DF2B8-1"></p>
+<h3 id="文件内容查阅"><a href="#文件内容查阅" class="headerlink" title="文件内容查阅"></a>文件内容查阅</h3></li>
+<li><p><code>cat</code>：从第一行显示到最后一行<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_76BB5886D069-1.jpeg" alt="IMG_76BB5886D069-1"></p>
+</li>
+<li><p><code>tac</code>：从最后一行显示到第一行        </p>
+</li>
+<li><p><code>nl</code>：显示的时候显示行号<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_14F24DA98032-1.jpeg" alt="IMG_14F24DA98032-1"></p>
+</li>
+<li><p><code>more</code>：一页一页的显示文本<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_F97B32F53055-1.jpeg" alt="IMG_F97B32F53055-1"></p>
+</li>
+<li><p><code>less</code>：一页一页显示文本，但是可以往前翻页<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_777F6AABB74F-1.jpeg" alt="IMG_777F6AABB74F-1"></p>
+</li>
+<li><p><code>head</code>：只看头几行<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_B955711F9456-1.jpeg" alt="IMG_B955711F9456-1"></p>
+</li>
+<li><p><code>tail</code>：只看后面几行<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_9D3335EA23B0-1.jpeg" alt="IMG_9D3335EA23B0-1"></p>
+</li>
+<li><p><code>od</code>：以二进制的形式读取文件内容<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_1F0EC4C06432-1.jpeg" alt="IMG_1F0EC4C06432-1"><br>取一个文件11行到20行到内容<br><code>head -n 20 /test.txt | tail -n 10    </code><br>管线符号<code>｜</code>：前面的指令所输出的信息，通过管线命令交给后续指令继续使用<br>显示行号：<code>cat -n test.txt | head -n 20 | tail -n 10</code>        </p>
+</li>
+<li><p><code>touch</code>修改文件时间或创建一个新的文档<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_F1CC616035BD-1.jpeg" alt="IMG_F1CC616035BD-1">            </p>
+</li>
+</ul>
+<h3 id="文件与目录的默认权限和隐藏权限"><a href="#文件与目录的默认权限和隐藏权限" class="headerlink" title="文件与目录的默认权限和隐藏权限"></a>文件与目录的默认权限和隐藏权限</h3><p><code>umask</code>指定用户在创建文件或者目录时的默认权限值<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_00741A334223-1.jpeg" alt="IMG_00741A334223-1"><br>默认权限值代表的意思<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_39339A93FE77-1.jpeg" alt="IMG_39339A93FE77-1"></p>
+<ul>
+<li><p><code>chattr</code>配置文件隐藏的属性（和下面的一个命令一样不是很常用）<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_DDB37D20B3DD-1.jpeg" alt="IMG_DDB37D20B3DD-1"></p>
+</li>
+<li><p><code>lsattr</code>显示文件的隐藏属性</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_8CF328C04A07-1.jpeg" alt="IMG_8CF328C04A07-1"></p>
+</li>
+<li><p>文件的特殊权限：SUID,SGID,SBIT</p>
+<p>SUID指文件的执行者在执行程序时拥有文件拥有者相同的权限，一般出现在文件拥有者的x权限上。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_27D05CA751BD-1.jpeg" alt="IMG_27D05CA751BD-1"></p>
+<p>SGID是SUID的升级版，升级为文件的群组。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_8541875233A9-1.jpeg" alt="IMG_8541875233A9-1"></p>
+<p>SBIT只针对目录，在该目录下创建的文件只有自己或者root才能修改或者删除</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_9CF18B040559-1.jpeg" alt="IMG_9CF18B040559-1"></p>
+<p>授权上面的三种特殊权限可以通过数字或者字符</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200412204346040.png" alt="image-20200412204346040"></p>
+</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200412204449320.png" alt="image-20200412204449320"></p>
+<ul>
+<li><code>file</code>命令用来查看文件的类型</li>
+<li><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_31B8AC9CC1EB-1.jpeg" alt="IMG_31B8AC9CC1EB-1"></li>
+</ul>
+<h3 id="指令与文件的搜寻"><a href="#指令与文件的搜寻" class="headerlink" title="指令与文件的搜寻"></a>指令与文件的搜寻</h3><ul>
+<li><p><code>which</code>寻找可执行的文档</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_2760EE6A96EE-1.jpeg" alt="IMG_2760EE6A96EE-1"></p>
+</li>
+<li><p><code>whereis</code>寻找系统中某些特定目录底下的文件(用处估计不是很多，但是速度快)</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_00AD66018E29-1.jpeg" alt="IMG_00AD66018E29-1"></p>
+</li>
+<li><p><code>locate</code>命令是在系统建立的数据库（一天修改一次的数据库）中查询文件。一般配合<code>updatedb</code>使用（用到的地方也是很少）</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_1169BF8BB661-1.jpeg" alt="IMG_1169BF8BB661-1"></p>
+</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_4F1C1F7A6DD6-1.jpeg" alt="IMG_4F1C1F7A6DD6-1"></p>
+<ul>
+<li><p><code>find</code>命令是一个非常强大的命令的，但是是因为直接读取的硬盘，所以速度没有上面两个快。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_7FC983BD2FC3-1.jpeg" alt="IMG_7FC983BD2FC3-1"></p>
+</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_D52E7DA4D5A9-1.jpeg" alt="IMG_D52E7DA4D5A9-1"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_FD693BD4905F-1.jpeg" alt="IMG_FD693BD4905F-1"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_3EDE5760B28D-1.jpeg" alt="IMG_3EDE5760B28D-1"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_A65852973ABA-1.jpeg" alt="IMG_A65852973ABA-1"></p>
+<p>自己的理解，和管线命令类似。但是是以参数的形式<img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200412214544680.png" alt="image-20200412214544680"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81Linux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" data-id="ckupl1rqm00106rupetdcc2sw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Linux学习/第十章、学习BASH" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%8D%81%E7%AB%A0%E3%80%81%E5%AD%A6%E4%B9%A0BASH/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第十章、学习BASH"><a href="#第十章、学习BASH" class="headerlink" title="第十章、学习BASH"></a>第十章、学习BASH</h2><p>​    这次就来学习一下最基础的BASH，下面直接开搞。</p>
+<ul>
+<li><code>type</code>命令</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_A2A285D5741D-1.jpeg" alt="IMG_A2A285D5741D-1"></p>
+<ul>
+<li><p><code>echo</code>读取变量的内容</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_E19EBBDADCF9-1.jpeg" alt="IMG_E19EBBDADCF9-1"></p>
+</li>
+<li><p>关于引号</p>
+<p>单引号赋值只会赋值引号内的内容，双引号可以保存变量的内容，反引号会先执行。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200621082943077.png" alt="image-20200621082943077"></p>
+</li>
+<li><p>环境变量</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_01BE4759785E-1.jpeg" alt="IMG_01BE4759785E-1"></p>
+<ul>
+<li>提示变量的设定</li>
+</ul>
+<p>提示变量就是你执行命令前面的东西，这个其实是可以设置的。下面就介绍一下。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_65F50926A71F-1.jpeg" alt="IMG_65F50926A71F-1"></p>
+<p>设置就是这个样子，很有意思，可以按照上面的信息自己设置一下。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200629232612846.png" alt="image-20200629232612846"></p>
+<ul>
+<li><p>$ 符的使用</p>
+<p>就是代表的当前Sheel的线程代号（就是PID）。如下图。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200629233227290.png" alt="image-20200629233227290"></p>
+</li>
+<li><p>? 符的使用</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_DDDB2B3AAC11-1.jpeg" alt="IMG_DDDB2B3AAC11-1"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200629233555410.png" alt="image-20200629233555410"></p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Linux%E5%AD%A6%E4%B9%A0/%E7%AC%AC%E5%8D%81%E7%AB%A0%E3%80%81%E5%AD%A6%E4%B9%A0BASH/" data-id="ckupl1rr200116rup6acg71vn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/SpringCloud/SpringCloud基础了解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud基础了解"><a href="#SpringCloud基础了解" class="headerlink" title="SpringCloud基础了解"></a>SpringCloud基础了解</h2><h3 id="SpringCloud背景和基础知识"><a href="#SpringCloud背景和基础知识" class="headerlink" title="SpringCloud背景和基础知识"></a>SpringCloud背景和基础知识</h3><p>​    随着技术的慢慢发展，单一的应用很难满足目前用户的需求的。例如现在最简单的商场应用，用户下单后，需要创建订单服务，再创建库存服务、快递服务、如果有可能还会有会员积分服务。所以目前单一的应用去做这些事情很困难，能够完成，但是中间要花费大量的时间和精力去处理服务之间的协调和通信问题。SpringCloud就应用而生，和SpringBoot的产生一样，也是轻量级，让开发人员更加专注的开发业务代码，而不是和业务无关的代码。由此可见，这也是目前主流工具的开发方向。</p>
+<p>​    想要了解SpringCloud需要先了解SpringBoot，因为都是Spring的全家桶，所以SpringCloud是基于SpringBoot的。关于SpringBoot的介绍这里就不再累述了，很多文档包括我也写了一些。其实在我看来，因为这些脚手架的原因，现在开发人员甚至不用关注底层原理，直接就可以开发。所以SpringBoot只要会大致写一个HelloWorld，就可以看关于SpringCloud的文档了。但是一旦底层出现一些问题，这些人又完全没有方法。短期看，Spring对于编程的发展有一定的好处，但是长远看，会使得编程人员往更高级的语言发展（但是Java本身就是高级语言啊）或者后来的编程人员越来越原理这里底层原理。无论哪种都不是很好的结果。（说多了，开始吧）</p>
+<h3 id="SpringCloud的核心组件"><a href="#SpringCloud的核心组件" class="headerlink" title="SpringCloud的核心组件"></a>SpringCloud的核心组件</h3><ul>
+<li><p>服务发现——Netflix Eureka。通过这个组件可以将服务注册到Eureka服务端中，服务端则将所有的服务的机器和端口号记录下来。当调用服务时，向注册中心查询注册表即可。</p>
+</li>
+<li><p>客服端负载均衡——Netflix Ribbon。这个组件是为了提供客户侧的软件负载均衡算法。Ribbon的负载均衡默认使用的最经典的<strong>Round Robin轮询算法</strong>。</p>
+</li>
+<li><p>HTTP客户端——OpenFeign。简化调用服务时的工作，将复杂的请求简化为配置，使用动态代理来构造出需要请求的服务地址，最后发起请求和解析请求。</p>
+</li>
+<li><p>断路器——Netflix Hystrix。为了避免雪崩现象，使用Hystrix来解决这个问题。Hystrix是隔离、熔断以及降级的一个框架。当某个服务挂掉后，Hystrix首先熔断，在一定时间后直接返回，但是不能直接返回，需要降级，把这个错误或者异常记录，在服务恢复后继续执行。</p>
+</li>
+<li><p>服务网关——Netflix Zuul。各个服务因为请求地址不同，前端做分离是不现实的，所以采用路由的形式，将前端的请求统一从路由过，再由路由转发给对应的服务。</p>
+</li>
+</ul>
+<h3 id="记在后面的话"><a href="#记在后面的话" class="headerlink" title="记在后面的话"></a>记在后面的话</h3><p>​    其实把上面的看完就可以理解这些组件设计的目的了，总的来说，SpringCloud的组件虽然都是轻量级的，但是普通的应用拆分服务的很少，所以还是有一定体量的才会上微服务，所以保证这些服务和应用正常工作就显得格外重要，各个组件也是为了保证这一点。作为码农，了解各个模块和组件的作用非常重要，要比一个demo重要的多。后面我也会慢慢的搭建一个简单的SpringCloud框架。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" data-id="ckupl1rr400126rup4nd8g1ra" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/SpringCloud/SpringCloud集成Eureka" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Eureka/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud集成Eureka"><a href="#SpringCloud集成Eureka" class="headerlink" title="SpringCloud集成Eureka"></a>SpringCloud集成Eureka</h2><p>​    下面就开始简单的写一个demo，先把组件慢慢都集成进来，先集成Eureka。</p>
+<h3 id="创建父模块"><a href="#创建父模块" class="headerlink" title="创建父模块"></a>创建父模块</h3><p>​    父模块需要创建maven项目，这里没有找到基础的方法，就是不使用任何IDE去生成项目，所以最后无奈只能使用IDEA来生成这些项目。</p>
+<p>​    首先选择maven，再输入自己项目的信息。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200602152019621.png" alt="image-20200602152019621"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200602141047248.png" alt="image-20200602141047248"></p>
+<p>​    输入完成后，删除src目录，只保留一个pom文件，加入SpringBoot依赖即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Eureka服务注册中心"><a href="#创建Eureka服务注册中心" class="headerlink" title="创建Eureka服务注册中心"></a>创建Eureka服务注册中心</h3><p>​    新建一个模块，根据spring的配置添加相应的依赖即可。这里需要注意一下。</p>
+<p>​    我的IDE不知道抽什么风，一直连接不上springio，IDEA的代理配置能测试成功，但是到创建模块时死活不行，修改代理、用VPN、改地址为http，网上能找到的方法都试了，还是不行。最后放弃了，用的阿里云的spring镜像服务器。如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200602142009357.png" alt="image-20200602142009357"></p>
+<p>​        中间有些步骤我给省略了，没有什么可讲的地方，下面就是选择依赖。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200602142110037.png" alt="image-20200602142110037"></p>
+<p>​    后面就创建成功了，修改Eureka的配置即可。修改如下。</p>
+<h4 id="pom文件"><a href="#pom文件" class="headerlink" title="pom文件"></a>pom文件</h4><p>​    pom文件需要修改父类依赖指向，指向刚才创建的父模块。EurekaServer依赖刚才创建模块的时候就已经导入了，不需要了。另外，看自己的需求导入健康检查依赖，这里我没有使用，就没有导入。pom文件全部代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.psq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ssodemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.psq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>eureka<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>this is Eureka Server<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Hoxton.SR4<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- eureka依赖       --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 健康检查依赖       --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="application-yml文件"><a href="#application-yml文件" class="headerlink" title="application.yml文件"></a>application.yml文件</h4><p>​    application.yml文件需要对项目做一个基础的配置，这里按照自己的需求配置就可以了。因为只是引入了Eureka，所以配置文件很少。另外，刚创建项目的时候是application.properties，命名为application.yml文件即可，要注意这两个文件虽然Spring都支持，但是这俩种文件的书写格式不一样。配置文件代码如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################### common config : ####################################</span></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">application</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">name</span>: <span class="string">eureka</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8080</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">##eureka服务段配置</span></span><br><span class="line"><span class="attr">eureka</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">client</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">register-with-eureka</span>: <span class="string">false</span></span><br><span class="line">    <span class="meta">fetch-registry</span>: <span class="string">false</span></span><br><span class="line">    <span class="meta">service-url</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">defaultZone</span>: <span class="string">http://127.0.0.1:8080/eureka</span></span><br><span class="line">  <span class="attr">server</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">renewal-percent-threshold</span>: <span class="string">0.49</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="启动类添加Eureka注解"><a href="#启动类添加Eureka注解" class="headerlink" title="启动类添加Eureka注解"></a>启动类添加Eureka注解</h4><p>​    启动类添加注解即可，添加一个<code>@EnableEurekaServer</code>注解，然后启动服务就可以了。</p>
+<h4 id="启动结果及其验证方法"><a href="#启动结果及其验证方法" class="headerlink" title="启动结果及其验证方法"></a>启动结果及其验证方法</h4><p>​    启动单个模块，然后在浏览器输入<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a>，出现下面的页面就代表成功了。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/%E6%88%AA%E5%B1%8F2020-06-02%20%E4%B8%8B%E5%8D%882.59.01.png" alt="截屏2020-06-02 下午2.59.01"></p>
+<h3 id="创建Eureka客户端"><a href="#创建Eureka客户端" class="headerlink" title="创建Eureka客户端"></a>创建Eureka客户端</h3><p>​    创建模块的步骤和上面一致，不过依赖和相应的配置需要修改一下。</p>
+<h4 id="pom文件-1"><a href="#pom文件-1" class="headerlink" title="pom文件"></a>pom文件</h4><p>​    没有什么可以讲的地方。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.psq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ssodemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.psq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>eureka-client<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>this is Eireka Client<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Hoxton.SR4<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--web依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="application-yml配置文件"><a href="#application-yml配置文件" class="headerlink" title="application.yml配置文件"></a>application.yml配置文件</h4><p>​    唯一需要注意的地方就是端口号和注册中心的地址。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################### common config : ####################################</span></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">application</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">name</span>: <span class="string">eureka-client</span></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8081</span></span><br><span class="line"><span class="attr">eureka</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">client</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">service-url</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">defaultZone</span>: <span class="string">http://127.0.0.1:8080/eureka</span></span><br><span class="line">  <span class="attr">instance</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">prefer-ip-address</span>: <span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="启动类注解"><a href="#启动类注解" class="headerlink" title="启动类注解"></a>启动类注解</h4><p>​    和注册中心的注解也不一样，需要修改一下。使用<code>@EnableDiscoveryClient</code>这个注解。</p>
+<h4 id="启动监测"><a href="#启动监测" class="headerlink" title="启动监测"></a>启动监测</h4><p>​    需要注意的是，如果依赖中没有添加web依赖，项目就会启动一会就停掉了。因为没有添加web依赖的SpringBoot项目相当于一个java的demo，代码执行完毕就结束了。执行项目后，注册中心回出现已经注册的实例。如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200602151510377.png" alt="image-20200602151510377"></p>
+<p>​    这样就整合了一个Eureka，一个简单的demo，中间省略了很多的东西。只是简单的验证一下。就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Eureka/" data-id="ckupl1rr400136rup27k0d2uz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/SpringCloud/SpringCloud集成Gateway" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Gateway/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud集成Gateway"><a href="#SpringCloud集成Gateway" class="headerlink" title="SpringCloud集成Gateway"></a>SpringCloud集成Gateway</h2><p>​    拖了很久，目前最后一篇SpringCloud的博客终于写了。这个坑算是告一段落了。最后一篇博客就是整合Gateway。也不说其他的了，直接开始吧。</p>
+<p>​    其实写了这么久，应该了解了SpringCloud是有多个组件组成的，每个部分都有许多替代品，网关这个部分也不例外。其实最开始我一直在纠结选择哪个组件。目前比较好和流行的有Zuul和Gateway。但是Zuul2.0后就闭源了，所以一直在纠结，最后还是选择了Gateway。</p>
+<p>​    Gateway的官网地址：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">https://spring.io/projects/spring-cloud-gateway</a>其实这个地址其他的组件也能找到，之前没有关注这个网址，后续大家可以在上面了解一下详细的写法和demo。</p>
+<p>​    该项目提供了一个用于在Spring MVC之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/指标和弹性。它的功能有以下几点。</p>
+<ul>
+<li><p>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</p>
+</li>
+<li><p>能够匹配任何请求属性上的路由。</p>
+</li>
+<li><p>谓词和过滤器特定于路由。</p>
+</li>
+<li><p>Hystrix断路器集成。</p>
+</li>
+<li><p>Spring Cloud DiscoveryClient集成</p>
+</li>
+<li><p>易于编写的谓词和过滤器</p>
+</li>
+<li><p>请求速率限制</p>
+</li>
+<li><p>路径改写</p>
+</li>
+</ul>
+<p>​    不难看到其实网关的一部分功能和其他的组件有些重合。这个后面会有一个问题。关于Gateway的原理这里不再叙述了，作为后续的一个扩展点（又是一个坑）。就直接整合。</p>
+<p>​    需要添加Gateway的依赖，同时Gateway作为一个服务也是需要注册到Eureka注册中心的。</p>
+<p>​    使用IDEA直接创建一个新模块，指定好名称和需要添加的依赖，这里只选择Gateway和Eureka-client就可以了。截图如下：</p>
+<p>​    添加模块：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724103944533.png" alt="image-20200724103944533"></p>
+<p>​    选择两个依赖：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104143276.png" alt="image-20200724104143276"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104212862.png" alt="image-20200724104212862"></p>
+<p>​    后面直接下一步就可以最后把pom文件中的父模块修改为自己的父模块就可以了。剩下就没有什么了。然后就是修改启动类，添加<code>@EnableDiscoveryClient</code>注解。最后就是在<code>application.yml</code>中增加一些配置。配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8084</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">eureka-client</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://eureka-client</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/eureka-client/**</span></span><br><span class="line">    <span class="attr">loadbalancer:</span></span><br><span class="line">      <span class="attr">ribbon:</span></span><br><span class="line">        <span class="attr">enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:8080/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>​    下面说一下这个配置文件需要注意的事。</p>
+<ul>
+<li><p>uri后面填写的是你服务的地址，例如:<code>http://www.baidu.com</code>。这里填写<code>lb://eureka-client</code>代表从注册中心获取<code>eureka-client</code>的服务。</p>
+</li>
+<li><p>predicates是过滤原则，不能为空，必须要填。可以从其他地方了解一个这个如何填。我这里的意思是只要url为：<code>http://127.0.0.1:8084/eureka-client/**</code>的请求都会转到对应的服务上去处理。</p>
+</li>
+<li><p>id就是id，没有啥特殊的含义或者用处。</p>
+</li>
+<li><p>转到对应的服务时，请求地址会有一定的变化，还是上面那个链接，如果请求的服务端口为8081，则这个请求经过网关路由转化为：<code>http://127.0.0.1:8081/eureka-client/**</code>=，其实就是把端口号换了一下，所以我在服务模块添加了一个全局请求前缀：<code>/rureka-clien</code>。</p>
+</li>
+<li><p>下面的eureka客户端的配置没有什么可以讲的，和其他的一样。</p>
+</li>
+<li><p>启动的时候报了一个警告，大意是提醒已经启用了Ribbon，可能会有冲突。所以添加了配置：``spring.cloud.loadbalancer.ribbon.enabled<code>=false</code>，这里是为了不让这个告警出现（强迫症），要看自己项目是否需要。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You already have RibbonLoadBalancerClient on your classpath. It will be used by <span class="keyword">default</span>. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `<span class="keyword">false</span>` or remove spring-cloud-starter-netflix-ribbon from your project.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​    剩下就没有什么可以讲的了，启动项目测试一下就可以了，看看最后服务会不会经过路由转换为相应的服务。我最后是测试成功的。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724105846220.png" alt="image-20200724105846220"></p>
+<p>​    SpringCloud的内容就暂时告一段落了，这个主要还是熟悉SpringCloud，了解它的一些基础概念，具体到实际开发可能有很大的差异，例如单点登录的整合和跨域的处理，这些我都没有写。所以主要还是作为一个练手项目，了解就可以了。后续还是会持续更新的。（坑多不愁）。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Gateway/" data-id="ckupl1rr500146rupb06mepom" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Java基础/第七章、异常、断言和日志" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.188Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第7章-异常、断言和日志"><a href="#第7章-异常、断言和日志" class="headerlink" title="第7章 异常、断言和日志"></a>第7章 异常、断言和日志</h2><p>​    之前写过异常的文章，部分内容不是很正确，而且整篇文章结构也有些不恰当，这里修改了文章，添加了一些内容。</p>
+<h4 id="错误的产生原因"><a href="#错误的产生原因" class="headerlink" title="错误的产生原因"></a>错误的产生原因</h4><p>​    没有人能写出没有BUG的程序，除非这个程序太过于简单。BUG其实就是程序的一些错误，可能是代码的问题，也可能是输入的问题。Java中的异常机制其实也是为了解决这些问题，其他语言也有类似的机制。</p>
+<h4 id="异常的分类"><a href="#异常的分类" class="headerlink" title="异常的分类"></a>异常的分类</h4><p>​    Java中，异常都是基于Throwable，Throwable下面又有两个基类。Error和Exception。</p>
+<p>​    Error代表Java运行时系统的内部错误和资源耗尽错误，其实就是Java虚拟机出错了。</p>
+<p>​    Exception则又分为两类，RuntimeException和其他异常。RuntimeException就是运行时异常，一般都是程序代码有问题。例如：</p>
+<blockquote>
+<p>错误的类型转换。</p>
+<p>数组访问越界。</p>
+<p>访问 null 指针。</p>
+</blockquote>
+<p>其他异常则相反，不是程序代码的问题。所以也叫其他异常。一般有以下几种：</p>
+<blockquote>
+<p>试图在文件尾部后面读取数据。</p>
+<p>试图打开一个不存在的文件。</p>
+<p>试图根据给定的字符串查找Class对象，而这个字符串表示的类并不存在。</p>
+</blockquote>
+<p>​    Java将其他异常称为受查异常，Error和RuntimeException统称为非受查异常。为什么这样分？因为受查异常是没法考虑周全的，所以编译器在编写代码时会检查所有的受查异常是否都有异常处理器（就是那个try块）。非受查异常一般可以通过代码来避免（RuntimeException），也有代码处理不了的（Error）。所以对于非受查异常来说代码其实能做的不多，所以你很少见到代码会throw一个非受查异常，非受查异常一般都是通过捕获来进行处理。</p>
+<p>​    总的来说，方法应该尽可能声明会抛出的受查异常，非受查异常要么不可控，要么不应该出现。如果方法没有声明或者捕获受查异常，编译器也会有一个警告。</p>
+<h4 id="异常的处理办法"><a href="#异常的处理办法" class="headerlink" title="异常的处理办法"></a>异常的处理办法</h4><p>​    这里说的异常的处理方法其实就是指捕获，捕获的代码格式比较简单。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="comment">//可能发生异常的代码</span></span><br><span class="line">   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">     <span class="comment">//捕获的异常和捕获后要做的事</span></span><br><span class="line">   &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line"><span class="comment">//最后要做的事</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这种结构的代码大家估计看的很多了，这里提几个需要注意的点：</p>
+<ul>
+<li>try语句后面可以只有finally语句，没有catch语句。也就是说必须要有其中一个。</li>
+<li>finally语句的返回值会覆盖掉原始的返回值。</li>
+<li>finally是在return执行之后，语句返回之前执行的。(可能比较绕，直接看下面代码)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Train</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.err.println(test());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> a++;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;finally&quot;</span>+a);</span><br><span class="line">            a++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    输出结果是<code>finally11\n10</code>，也就是说返回的是10，但是在finally语句开始前，a已经变为11了。</p>
+<p>​    对于关闭资源来说，有可能关闭资源的方法也会出现错误，所以要写两个try块，其实也可以这样写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="string">&quot;test.txt&quot;</span>)) &#123;</span><br><span class="line">    out.println(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，无论怎么退出，资源都会关闭。</p>
+<p>​    异常的结构和一些注意的点都说了，下面说一下异常机制的一些小技巧。</p>
+<ul>
+<li>异常处理不能代替简单的测试</li>
+<li>不要过分的细化异常</li>
+<li>利用异常层次结构</li>
+<li>不要压制异常</li>
+<li>在监测错误时，严格要比放任好</li>
+<li>不要害怕传递异常</li>
+</ul>
+<h4 id="处理错误的其他方法"><a href="#处理错误的其他方法" class="headerlink" title="处理错误的其他方法"></a>处理错误的其他方法</h4><p>​    错误的产生最后形式可能不仅仅是异常，如何处理其他的错误呢？下面介绍两种，断言和日志。</p>
+<h5 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h5><p>​    断言我其实用的很少（几乎没有）。只有在源码中才会看到断言。断言机制其实是测试中间会用到的一种检查，测试时，断言能够对语句或者变量进行检查，代码发布后，这些语句将会自动移走以增加程序的运行速度。其实IDE的调试功能可能会好用一些。大家感兴趣也可以查查，这里了解的不多，也就不再叙述用法和详解了。</p>
+<h5 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h5><p>​    日志在开发中用的比较多，日志相对于直接打印优点比较多，这里不再累述了。日志框架也比较多，之前也做过分析和介绍。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38533859/article/details/107210715?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162203960016780261995962%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=162203960016780261995962&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_v29-2-107210715.nonecase&utm_term=%E6%97%A5%E5%BF%97&spm=1018.2226.3001.4450">SpringBoot集成Log4j2日志框架</a>。后续也会更新一下日志框架的相关博客。这里也是不再累述了。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>​    总的来说，异常机制、断言、日志都是为了让我们代码调试过程中更加方便。下面再说一下调试的一些技巧。</p>
+<ul>
+<li>每个类可以放一个主函数方便调试，也可以通过写测试类来实现。</li>
+<li>多用日志。</li>
+<li>利用Throwable提供的printStackTrace可以打印堆栈信息，方便调试。</li>
+<li>也可以使用一些Java虚拟机调试工具来监控和管理Java程序。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/" data-id="ckupl1rqh000r6rup0pcwf4q4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Java基础/第九章、集合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%E3%80%81%E9%9B%86%E5%90%88/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.188Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第9章-集合"><a href="#第9章-集合" class="headerlink" title="第9章 集合"></a>第9章 集合</h2><p>​    集合平时使用的比较多，但是自己很少往深处去看看其实现和原理，这次趁着这个机会了解一下，完全搞懂还是要看自己后续的使用和深挖。</p>
+<h3 id="集合框架了解"><a href="#集合框架了解" class="headerlink" title="集合框架了解"></a>集合框架了解</h3><p>​    想要了解集合，就需要先了解集合框架，这里也以最熟悉的队列（queue）为例来介绍集合框架。</p>
+<ul>
+<li><p>集合的接口与实现分离</p>
+<p>和大多数的设计思想一样，集合的接口和实现也是分离的。队列接口指出了可以在队列的尾部添加元素，在头部删除元素，查找队列中元素的个数。队列的实现通常存在两种形式，一种是使用循环数组，一种是使用链表。这样设计的目的是为了：构建集合时不需要知道使用哪种实现，只有在使用集合对象时，才会确定具体的类。同时也是为了保证：一旦程序改变了想法，只需要在一个地方就可以快捷的改变，即改变调用构造器的地方。</p>
+</li>
+<li><p><code>Collection</code>接口</p>
+<p>集合类的基本接口是<code>Collection</code>接口，这个接口有很多方法，详细可以看一下这个网址：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">https://docs.oracle.com/javase/8/docs/api/</a>.</p>
+<p>同时，<code>Collection</code>接口又继承了<code>Iterable</code>接口。说到这里就不得不提<code>Iterator</code>和<code>Iterable</code>接口的关系，前者是迭代器对象，后者则是定义了如何返回迭代器方法的接口。</p>
+<p>迭代器接口有四个方法。<code>hasNext();,next();,remove(),forEachRemaining(Consumer&lt;? super E&gt; action)</code>.方法的作用看名称就能看出来，不需要多讲什么。需要注意的就是：迭代器的指针是位于两个元素之间的，不是正好指向元素的位置。所以调用<code>next()</code>方法是先越过下一个元素，再返回越过元素的引用。</p>
+</li>
+<li><p>范型使用方法</p>
+<p>不难看出，集合框架中的接口都是范型接口，所以也可以编写一些实用的范型方法，现实也确实这么做了。<code>Collection</code>接口中声明了很多方法。作为实现者来说可以通过实现<code>AbstractCollection</code>接口来定制化自己的需求，同时也不用提供其他不需要的例行方法。具体实现的细节可以看看源码。</p>
+</li>
+<li><p>集合框架中的接口</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_8073B96B2C46-1.jpeg" alt="IMG_8073B96B2C46-1"></p>
+<p>上图已经很明白这个接口之间的关系了。</p>
+<h3 id="具体的集合"><a href="#具体的集合" class="headerlink" title="具体的集合"></a>具体的集合</h3><p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_2A63A75F65C0-1.jpeg" alt="IMG_2A63A75F65C0-1"></p>
+<p>​    下面就来详细介绍一下各个集合的信息和部分集合的用法。</p>
+</li>
+<li><p>链表</p>
+<p>链表的优点就是删除和增加元素时消耗不大（只是修改前后元素的引用），但是随机访问时的消耗要比数组大的多。</p>
+<p>在Java语言中，所有的链表实际都是双向链表，即后一个元素存放着前一个元素的引用。</p>
+<p>Java中的链表中的add方法是将元素添加到链表尾部，但是实际使用中很少遇到这种需求，都是在链表中部添加元素。所以这种对于指定位置添加元素的方法都可以交给迭代器去处理。但是使用迭代球也需要注意：可以给一个容器添加多个迭代器，但是应该只有一个迭代器能够读写，其他迭代器尽量不要读写，只给读的权限即可。光说也体现不出什么，实际撸代码吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> collectiontrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.ListIterator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LinkedListTrain.java</span></span><br><span class="line"><span class="comment"> * Description:  链表练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/8/13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListTrain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; a = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        a.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        a.add(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">        a.add(<span class="string">&quot;E&quot;</span>);</span><br><span class="line">        List&lt;String&gt; b = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        b.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        b.add(<span class="string">&quot;D&quot;</span>);</span><br><span class="line">        b.add(<span class="string">&quot;F&quot;</span>);</span><br><span class="line">        b.add(<span class="string">&quot;G&quot;</span>);</span><br><span class="line">        ListIterator&lt;String&gt; aIter = a.listIterator();</span><br><span class="line">        Iterator&lt;String&gt; bIter = b.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (bIter.hasNext()) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 在当前位置前添加一个元素</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">if</span> (aIter.hasNext()) aIter.next();</span><br><span class="line">            aIter.add(bIter.next());</span><br><span class="line">        &#125;</span><br><span class="line">        System.err.println(a);</span><br><span class="line">        bIter = b.iterator();</span><br><span class="line">        <span class="keyword">while</span> (bIter.hasNext()) &#123;</span><br><span class="line">            bIter.next();</span><br><span class="line">            <span class="keyword">if</span> (bIter.hasNext()) &#123;</span><br><span class="line">                bIter.next();</span><br><span class="line">                <span class="comment">//删除前一个元素</span></span><br><span class="line">                bIter.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.err.println(b);</span><br><span class="line"></span><br><span class="line">        a.removeAll(b);</span><br><span class="line">        System.err.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以在敲这段代码的时候先猜一下实际会打印什么，我第一次猜的时候错的离谱。</p>
+</li>
+<li><p>数组列表</p>
+<p>这个没有啥好讲的，ArrayList用的比较多，需要注意的就是：需要同步时使用Vector，不需要同步时使用ArrayList。</p>
+</li>
+<li><p>散列集</p>
+<p>用处就是随机访问集合中的任意元素，并且概率相同。涉及到数据结构。</p>
+<p>原理就是散列表为每一个对象计算一个散列码（hash code），散列码是由对象的实例产生的一个整数。具体使用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> collectiontrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * SetTrain.java</span></span><br><span class="line"><span class="comment"> * Description: Set练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/8/13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SetTrain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; words = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">long</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">            <span class="keyword">while</span> (!in.hasNext(<span class="string">&quot;eof&quot;</span>)) &#123;</span><br><span class="line">                String word = in.next();</span><br><span class="line">                <span class="comment">//因为电脑的性能不同，这里可能会是0</span></span><br><span class="line">                <span class="keyword">long</span> callTime = System.currentTimeMillis();</span><br><span class="line">                System.err.println(callTime);</span><br><span class="line">                words.add(word);</span><br><span class="line">                callTime = System.currentTimeMillis() - callTime;</span><br><span class="line">                System.err.println(callTime);</span><br><span class="line">                l += callTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        Iterator&lt;String&gt; iterator = words.iterator();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">20</span> &amp;&amp; iterator.hasNext(); i++) &#123;</span><br><span class="line">            System.err.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">        System.err.println(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line">        System.err.println(words.size() + <span class="string">&quot;时间花费&quot;</span> + l + <span class="string">&quot;时间&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>树集</p>
+<p>涉及到数据结构，之前学的都忘的差不多了。和红黑树类似，后续可以算法那部分继续了解，这里只是简单的上代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> collectiontrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ItemTest.java</span></span><br><span class="line"><span class="comment"> * Description:  树集</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/8/16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ItemTest</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">ItemTest</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> partNumber;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ItemTest</span><span class="params">(String adescription, <span class="keyword">int</span> apartNumber)</span> </span>&#123;</span><br><span class="line">        description = adescription;</span><br><span class="line">        partNumber = apartNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ItemTest&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;description=&#x27;&quot;</span> + description + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, partNumber=&quot;</span> + partNumber +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 比较，需要注意的是对象可能是个null对象，但是仍然要返回true</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == obj) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (getClass() != obj.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        ItemTest other = (ItemTest) obj;</span><br><span class="line">        <span class="keyword">return</span> Objects.equals(description, other.description) &amp;&amp; partNumber == other.partNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(description, partNumber);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(ItemTest o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 比较int的大小和string的长度</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">int</span> diff = Integer.compare(partNumber, o.partNumber);</span><br><span class="line">        <span class="keyword">return</span> diff != <span class="number">0</span> ? diff : description.compareTo(o.description);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> collectiontrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.NavigableSet;</span><br><span class="line"><span class="keyword">import</span> java.util.SortedSet;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeSet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TreeSetTrain.java</span></span><br><span class="line"><span class="comment"> * Description: 树集练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/8/16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTrain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 代码写完，还是不明白，后续了解。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        SortedSet&lt;ItemTest&gt; itemTests = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br><span class="line">        itemTests.add(<span class="keyword">new</span> ItemTest(<span class="string">&quot;A&quot;</span>, <span class="number">123</span>));</span><br><span class="line">        itemTests.add(<span class="keyword">new</span> ItemTest(<span class="string">&quot;B&quot;</span>, <span class="number">456</span>));</span><br><span class="line">        itemTests.add(<span class="keyword">new</span> ItemTest(<span class="string">&quot;C&quot;</span>, <span class="number">789</span>));</span><br><span class="line">        System.err.println(itemTests);</span><br><span class="line"></span><br><span class="line">        NavigableSet&lt;ItemTest&gt; itemTests1 = <span class="keyword">new</span> TreeSet&lt;&gt;(Comparator.comparing(ItemTest::getDescription));</span><br><span class="line">        itemTests1.addAll(itemTests);</span><br><span class="line">        System.err.println(itemTests1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>优先级队列</p>
+<p>优先级队列就是一个可以自我调整的二叉树，对树执行添加和删除操作时，可以让最小的元素移动到根，而不必花费时间对元素进行排序。代码的使用很简单。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> collectiontrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PriorityQueueTest.java</span></span><br><span class="line"><span class="comment"> * Description: 优先级队列练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/8/16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PriorityQueueTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        PriorityQueue&lt;LocalDate&gt; localDates = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        localDates.add(LocalDate.MAX);</span><br><span class="line">        localDates.add(LocalDate.MIN);</span><br><span class="line">        localDates.add(LocalDate.of(<span class="number">1903</span>, <span class="number">12</span>, <span class="number">10</span>));</span><br><span class="line">        localDates.add(LocalDate.of(<span class="number">1902</span>, <span class="number">12</span>, <span class="number">10</span>));</span><br><span class="line">        localDates.add(LocalDate.of(<span class="number">1903</span>, <span class="number">11</span>, <span class="number">10</span>));</span><br><span class="line">        System.err.println(<span class="string">&quot;打印&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (LocalDate localDate : localDates) &#123;</span><br><span class="line">            System.err.println(localDate);</span><br><span class="line">        &#125;</span><br><span class="line">        System.err.println(<span class="string">&quot;删除&quot;</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 只取出最小的删除，无论如何操作。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">while</span> (!localDates.isEmpty()) &#123;</span><br><span class="line">            System.err.println(localDates.remove());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>​    有时集合并不是很适合，例如我们知道某些键的信息，但是想查询与键对应的值。映射就是为了解决这类问题或场景而设计的。</p>
+<ul>
+<li><p>映射基本用法</p>
+<p>映射的两个通用实现分别为：HashMap,TreeMap。名字已经很清楚了。一个时散列映射，一个是树映射。散列只能将键散列，树映射也是对键的整体顺序排序。</p>
+<p>映射中有一些常用的方法，例如：<code>get(k),put(k,v),remove(k),size(),forEach()</code>，映射中键是唯一的，同一个键重复赋值，后一次的赋值会覆盖掉前一次的赋值。</p>
+<p>需要注意的就是如果代码中有更新映射的需求，需要先判断这个键是否存在，在执行对应的逻辑，代码中很容易就实现了，这里不在列举出详细代码。</p>
+<p>使用起来也是比较简单，这个还是比较常用的，代码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; stringStringMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">stringStringMap.put(<span class="string">&quot;1&quot;</span>, <span class="string">&quot;A&quot;</span>);</span><br><span class="line">stringStringMap.put(<span class="string">&quot;2&quot;</span>, <span class="string">&quot;B&quot;</span>);</span><br><span class="line">stringStringMap.put(<span class="string">&quot;3&quot;</span>, <span class="string">&quot;C&quot;</span>);</span><br><span class="line">stringStringMap.put(<span class="string">&quot;4&quot;</span>, <span class="string">&quot;D&quot;</span>);</span><br><span class="line">  </span><br><span class="line">System.err.println(stringStringMap);</span><br><span class="line">  </span><br><span class="line">stringStringMap.remove(<span class="string">&quot;4&quot;</span>);</span><br><span class="line">  </span><br><span class="line">stringStringMap.put(<span class="string">&quot;1&quot;</span>, <span class="string">&quot;AA&quot;</span>);</span><br><span class="line">System.err.println(stringStringMap.get(<span class="string">&quot;1&quot;</span>));</span><br><span class="line">  </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 还是需要再了解和使用lambda表达式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">stringStringMap.forEach((k, v) -&gt; System.err.println(<span class="string">&quot;key&quot;</span> + k + <span class="string">&quot;===&quot;</span> + <span class="string">&quot;value&quot;</span> + v));</span><br></pre></td></tr></table></figure></li>
+<li><p>视图和其他映射</p>
+<p>视图就是将映射中的元素存放到集合中（官方认为映射不是一个集合）。有三种映射，键集、值集合和键/值对集。需要注意的时键集中删除某个键，映射中也会删除这个键和其对应的值，但是添加则不行。</p>
+<p>弱散列映射，当对键的唯一引用来自于散列条目时，这一数据结构将与垃圾回收器协同工作一起删除键/值对。WeakHashMap使用弱引用来保存键。弱引用其实是将强引用包装，想要获得该对象需要用get方法，具体这里的实现原理可以看一下WeakHashMap的源码，这里水平太差，估计要放到后面留个坑了。</p>
+<p>链接散列集与映射，类似于一个双向链表，调用get和put时，会影响该元素在映射中的位置。其实可以修改这个映射，将用的多的元素放到缓存中。这里不再列举代码了。</p>
+<p><code>EnumSet</code>是枚举元素集，实现是用位序列，如果对应的值在集中，则相应的位置被置位1。</p>
+<p>标志散列映射，<code>IdentityHashMap</code>类比较特殊，键的散列值不是用<code>hashCode()</code>计算的，是使用<code>identityHashCode()</code>计算的，这个方法和<code>hashCode()</code>的区别看一看看源码，大概就是比较时一个使用的是<code>==</code>，一个是<code>equals()</code>。</p>
+</li>
+</ul>
+<h3 id="视图和包装器"><a href="#视图和包装器" class="headerlink" title="视图和包装器"></a>视图和包装器</h3><p>​    这一部分感觉设计到设计模式，这一块目前还不是很熟悉，很多用法不知道为什么这样设计以及这样做的好处。就简单介绍记录一下吧。</p>
+<p>​    视图有几种，子范围的视图、不可修改的视图、同步视图、受查视图。作用名称已经很清楚了。</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>​    上面也说过了，映射和集合是一种数据结构，自然离不开算法，看到现在也大致了解了，这些的集合和映射的实现离不开算法。但是感觉现在自己学起来还是比较空，就再给自己留个坑吧。</p>
+<p>就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%E3%80%81%E9%9B%86%E5%90%88/" data-id="ckupl1rqi000s6rup59srbbe2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qq1162210866.github.io/博客/Java基础/第八章、范型程序设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E8%8C%83%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.188Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第8章-范型程序设计"><a href="#第8章-范型程序设计" class="headerlink" title="第8章 范型程序设计"></a>第8章 范型程序设计</h2><p>​    范型要解决的问题就是让编写的代码可以被很多不同的类型所重用。例如<code>List&lt;String&gt;</code>,就是一个简单的范型的使用。</p>
+<p>​    下面就列举一个简单的范型的代码例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> paradigmtrain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ParadigmTrain1.java</span></span><br><span class="line"><span class="comment"> * Description:  范型练习类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/5/15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParadigmTrain1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LocalDate[] dates = &#123;LocalDate.of(<span class="number">1996</span>, <span class="number">12</span>, <span class="number">9</span>), LocalDate.of(<span class="number">1997</span>, <span class="number">5</span>, <span class="number">15</span>), LocalDate.of(<span class="number">1998</span>, <span class="number">5</span>, <span class="number">15</span>)&#125;;</span><br><span class="line">        Pair&lt;LocalDate&gt; result = minmax(dates);</span><br><span class="line">        System.err.println(result.getFirst());</span><br><span class="line">        System.err.println(result.getSecond());</span><br><span class="line">      	<span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 这里可以通过参数的形式来推断出范型的类型，所以不需要输入范型的类型参数</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">new</span> Pair&lt;&gt;(<span class="string">&quot;haha&quot;</span>, <span class="string">&quot;hehe&quot;</span>);	</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 输入的参数必须要实现Comparable。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> paradigmtrain.Pair&lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/5/15</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Comparable&gt; <span class="function">Pair&lt;T&gt; <span class="title">minmax</span><span class="params">(T[] a)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 第一个范型是对参数进行限制，第二个是返回的类型</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> ((a == <span class="keyword">null</span>) || a.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        T min = a[<span class="number">0</span>];</span><br><span class="line">        T max = a[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> aLength = a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; aLength; i++) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 比较大小，通过compareTo方法</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">if</span> (min.compareTo(a[i]) &gt; <span class="number">0</span>) min = a[i];</span><br><span class="line">            <span class="keyword">if</span> (max.compareTo(a[i]) &lt; <span class="number">0</span>) max = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;&gt;(min, max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ParadigmTrain1.java</span></span><br><span class="line"><span class="comment"> * Description:  范型类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/5/15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T second;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">        second = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T second)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.second = second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getSecond</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可以通过对范型参数添加<code>extends</code>，来限制范型参数的类型。如下：</p>
+<p><code>public static &lt;T extends Comparable &amp; Serializable&gt; Pair&lt;T&gt; minmax(T[] a) &#123;</code></p>
+</li>
+<li><p>范型的原理。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_4294825AB109-1.jpeg" alt="IMG_4294825AB109-1"></p>
+<p>注意：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_4DB8B172B25A-1.jpeg" alt="IMG_4DB8B172B25A-1"></p>
+</li>
+<li><p>为了解决类型擦除于多态的冲突，需要生成一个桥方法。（比较复杂，了解即可）</p>
+</li>
+<li><p>关于范型的事实。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/IMG_9B4D064EA133-1.jpeg" alt="IMG_9B4D064EA133-1"></p>
+</li>
+<li><p>范型的约束和局限</p>
+<ul>
+<li><p>不能用基本类型实例化类型参数。类型擦除后，变为Object，但是Object不能存储基本类型的值。</p>
+</li>
+<li><p>运行时类型查询只适用于原始类型。即这个代码是错误的。<code>if(a instanceof Pair&lt;String&gt;)</code>（无法判断）。</p>
+</li>
+<li><p>不能创建参数化类型的数组。数组会记住它的元素类型，如果试图存储其他类型的元素会报异常。</p>
+</li>
+<li><p>不能构造范型数组。</p>
+</li>
+<li><p>不能实例化类型变量。</p>
+</li>
+<li><p>范型类的静态上下文中类型变量无效。</p>
+</li>
+<li><p>不能抛出或捕获范型类的实例。</p>
+</li>
+</ul>
+</li>
+<li><p>范型类型的继承规则。Employee是Manager的父类，但是<code>Pair&lt;Employee&gt;</code>不是<code>Pair&lt;Manager&gt;</code>的父类。</p>
+</li>
+<li><p>通配符类型中，允许类型参数变化。</p>
+<p>看书是有点枯燥的，尤其这种难读的东西，下面写个例子，把上面的东西串联起来。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> paradigmtrain;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ParadigmTrain2.java</span></span><br><span class="line"><span class="comment"> * Description:  综合练习，把范型知识点串联起来</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParadigmTrain2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Manager ceo = <span class="keyword">new</span> Manager(<span class="string">&quot;zhangshan&quot;</span>, <span class="number">8000</span>, <span class="number">24</span>);</span><br><span class="line">        Manager cfo = <span class="keyword">new</span> Manager(<span class="string">&quot;lisi&quot;</span>, <span class="number">9000</span>, <span class="number">25</span>);</span><br><span class="line">        Pair&lt;Manager&gt; managerPair = <span class="keyword">new</span> Pair&lt;&gt;(ceo, cfo);</span><br><span class="line">        printBuddies(managerPair);</span><br><span class="line"></span><br><span class="line">        ceo.setMoney(<span class="number">10000</span>);</span><br><span class="line">        cfo.setMoney(<span class="number">20000</span>);</span><br><span class="line">        Manager[] managers = &#123;ceo, cfo&#125;;</span><br><span class="line">        Pair&lt;Manager&gt; managerPair1 = <span class="keyword">new</span> Pair&lt;&gt;();</span><br><span class="line">        minMaxBonus(managers, managerPair1);</span><br><span class="line">        System.err.println(<span class="string">&quot;minMaxBonus:&quot;</span> + managerPair1.getFirst().getName() + <span class="string">&quot;==&quot;</span> + managerPair1</span><br><span class="line">                .getSecond().getName());</span><br><span class="line">        maxMinBonus(managers, managerPair1);</span><br><span class="line">        System.err.println(<span class="string">&quot;minMaxBonus:&quot;</span> + managerPair1.getFirst().getName() + <span class="string">&quot;==&quot;</span> + managerPair1</span><br><span class="line">                .getSecond().getName());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 通配符类型</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pair</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/7/22</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printBuddies</span><span class="params">(Pair&lt;? extends Employee&gt; pair)</span> </span>&#123;</span><br><span class="line">        Employee employee = pair.getFirst();</span><br><span class="line">        Employee employee1 = pair.getSecond();</span><br><span class="line">        System.err.println(<span class="string">&quot;printBuddies&quot;</span> + employee.getName() + <span class="string">&quot;====&quot;</span> + employee1.getName() + <span class="string">&quot;=====&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 通配符的超类型限定，限定父类</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> managers</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pair</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/7/22</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">minMaxBonus</span><span class="params">(Manager[] managers, Pair&lt;? <span class="keyword">super</span> Manager&gt; pair)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (managers.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Manager min = managers[<span class="number">0</span>];</span><br><span class="line">        Manager max = managers[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; managers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (min.getMoney() &gt; managers[i].getMoney()) min = managers[i];</span><br><span class="line">            <span class="keyword">if</span> (max.getMoney() &lt; managers[i].getMoney()) max = managers[i];</span><br><span class="line">        &#125;</span><br><span class="line">        pair.setFirst(min);</span><br><span class="line">        pair.setSecond(max);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maxMinBonus</span><span class="params">(Manager[] managers, Pair&lt;? <span class="keyword">super</span> Manager&gt; pair)</span> </span>&#123;</span><br><span class="line">        minMaxBonus(managers, pair);</span><br><span class="line">        PairAlg.swapHelper(pair);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PairAlg</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 无限定通配符</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pair</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> boolean</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/7/22</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">hasNull</span><span class="params">(Pair&lt;?&gt; pair)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pair.getFirst() == <span class="keyword">null</span> || pair.getSecond() == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Pair&lt;?&gt; pair)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">swapHelper</span><span class="params">(Pair&lt;T&gt; tPair)</span> </span>&#123;</span><br><span class="line">        T t = tPair.getFirst();</span><br><span class="line">        tPair.setFirst(tPair.getSecond());</span><br><span class="line">        tPair.setSecond(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E8%8C%83%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-id="ckupl1rqj000t6rup3u7q1uxg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

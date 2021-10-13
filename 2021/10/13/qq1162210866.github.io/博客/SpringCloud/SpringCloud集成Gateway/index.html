@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringCloud集成Gateway​    拖了很久，目前最后一篇SpringCloud的博客终于写了。这个坑算是告一段落了。最后一篇博客就是整合Gateway。也不说其他的了，直接开始吧。 ​    其实写了这么久，应该了解了SpringCloud是有多个组件组成的，每个部分都有许多替代品，网关这个部分也不例外。其实最开始我一直在纠结选择哪个组件。目前比较好和流行的有Zuul和Gatewa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Gateway/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringCloud集成Gateway​    拖了很久，目前最后一篇SpringCloud的博客终于写了。这个坑算是告一段落了。最后一篇博客就是整合Gateway。也不说其他的了，直接开始吧。 ​    其实写了这么久，应该了解了SpringCloud是有多个组件组成的，每个部分都有许多替代品，网关这个部分也不例外。其实最开始我一直在纠结选择哪个组件。目前比较好和流行的有Zuul和Gatewa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724103944533.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104143276.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104212862.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724105846220.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.194Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.194Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724103944533.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/SpringCloud/SpringCloud集成Gateway" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Gateway/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.194Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud集成Gateway"><a href="#SpringCloud集成Gateway" class="headerlink" title="SpringCloud集成Gateway"></a>SpringCloud集成Gateway</h2><p>​    拖了很久，目前最后一篇SpringCloud的博客终于写了。这个坑算是告一段落了。最后一篇博客就是整合Gateway。也不说其他的了，直接开始吧。</p>
+<p>​    其实写了这么久，应该了解了SpringCloud是有多个组件组成的，每个部分都有许多替代品，网关这个部分也不例外。其实最开始我一直在纠结选择哪个组件。目前比较好和流行的有Zuul和Gateway。但是Zuul2.0后就闭源了，所以一直在纠结，最后还是选择了Gateway。</p>
+<p>​    Gateway的官网地址：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">https://spring.io/projects/spring-cloud-gateway</a>其实这个地址其他的组件也能找到，之前没有关注这个网址，后续大家可以在上面了解一下详细的写法和demo。</p>
+<p>​    该项目提供了一个用于在Spring MVC之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/指标和弹性。它的功能有以下几点。</p>
+<ul>
+<li><p>基于Spring Framework 5，Project Reactor和Spring Boot 2.0构建</p>
+</li>
+<li><p>能够匹配任何请求属性上的路由。</p>
+</li>
+<li><p>谓词和过滤器特定于路由。</p>
+</li>
+<li><p>Hystrix断路器集成。</p>
+</li>
+<li><p>Spring Cloud DiscoveryClient集成</p>
+</li>
+<li><p>易于编写的谓词和过滤器</p>
+</li>
+<li><p>请求速率限制</p>
+</li>
+<li><p>路径改写</p>
+</li>
+</ul>
+<p>​    不难看到其实网关的一部分功能和其他的组件有些重合。这个后面会有一个问题。关于Gateway的原理这里不再叙述了，作为后续的一个扩展点（又是一个坑）。就直接整合。</p>
+<p>​    需要添加Gateway的依赖，同时Gateway作为一个服务也是需要注册到Eureka注册中心的。</p>
+<p>​    使用IDEA直接创建一个新模块，指定好名称和需要添加的依赖，这里只选择Gateway和Eureka-client就可以了。截图如下：</p>
+<p>​    添加模块：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724103944533.png" alt="image-20200724103944533"></p>
+<p>​    选择两个依赖：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104143276.png" alt="image-20200724104143276"></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724104212862.png" alt="image-20200724104212862"></p>
+<p>​    后面直接下一步就可以最后把pom文件中的父模块修改为自己的父模块就可以了。剩下就没有什么了。然后就是修改启动类，添加<code>@EnableDiscoveryClient</code>注解。最后就是在<code>application.yml</code>中增加一些配置。配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8084</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">eureka-client</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://eureka-client</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/eureka-client/**</span></span><br><span class="line">    <span class="attr">loadbalancer:</span></span><br><span class="line">      <span class="attr">ribbon:</span></span><br><span class="line">        <span class="attr">enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:8080/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>​    下面说一下这个配置文件需要注意的事。</p>
+<ul>
+<li><p>uri后面填写的是你服务的地址，例如:<code>http://www.baidu.com</code>。这里填写<code>lb://eureka-client</code>代表从注册中心获取<code>eureka-client</code>的服务。</p>
+</li>
+<li><p>predicates是过滤原则，不能为空，必须要填。可以从其他地方了解一个这个如何填。我这里的意思是只要url为：<code>http://127.0.0.1:8084/eureka-client/**</code>的请求都会转到对应的服务上去处理。</p>
+</li>
+<li><p>id就是id，没有啥特殊的含义或者用处。</p>
+</li>
+<li><p>转到对应的服务时，请求地址会有一定的变化，还是上面那个链接，如果请求的服务端口为8081，则这个请求经过网关路由转化为：<code>http://127.0.0.1:8081/eureka-client/**</code>=，其实就是把端口号换了一下，所以我在服务模块添加了一个全局请求前缀：<code>/rureka-clien</code>。</p>
+</li>
+<li><p>下面的eureka客户端的配置没有什么可以讲的，和其他的一样。</p>
+</li>
+<li><p>启动的时候报了一个警告，大意是提醒已经启用了Ribbon，可能会有冲突。所以添加了配置：``spring.cloud.loadbalancer.ribbon.enabled<code>=false</code>，这里是为了不让这个告警出现（强迫症），要看自己项目是否需要。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You already have RibbonLoadBalancerClient on your classpath. It will be used by <span class="keyword">default</span>. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `<span class="keyword">false</span>` or remove spring-cloud-starter-netflix-ribbon from your project.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​    剩下就没有什么可以讲的了，启动项目测试一下就可以了，看看最后服务会不会经过路由转换为相应的服务。我最后是测试成功的。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200724105846220.png" alt="image-20200724105846220"></p>
+<p>​    SpringCloud的内容就暂时告一段落了，这个主要还是熟悉SpringCloud，了解它的一些基础概念，具体到实际开发可能有很大的差异，例如单点登录的整合和跨域的处理，这些我都没有写。所以主要还是作为一个练手项目，了解就可以了。后续还是会持续更新的。（坑多不愁）。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Gateway/" data-id="ckupl1rr500146rupb06mepom" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Eureka/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Java%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E5%BC%82%E5%B8%B8%E3%80%81%E6%96%AD%E8%A8%80%E5%92%8C%E6%97%A5%E5%BF%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

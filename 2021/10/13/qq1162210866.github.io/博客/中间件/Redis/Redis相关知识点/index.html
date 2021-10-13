@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis基础概念基础概念​    Redis是一个高性能的key-value数据库。支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次加载使用。读的速度为110000次&#x2F;s写的速度为81000次&#x2F;s。操作都是原子操作。redis支持的类型：String、list、set、Zsetsorted set、Hash等。redis是单进程，单线程单，通过队列技术将并发访问变为串行访问。  当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Redis基础概念基础概念​    Redis是一个高性能的key-value数据库。支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次加载使用。读的速度为110000次&#x2F;s写的速度为81000次&#x2F;s。操作都是原子操作。redis支持的类型：String、list、set、Zsetsorted set、Hash等。redis是单进程，单线程单，通过队列技术将并发访问变为串行访问。  当">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/中间件/Redis/Redis相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.196Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Redis基础概念"><a href="#Redis基础概念" class="headerlink" title="Redis基础概念"></a>Redis基础概念</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>​    Redis是一个高性能的key-value数据库。支持数据持久化，可以将内存中的数据保存在磁盘中，重启的时候再次加载使用。读的速度为110000次/s写的速度为81000次/s。操作都是原子操作。redis支持的类型：String、list、set、Zsetsorted set、Hash等。redis是单进程，单线程单，通过队列技术将并发访问变为串行访问。</p>
+<ul>
+<li>当Redis内存满了后，写命令会返回错误信息，读命令还是可以正常返回。</li>
+</ul>
+<h3 id="持久化机制和原理"><a href="#持久化机制和原理" class="headerlink" title="持久化机制和原理"></a>持久化机制和原理</h3><p>Redis有两个持久化策略：RDB和AOF</p>
+<h4 id="RDB快照"><a href="#RDB快照" class="headerlink" title="RDB快照"></a>RDB快照</h4><p>​    Redis支持将当前数据的快照存成一个数据文件的持久化机制。而一个持续写入的数据库如何生成快照呢。Redis借助了fork命令的copy on write机制。在生成快照时，将当前进程fork出一个子进程，然后在子进程中循环所有的数据，将数据写如一个临时文件，持久化结束后，用这个临时文件代替上一个持久化文件，也就是rename。由于os的写时复制机制（copy on write)父子进程会共享相同的物理页面，当父进程处理写请求时os会为父进程要修改的页面创建副本，而不是写共享的页面。所以子进程的地址空间内的数据是fork时刻整个数据库的一个快照。即持久化后的数据库的修改不会记录到持久化文件中，这个也是它的一个缺点之一，因为有可能从持久化后到服务器断电之前到数据都会丢失，主要是看项目的取舍。而且RDB快照是全量持久化，并不是增量持久化。</p>
+<p>​    在redis客户端中执行<code>save 60 1000</code>(60秒内，如果有1000个键被修改就执行RDB)命令即可调用RDB快照的备份。</p>
+<h4 id="AOF日志"><a href="#AOF日志" class="headerlink" title="AOF日志"></a>AOF日志</h4><p>​    AOF日志的全称是Append Only File，是一个追加写入的日志。但是AOF日志文件里面存储的是redis的标准命令，有些命令经过转化，例如删除一个不存在的键，redis认为不会对数据库造成造成修改，所以不会记录在AOF日志文件中，有些命令因为操作系统的不同可能会导致执行结果不同，所以都转换为统一的命令。</p>
+<ul>
+<li>AOF rewrite：功能就是重新生成一份AOF文件，新的AOF文件中一条记录的操作只会有一次，而不像一份老文件那样，可能记录了对同一个值的多次操作。其生成过程和RDB类似，也是fork一个进程，直接遍历数据，写入新的AOF临时文件。在写入新文件的过程中，所有的写操作日志还是会写到原来老的 AOF文件中，同时还会记录在内存缓冲区中。当重完操作完成后，会将所有缓冲区中的日志一次性写入到临时文件中。然后调用原子性的rename命令用新的 AOF文件取代老的AOF文件。 </li>
+</ul>
+<p>​    在Redis中对AOF调用write写入后，何时再调用fsync将其写到磁盘上，通过appendfsync选项来控制，下面appendfsync的三个设置项，安全强度逐渐变强。 通过设置配置项来实现AOF备份：<code>appendonly yes</code>,通过配置<code>appendfsync</code>来设置何时写到磁盘上。</p>
+<ul>
+<li>appendfsync no ：当设置appendfsync为no的时候，Redis不会主动调用fsync去将AOF日志内容同步到磁盘，所以这一切就完全依赖于操作系统的调试了。对大多数Linux操作系统，是每30秒进行一次fsync，将缓冲区中的数据写到磁盘上。 </li>
+<li>appendfsync everysec：当设置appendfsync为everysec的时候，Redis会默认每隔一秒进行一次fsync调用，将缓冲区中的数据写到磁盘。但是当这一 次的fsync调用时长超过1秒时。Redis会采取延迟fsync的策略，再等一秒钟。也就是在两秒后再进行fsync，这一次的fsync就不管会执行多长时间都会进行。这时候由于在fsync时文件描述符会被阻塞，所以当前的写操作就会阻塞。 </li>
+<li>appednfsync always：当设置appendfsync为always时，每一次写操作都会调用一次fsync，这时数据是最安全的，当然，由于每次都会执行fsync，所以其性能也会受到影响。 </li>
+</ul>
+<h3 id="Redis的内存回收策略"><a href="#Redis的内存回收策略" class="headerlink" title="Redis的内存回收策略"></a>Redis的内存回收策略</h3><p>​    如果redis占用的内存满了，可以通过设置内存回收策略来进行键值淘汰，配置项为：<code>maxmemory-policy</code>。主动清除策略主要有八种：</p>
+<blockquote>
+<ul>
+<li><p>volatile-ttl：在筛选时，会针对设置了过期时间的键值对，根据过期时间的先后进行删除，越早过期的越先被删除。</p>
+</li>
+<li><p>volatile-random：就像它的名称一样，在设置了过期时间的键值对中，进行随机删除。</p>
+</li>
+<li><p>volatile-lru：会使用 LRU 算法筛选设置了过期时间的键值对删除。（LRU：最近最少使用）</p>
+</li>
+<li><p>volatile-lfu：会使用 LFU 算法筛选设置了过期时间的键值对删除（LFU：最不经常使用）</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><p>allkeys-random：从所有键值对中随机选择并删除数据。</p>
+</li>
+<li><p>allkeys-lru：使用 LRU 算法在所有数据中进行筛选删除。</p>
+</li>
+<li><p>allkeys-lfu：使用 LFU 算法在所有数据中进行筛选删除。</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>noeviction：不会剔除任何数据，拒绝所有写入操作并返回客户端错误信息”(error) OOM command not allowed when used memory”，此时Redis只响应读操作。</li>
+</ul>
+</blockquote>
+<p>LRU是最近最少使用页面置换算法(Least Recently Used),也就是首先淘汰最长时间未被使用的页面!</p>
+<p>LFU是最近最不常用页面置换算法(Least Frequently Used),也就是淘汰一定时期内被访问次数最少的页!</p>
+<h3 id="Redis的键删除策略"><a href="#Redis的键删除策略" class="headerlink" title="Redis的键删除策略"></a>Redis的键删除策略</h3><p>​    Redis过期key的删除方式有三种：</p>
+<ul>
+<li>被动删除：当读/写一个已经过期的key时，会触发惰性删除策略，直接删除掉这个过期key。返回nil。</li>
+<li>主动删除：由于惰性删除策略无法保证冷数据被及时删掉，所以Redis会定期主动淘汰一批已过期的key。<ul>
+<li>随机测试100个设置了过期时间的key</li>
+<li>删除所有发现的已过期的key</li>
+<li>若删除的key超过25个则重复步骤1</li>
+</ul>
+</li>
+<li>当前已用内存超过maxmemory限定时，触发主动清理策略。</li>
+</ul>
+<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><p>​    Redis有三种集群模式：主从模式、Sentinel模式（哨兵模式）、Cluster模式（集群模式）。</p>
+<h4 id="主从模式"><a href="#主从模式" class="headerlink" title="主从模式"></a>主从模式</h4><p>​    主从模式将数据库分为两种，主库和从库。主数据库可以进行读和写，从数据库只能进行读。多个从数据库对应一个主数据库，从数据库挂了重启后会向主数据库请求同步数据。主数据库挂掉后，不影响从数据库的读，但是不能提供写服务了。</p>
+<p>​    机制：当slave启动后，主动向master发送SYNC命令。master接收到SYNC命令后在后台保存快照（RDB持久化）和缓存保存快照这段时间的命令，然后将保存的快照文件和缓存的命令发送给slave。slave接收到快照文件和命令后加载快照文件和缓存的执行命令。复制初始化后，master每次接收到的写命令都会同步发送给slave，保证主从数据一致性。</p>
+<p>​    缺点就是主数据挂掉后，redis无法提供写服务。</p>
+<p>​    搭建方式：通过下载redis安装包，安装后，通过启动不同的配置文件来达到多个redis服务的目的。在配置文件中配置主数据库和从数据库即可。</p>
+<h5 id="流程和细节"><a href="#流程和细节" class="headerlink" title="流程和细节"></a>流程和细节</h5><p>建立连接阶段（即准备阶段）</p>
+<ol>
+<li>设置master的地址和端口，保存master信息</li>
+<li>建立socket链接</li>
+<li>发送ping命令（定时器任务）</li>
+<li>身份验证</li>
+<li>发送slave端口信息<br>至此，主从链接成功！</li>
+</ol>
+<p>数据同步阶段（注意从机命令为psync，主机命令为bgsave）</p>
+<p>步骤1：请求同步<br>步骤2：创建RDB同步数据<br>步骤3：恢复RDB同步数据<br>步骤4：请求部分同步数据<br>步骤5：恢复部分同步数据<br>至此，数据同步工作完成</p>
+<p>命令传播阶段</p>
+<p>通过ping命令，从机通知主机发送缓冲区内的命令</p>
+<h4 id="Sentinel模式（哨兵模式）"><a href="#Sentinel模式（哨兵模式）" class="headerlink" title="Sentinel模式（哨兵模式）"></a>Sentinel模式（哨兵模式）</h4><p>​    主从模式的弊端就是主数据库挂掉后，从数据库无法提供写的服务，所以产生了哨兵模式。</p>
+<p>​    Sentinel是一个进程，用来监控redis进程的状态，Sentinel也可以启动多个形成一个集群。当Sentinel检测到主节点挂掉后，会将从节点升级为主节点，并修改其他所有节点的配置文件。当主节点再次启动后，会变为从节点。从节点故障后，哨兵不会进行故障转移。</p>
+<p>​    机制：每个Sentinel会每秒钟一次的频率向所有的主从节点发送PING命令，如果实例的回复超过了指定的值（通过配置down-after-milliseconds,默认是30秒），则会被Sentinel标记为主观下线。如果主节点标记主观下线，其他Sentinel都要确认这个主节点下线，。当Sentinel的确认数量超过了配置值后，认为主节点客观下线。将每10一次发送的INFO命令变为1秒发送一次。</p>
+<h5 id="具体的流程和细节"><a href="#具体的流程和细节" class="headerlink" title="具体的流程和细节"></a>具体的流程和细节</h5><p>​    哨兵在进行主从切换过程中经历三个阶段</p>
+<p>1.监控阶段</p>
+<p>​    单个哨兵通过和主节点建立cmd链接，发送info命令，得到主节点的信息和各个从节点的信息，同时在主节点内存储哨兵实例的信息。主节点信息同步完毕后，向从节点建立链接，发送info命令，完善从节点的信息。</p>
+<p>​    当其他哨兵加入进来时，链接到主节点后，发现主节点内有哨兵实例，通过发布订阅的形式，将两个哨兵实例的信息进行同步，后续的哨兵都是这样。</p>
+<p>2.通知阶段</p>
+<p>​    哨兵通过建立的cmd链接，发送相应的命令给节点，节点将状态信息返回，然后该哨兵通过发布订阅将信息同步给其他哨兵。</p>
+<p>3.故障转移</p>
+<p>​        一个哨兵发现主节点发送info命令没有回复，通知其他哨兵，并且将主节点状态修改为主观下线。其他哨兵也发送命令给主节点，如果确认的哨兵数超过了设定的值，就认为该主节点客观下线。然后哨兵之间需要选举出一个哨兵执行节点切换的任务。</p>
+<p>​    每个哨兵都有一票，这票投给自己最先收到竞选通知的哨兵，直到某个哨兵票数超过一半以上，就认为该哨兵负责本次的切换。</p>
+<p>​    哨兵从剩下的从节点中选出最优的主节点。先筛选出在线的，再筛选出响应快的，再筛选出和原先主节点同步时间最近的，最后还有多个的话，就按照优先原则，偏移量和uuid都会有影响。最后选出一个从节点，然后将这个从节点升级为主节点，将其他从节点的主节点的信息修改为新的主节点。后面如果掉线的主节点上线的话，也会修改为从节点。</p>
+<h4 id="Cluster模式（集群模式）"><a href="#Cluster模式（集群模式）" class="headerlink" title="Cluster模式（集群模式）"></a>Cluster模式（集群模式）</h4><p>​    哨兵模式基本可以满足生产的需要，但是当数据量过大，导致一台机器无法满足时，这个时候就需要将数据进行分片存储，这就是集群模式。</p>
+<p>​    Redis集群是一个由多个节点组成的分布式服务器群，它具有复制、高可用和分片特性；Redis集群没有中心节点，并且带有复制和故障转移特性，这可以避免单个节点成为性能瓶颈，或者因为某个节点下线而导致整个集群下线；</p>
+<p>​    我们有3个主节点，3个从节点，每个主节点处理各自的数据，提供读写能力，从节点异步复制主节点的数据。一般读请求分配给从节点，写请求分配给主节点。</p>
+<h5 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h5><p>​    一个 Redis 集群包含 16384 个哈希槽（hash slot）， 它们的编号为0、1、2、3……16382、16383，这个槽是一个逻辑意义上的槽，实际上并不存在。redis中的每个key都属于这 16384 个哈希槽的其中一个，存取key时都要进行key-&gt;slot的映射计算。Redis Cluster中的每个Master节点都会负责一部分的槽，当有某个key被映射到某个Master负责的槽，那么这个Master负责为这个key提供服务。在Redis Cluster中，只有Master才拥有槽的所有权，如果是某个Master的slave，这个slave只负责槽的使用，但是没有所有权。</p>
+<h5 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h5><p>​    在cluster中，节点之间通过gossip协议进行通信。A节点会发送PING消息给B节点，若是在cluster_node_timeout时长内没有收到B节点的回复消息，则A节点会判定B节点已经下线了。这时候，A节点判定完后，会想集群广播B节点下线的消息。如果集群中的超过半数以上的节点都认为B节点下线后，B节点就会真正的下线。</p>
+<p>​    当问题节点下线后，如果该下线节点是带有槽的主节点，则需要从它的从节点选出一个替换它，当问题节点的从节点发现其主节点下线时，将会触发故障恢复流程。但是并不是所有的从节点都能参与到故障恢复的流程中，若从节点与问题主节点的断线时间超过cluster_node_timeout * cluster-slave-validity-factor时，该从节点不能参与到后续恢复流程。</p>
+<p>​    主要是通过对多个从节点使用不同的延迟选举时间来支持优先级问题。复制偏移量越大说明从节点延迟越低，那么它应该具有更高的优先级来替换故障主节点。</p>
+<h4 id="Redis中的脑裂现象"><a href="#Redis中的脑裂现象" class="headerlink" title="Redis中的脑裂现象"></a>Redis中的脑裂现象</h4><p>​    redis中的脑裂现象：哨兵将发现主节点下线后，将一个从节点升级为主节点，但是仍然有客户端连接旧的主节点，两个主节点造成数据没有同步，后续主节点恢复后，数据仍然丢失。可以通过设置第一个参数表示连接到master的最少slave数量，第二个参数表示slave连接到master的最大延迟时间这两个参数。如果两个条件都不满足，主节点就会拒绝同步数据。防止脑裂现象的产生。</p>
+<h3 id="Redis中的发布订阅"><a href="#Redis中的发布订阅" class="headerlink" title="Redis中的发布订阅"></a>Redis中的发布订阅</h3><p>​    Redis中的发布订阅可以使用匹配符，需要注意当没有消费者时，生产者发布的消息可能会丢失。</p>
+<h3 id="Redis中的事务"><a href="#Redis中的事务" class="headerlink" title="Redis中的事务"></a>Redis中的事务</h3><p>​    Redis中的事务比较独特。事务开启后，会将命令都放入队列缓存中，其他客户端的命令不会放入。事务执行后，如果遇到命令格式错误，事务中所有的操作都不会被执行。但是如果命令格式正确，使用方式不对，例如对String执行hash方法，该命令不会被执行，其他正确命令仍然会被执行。</p>
+<p>​    watch是为了完善redis事务的特点，在事务开始前监听某个key，如果事务中间key发生了变化，事务就会中断，不再执行。unwatch是为了取消监听，防止本次的监听对下次的事务产生影响。exec和discard也有同样的效果。</p>
+<p>​    如果客户端发送的命令为 EXEC 、 DISCARD 、 WATCH 、 MULTI 四个命令的其中一个， 那么服务器立即执行这个命令。如果不是这四个命令，服务器并不立即执行这个命令， 而是将这个命令放入一个事务队列里面， 然后向客户端返回 QUEUED。某些命令执行出错也不会影响整个事务。</p>
+<h3 id="Redis中的管道"><a href="#Redis中的管道" class="headerlink" title="Redis中的管道"></a>Redis中的管道</h3><p>​    Redis默认每次执行请求都会创建和断开一次连接池的操作，因此我们可以使用Redis的管道来一次性发送多条命令并返回多个结果，节约发送命令和创建连接的时间提升效率。</p>
+<p>​    Redis中管道的实现是根据队列，可以保证数据的顺序性。</p>
+<h2 id="Redis数据结构相关知识点"><a href="#Redis数据结构相关知识点" class="headerlink" title="Redis数据结构相关知识点"></a>Redis数据结构相关知识点</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ul>
+<li>一个键最大能存储 512MB，暂时没有找到原因</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ul>
+<li>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)。</li>
+<li>Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。</li>
+</ul>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><ul>
+<li>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)。</li>
+<li>hash的原理也是数组加链表，扩容机制不太一样，是双table扩容，新的table要扩容时，是在执行完原油命令后，将就table上的元素慢慢复制到新table。这就是渐进式扩容。但是还是存在一些问题的，就是极端情况下，如果键一直在增加，新table也会很快触发扩容，这种情况下如何处理，这里其实估计只有后续看源码能够想清楚了。</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><ul>
+<li>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)。</li>
+<li>Redis 的 Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。</li>
+<li>set 的内部实现是一个 value永远为null的HashMap，实际就是通过计算hash的方式来快速排重的，这也是set能提供判断一个成员是否在集合内的原因。</li>
+</ul>
+<h3 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h3><ul>
+<li>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)。</li>
+<li>Zset就是排序集合，在插入时需要制定元素的权，redis也是根据权来进行排序的。权相同时，则是根据字典排序。</li>
+</ul>
+<h3 id="跳跃表（skiplist）"><a href="#跳跃表（skiplist）" class="headerlink" title="跳跃表（skiplist）"></a>跳跃表（skiplist）</h3><p>​    跳跃表以有序的方式在层次化的链表中保存元素， 效率和平衡树媲美 —— 查找、删除、添加等操作都可以在对数期望时间下完成， 并且比起平衡树来说， 跳跃表的实现要简单直观得多。</p>
+<p>​    跳表相当于是在链表的形式上添加层级来达到快速查询的目的。</p>
+<h2 id="Redis相关命令"><a href="#Redis相关命令" class="headerlink" title="Redis相关命令"></a>Redis相关命令</h2><h3 id="Redis常用的基础命令"><a href="#Redis常用的基础命令" class="headerlink" title="Redis常用的基础命令"></a>Redis常用的基础命令</h3><ul>
+<li>启动：<code>redis-server redis.conf</code></li>
+<li>连接：<code>redis-cli -h host -p port -a password</code></li>
+<li>获取配置：<code>CONFIG GET *</code></li>
+<li>设置配置：<code>ONFIG SET loglevel &quot;notice&quot;</code></li>
+<li>删除key：<code>del tset</code></li>
+<li>序列化给定 key ，并返回被序列化的值:<code>dump test</code></li>
+<li>检查给定 key 是否存在:<code>EXISTS test</code></li>
+<li>为给定 key 设置过期时间，以秒计:<code>EXPIRE test 120</code></li>
+<li>为给定 key 设置过期时间,接受的时间参数是 UNIX 时间戳: <code>EXPIREAT test 1623297047</code></li>
+<li>设置 key 的过期时间以毫秒计:<code>PEXPIRE test 120000</code></li>
+<li>设置 key 过期时间的时间戳(unix timestamp) 以毫秒计:<code>PEXPIREAT test 1623297047000</code></li>
+<li>查找所有符合给定模式( pattern)的 key :<code>keys tes*</code></li>
+<li>将当前数据库的 key 移动到给定的数据库 db 当中:<code>move test 1</code></li>
+<li>移除 key 的过期时间，key 将持久保持:<code>PERSIST test</code></li>
+<li>以毫秒为单位返回 key 的剩余的过期时间:<code>PTTL test</code></li>
+<li>以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live):<code>TTL test</code></li>
+<li>从当前数据库中随机返回一个 key :<code>RANDOMKEY</code></li>
+<li>修改 key 的名称:<code>RENAME test test1</code></li>
+<li>仅当 newkey 不存在时，将 key 改名为 newkey:<code>RENAMENX test1 test</code></li>
+<li>迭代数据库中的数据库键:<code>SCAN cursor [MATCH pattern] [COUNT count]</code></li>
+<li>返回 key 所储存的值的类型:<code>type test</code></li>
+<li>验证密码是否正确：<code>AUTH qhlk@2017</code></li>
+<li>打印字符串：<code>ECHO &quot;this is test&quot;</code>(当你的字符串中间带特殊字符时，需要你带上双引号)</li>
+<li>查看服务是否运行：<code>PING</code></li>
+<li>关闭当前连接：<code>QUIT</code></li>
+<li>切换到指定的数据库：<code>SELECT 0</code>(总共十六个库，0-15)</li>
+<li>创建当前数据库的备份：<code>SAVE</code></li>
+<li>根据备份文件恢复redis数据库：<code>BGSAVE</code></li>
+</ul>
+<h3 id="字符串相关命令"><a href="#字符串相关命令" class="headerlink" title="字符串相关命令"></a>字符串相关命令</h3><ul>
+<li>设置指定 key 的值：<code>set tset &quot;hello&quot;</code>也可以对存在的key执行就是修改</li>
+<li>获取指定 key 的值：<code>GET test1</code></li>
+<li>返回 key 中字符串值的子字符：<code>GETRANGE test1 0 5</code></li>
+<li>将给定 key 的值设为 value ，并返回 key 的旧值(old value)：<code>GETSET test1 &quot;this is test1.&quot;</code></li>
+<li>对 key 所储存的字符串值，获取指定偏移量上的位(bit)：<code>GETBIT test1 10</code></li>
+<li>获取所有(一个或多个)给定 key 的值：<code>MGET test test1</code></li>
+<li>对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)：<code>SETBIT test1 10 1</code></li>
+<li>将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)：<code>SETEX test1 120 &quot;this is test1&quot;</code></li>
+<li>只有在 key 不存在时设置 key 的值：<code>SETNX test1 &quot;hello&quot;</code></li>
+<li>用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始：<code>SETRANGE test2 1 &quot;hahaha&quot;</code></li>
+<li>返回 key 所储存的字符串值的长度：<code>STRLEN test2</code></li>
+<li>同时设置一个或多个 key-value 对：<code>mset key &quot;2&quot; key2 &quot;this is &quot;</code></li>
+<li>同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在：<code>MSETNX ke2 &quot;test&quot; key &quot;haha&quot;</code></li>
+<li>这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间：<code>PSETEX key 120000 &quot;this &quot;</code></li>
+<li>将 key 中储存的数字值增一：<code>INCR key</code></li>
+<li>将 key 所储存的值加上给定的增量值（increment）：<code>INCRBY ke2 34</code></li>
+<li>将 key 中储存的数字值减一：<code>DECR ke2</code></li>
+<li>key 所储存的值减去给定的减量值（decrement） ：<code>DECRBY ke2 3</code></li>
+<li>如果 key 已经存在并且是一个字符串， APPEND 命令将指定的 value 追加到该 key 原来值（value）的末尾：<code>APPEND key &quot;end&quot;</code></li>
+</ul>
+<h3 id="HASH相关命令"><a href="#HASH相关命令" class="headerlink" title="HASH相关命令"></a>HASH相关命令</h3><ul>
+<li>删除一个或多个哈希表字段：<code>HDEL testhash object</code></li>
+<li>查看哈希表 key 中，指定的字段是否存在：<code>HEXISTS testhash2 bug</code></li>
+<li>获取存储在哈希表中指定字段的值：<code>HGET testhash2 age</code></li>
+<li>获取在哈希表中指定 key 的所有字段和值：<code>HGETALL testhash2</code></li>
+<li>为哈希表 key 中的指定字段的整数值加上增量 increment ：<code>HINCRBY testhash2 age 1</code></li>
+<li>为哈希表 key 中的指定字段的浮点数值加上增量 increment ：<code>HINCRBYFLOAT testhash2 money 3.4</code></li>
+<li>获取所有哈希表中的字段：<code>HKEYS testhash2</code></li>
+<li>获取哈希表中字段的数量：<code>HLEN testhash2</code></li>
+<li>获取所有给定字段的值：<code>HMGET testhash2 redis mysql age</code></li>
+<li>同时将多个 field-value (域-值)对设置到哈希表 key 中：<code>HMSET testhash2 age 13 money 13.4 name lihua</code></li>
+<li>将哈希表 key 中的字段 field 的值设为 value ：<code>HSET testhash2 redis good mysql bad rabbitmq bad</code>(也可以设置多个字段)</li>
+<li>只有在字段 field 不存在时，设置哈希表字段的值:<code>HSETNX testhash2 tag &quot;null&quot;</code></li>
+<li>获取哈希表中所有值:<code>HVALS testhash2</code></li>
+<li>迭代哈希表中的键值对:<code>HSCAN key cursor [MATCH pattern] [COUNT count]</code></li>
+</ul>
+<h3 id="LIST相关命令"><a href="#LIST相关命令" class="headerlink" title="LIST相关命令"></a>LIST相关命令</h3><ul>
+<li>移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止：<code>BLPOP testlist2 10</code></li>
+<li>移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止：<code>BRPOP testlist2 10</code></li>
+<li>从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止：<code>BRPOPLPUSH testlist testlist5 10</code>（从尾部取出，插入到另一个列表的头部）</li>
+<li>通过索引获取列表中的元素：<code>LINDEX testlist 3</code></li>
+<li>在列表的元素前或者后插入元素：<code>LINSERT testlist AFTER test &quot;after&quot;</code></li>
+<li>获取列表长度：<code>LLEN testlist</code></li>
+<li>移出并获取列表的第一个元素：<code>LPOP testlist</code></li>
+<li>将一个或多个值插入到列表头部：<code>LPUSH testlist &quot;hehe&quot; &quot;test222&quot;</code></li>
+<li>将一个值插入到已存在的列表头部：<code>LPUSHX testlist1 &quot;hehe&quot; &quot;test222&quot;</code></li>
+<li>获取列表指定范围内的元素：<code>LRANGE testlist 0 2</code></li>
+<li>移除列表元素：<code>LREM testlist 0 &quot;haha&quot;</code></li>
+<li>通过索引设置列表元素的值：<code>LSET testlist 0 &quot;this is test&quot;</code></li>
+<li>对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除：<code>LTRIM testlist 0 4</code></li>
+<li>移除列表的最后一个元素，返回值为移除的元素：<code>RPOP testlist</code></li>
+<li>移除列表的最后一个元素，并将该元素添加到另一个列表并返回：<code>RPOPLPUSH testlist testlist2</code>(头部插入)</li>
+<li>在列表中添加一个或多个值：<code>RPUSH testlist &quot;test&quot; &quot;test2&quot;</code>(添加到尾部)</li>
+<li>为已存在的列表添加值：<code>RPUSHX mylist &quot;test&quot;</code></li>
+</ul>
+<h3 id="SET相关命令"><a href="#SET相关命令" class="headerlink" title="SET相关命令"></a>SET相关命令</h3><ul>
+<li>向集合添加一个或多个成员：<code>SADD myset &quot;123&quot; 3</code>（这里是多个成员，分别为字符串123和int 3）</li>
+<li>获取集合的成员数：SCARD myset</li>
+<li>返回第一个集合与其他集合之间的差异：<code>SDIFF myset myset1</code>(主要返回前面集合中的差异，后面集合元素不会返回)</li>
+<li>返回给定所有集合的差集并存储在 destination 中：<code>SDIFFSTORE myset2 myset myset1</code></li>
+<li>返回给定所有集合的交集：<code>SINTER myset myset2</code></li>
+<li>返回给定所有集合的交集并存储在 destination 中：<code>SINTERSTORE myset3 myset myset2</code></li>
+<li>判断 member 元素是否是集合 key 的成员：<code>SISMEMBER myset &quot;123&quot;</code></li>
+<li>返回集合中的所有成员：<code>SMEMBERS myset1</code></li>
+<li>将 member 元素从 source 集合移动到 destination 集合：<code>SMOVE myset2 myset1 &quot;3&quot;</code></li>
+<li>移除并返回集合中的一个随机元素：<code>spop myset1</code></li>
+<li>返回集合中一个或多个随机数：<code>SRANDMEMBER myset1 2</code></li>
+<li>移除集合中一个或多个成员：<code>SREM myset1 &quot;haha&quot;</code></li>
+<li>返回所有给定集合的并集：<code>SUNION myset myset1</code></li>
+<li>所有给定集合的并集存储在 destination 集合中：<code>SUNIONSTORE myset4 myset myset1</code></li>
+<li>迭代集合中的元素：<code>SSCAN key cursor [MATCH pattern] [COUNT count]</code></li>
+</ul>
+<h3 id="有序集合相关命令"><a href="#有序集合相关命令" class="headerlink" title="有序集合相关命令"></a>有序集合相关命令</h3><ul>
+<li>向有序集合添加一个或多个成员，或者更新已存在成员的分数：<code>ZADD myzset 1 &quot;test1&quot; 2 &quot;test2&quot;</code></li>
+<li>获取有序集合的成员数：<code>ZCARD myzset</code></li>
+<li>计算在有序集合中指定区间分数的成员数：<code>ZCOUNT myzset 0 2</code></li>
+<li>有序集合中对指定成员的分数加上增量 increment：<code>ZINCRBY myzset 2 &quot;test2&quot;</code></li>
+<li>计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 destination 中：<code>ZINTERSTORE summyzset 2 myzset myzset2</code>(中间的数字2代表有两个set合并)</li>
+<li>在有序集合中计算指定字典区间内成员数量：<code>ZLEXCOUNT myzset - +</code>(不清楚为啥)</li>
+<li>通过索引区间返回有序集合指定区间内的成员：<code>ZRANGE myzset 0 -1 withscores</code>(withscores是表示将权一块显示出来，0代表排序的第一位，2代表排序集合的第三个元素)</li>
+<li>通过字典区间返回有序集合的成员：<code>ZRANGEBYLEX myzset - +</code>(-号代表底，+号代表最高)</li>
+<li>通过分数返回有序集合指定区间内的成员：<code>ZRANGEBYSCORE myzset (0 (2 withscores</code>(（代表不包含0，[代表包含,这里的分数就带代表权)</li>
+<li>返回有序集合中指定成员的索引：<code>ZRANK myzset &quot;test1&quot;</code>(索引即时该元素在排序集合中的位置)</li>
+<li>移除有序集合中的一个或多个成员：<code>ZREM myzset &quot;test1&quot;</code></li>
+<li>移除有序集合中给定的字典区间的所有成员：<code>ZREMRANGEBYLEX myzset2 - +</code></li>
+<li>移除有序集合中给定的排名区间的所有成员：<code>ZREMRANGEBYRANK myzset 0 0</code></li>
+<li>移除有序集合中给定的分数区间的所有成员：<code>ZREMRANGEBYSCORE myzset 0 5</code> </li>
+<li>返回有序集中指定区间内的成员，通过索引，分数从高到低：<code>ZREVRANGE myzset 0 -1 withscores</code></li>
+<li>返回有序集中指定分数区间内的成员，分数从高到低排序：<code>ZREVRANGEBYSCORE myzset 100 0</code>(也存在根据字典区间的命令)</li>
+<li>返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序：<code>ZRANK myzset lisi</code>(查询lisi在有序集合中的排名)</li>
+<li>返回有序集中，成员的分数值：<code>ZSCORE myzset lisi</code></li>
+<li>计算给定的一个或多个有序集的并集，并存储在新的 key 中：<code>ZUNIONSTORE out 2 zset1 zset2 WEIGHTS 2 3</code>(看不懂)</li>
+<li>迭代有序集合中的元素（包括元素成员和元素分值）：<code>ZSCAN site 0 match &quot;R*&quot;</code></li>
+</ul>
+<h3 id="HyperLogLog相关命令"><a href="#HyperLogLog相关命令" class="headerlink" title="HyperLogLog相关命令"></a>HyperLogLog相关命令</h3><p>​    redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的、并且是很小的。在Redis里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。 基数估计就是在误差可接受的范围内，快速计算基数。但是HyperLogLog 只会计算基数，不会存储元素本身。</p>
+<ul>
+<li>添加指定元素到 HyperLogLog 中：<code>PFADD mypf &quot;redis&quot;</code>(后面可以跟多个元素，元素可以不带引号，存储的都是字符串类型)</li>
+<li>返回给定 HyperLogLog 的基数估算值：<code>PFCOUNT mypf</code></li>
+<li>将多个 HyperLogLog 合并为一个 HyperLogLog：<code>PFMERGE mypf3 mypf mypf2</code></li>
+</ul>
+<h3 id="发布订阅相关命令"><a href="#发布订阅相关命令" class="headerlink" title="发布订阅相关命令"></a>发布订阅相关命令</h3><p>Redis 发布订阅 (pub/sub) 是一种消息通信模式：发送者 (pub) 发送消息，订阅者 (sub) 接收消息。Redis 客户端可以订阅任意数量的频道。</p>
+<ul>
+<li>订阅一个或多个符合给定模式的频道：<code>PSUBSCRIBE testchannel</code>(后面参数类似于正则表达式)</li>
+<li>查看订阅与发布系统状态：<code>PUBSUB channels</code>(目前不清楚用法，现在参数固定)</li>
+<li>将信息发送到指定的频道：PUBLISH testchannel “this is test”</li>
+<li>退订所有给定模式的频道：PUNSUBSCRIBE mychannel </li>
+<li>订阅给定的一个或多个频道的信息：SUBSCRIBE testchannel</li>
+<li>指退订给定的频道：UNSUBSCRIBE mychannel</li>
+</ul>
+<h3 id="Redis中的事务-1"><a href="#Redis中的事务-1" class="headerlink" title="Redis中的事务"></a>Redis中的事务</h3><ul>
+<li>取消事务，放弃执行事务块内的所有命令:<code>DISCARD</code></li>
+<li>执行所有事务块内的命令:<code>EXEC</code></li>
+<li>标记一个事务块的开始:<code>MULTI</code>（连续执行两次multi不会导致事务回滚）</li>
+<li>取消 WATCH 命令对所有 key 的监视:UNWATCH（使用方法是在watch前面，并不是在事务中取消监视，而是在监视前取消所有的其他监视，所以只要调用了watch，key被修改，就会出错。只是为了完善redis事务的一个点）</li>
+<li>监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断:<code>WATCH lock</code>（在multi里面执行watch不会导致事务回滚。）</li>
+</ul>
+<h2 id="Redis在SpringBoot中的应用"><a href="#Redis在SpringBoot中的应用" class="headerlink" title="Redis在SpringBoot中的应用"></a>Redis在SpringBoot中的应用</h2><h2 id="Redis实际中的应用和解决方案"><a href="#Redis实际中的应用和解决方案" class="headerlink" title="Redis实际中的应用和解决方案"></a>Redis实际中的应用和解决方案</h2><h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>​    对于一些设置了过期时间的key，如果这个key可能会在某些时间点被超高并发地访问，是一个热点数据，当这个key过期后，这个时间点有大量并发去请求这个key，该key没有命中，大量的请求穿透到数据库服务器。</p>
+<p>​    解决方案：有两种方案，1）将热点数据设置永不过期。2）使用互斥锁：先从redis获取数据，如果redis中数据没有，去争夺锁，拿到锁的线程去查询数据库，然后见过结果放入redis中。其他没抢到的，等一段时间，再执行查询等方法，重新从redis中获取数据。锁是需要按照key 维度去加锁。例如akey的锁不能影响其他key的查询。</p>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>​    大量的key设置了相同的过期时间，导致在缓存在同一时刻全部失效，造成瞬时DB请求量大、压力骤增，引起雪崩。</p>
+<p>​    解决方案：1）可以给缓存时间加上一个随机偏移量，例如一个小时的缓存时间，可以将这个时间再10分钟内随机，将失效时间平均到10分钟内。2）和上面的缓存击穿一样，加一个互斥锁，减少数据库的访问次数。3）设置热点数据永不过期，需要考虑数据的同步时间间隔和数据异常的处理情况。</p>
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>​    访问一个一定不存在的key，缓存不起作用，请求会穿透到DB，流量大时DB会挂掉。因为查不到数据，所以后续的查询仍然会请求数据库。</p>
+<p>​    解决方案有以下：1）如果是大量的不存在的key，可以认为是受到的攻击，可以在最外层做一层过滤。2）当数据库查询的结果为空时，可以将这个null结果做个缓存，设置一个较短的过期时间。当查询的key都是不存在的时候且不重复，这个作用也是比较小的。3）布隆过滤器。</p>
+<h5 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h5><p>​    有一个bitset集合，还有一组hash算法，将一个key通过这组hash算法计算得到一组下标。将bitset中这组下标的位置设置为true，如果一个key通过这样的计算，得到的一组下标的位置不全为true，则这个key一定不存在，当都是true时，这个key可能存在。降低误判率也有方法：增大bitset集合的长度，增多hash算法，得到更多的下标。一般是增加长度，因为长度如果过短的话，增加hash算法其实意义不大。</p>
+<h3 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h3><p>​    当数据时效性要求很高时，需要保证缓存中的数据与数据库中的保持一致，需要保证缓存节点和副本中的数据也保持一致，不能出现差异现象。</p>
+<p>​    解决方法：更新数据库后，直接让缓存失效。</p>
+<h3 id="面试中遇到的问题"><a href="#面试中遇到的问题" class="headerlink" title="面试中遇到的问题"></a>面试中遇到的问题</h3><ul>
+<li>项目中什么地方用到redis，为什么使用redis？</li>
+</ul>
+<p>我们项目中redis的主要作用就是存储设备点位的信息，主要是存储设备当前状态的值，还有就是用户的token信息也是存储在redis中。当然，项目中还有一些其他的地方我没有涉及，可能这部分的信息也有存储在redis中的需求。因为项目是在我来公司之前成立的，所以技术的选型我并没有参与，对于选用redis并不知道当时出于什么考虑。我们redis使用的是单机服务，对于我们的项目来说可能够用了，但是并没有考虑到高可用，小公司对于技术的优化可能没有强烈的需求，我也是在私下会对这部分有个了解。我对于公司的redis优化的思路是采用哨兵模式进行高可用的优化。因为单机模式会存在宕机的可能，集群模式主要是为了应对单个服务器无法存储全部的数据的情况，所以我认为哨兵模式对于我们的项目来说比较适合。后面就介绍一下哨兵模式的一些特点和搭建中遇到的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckupl1rs400246rup71df853s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Hystrix/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

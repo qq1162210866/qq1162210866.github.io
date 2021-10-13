@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RabbtiMQ相关知识点RabbitMQ中的一些基础概念AMQP​    AMQP（Advanced Message Queuing Protocol，高级消息队列协议）是一个进程间传递异步消息的网络协议。 ​    过程：发布者（Publisher）发布消息（Message），经由交换机（Exchange）。交换机根据路由规则将收到的消息分发给与该交换机绑定的队列（Queue）。最后 AMQP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RabbtiMQ相关知识点RabbitMQ中的一些基础概念AMQP​    AMQP（Advanced Message Queuing Protocol，高级消息队列协议）是一个进程间传递异步消息的网络协议。 ​    过程：发布者（Publisher）发布消息（Message），经由交换机（Exchange）。交换机根据路由规则将收到的消息分发给与该交换机绑定的队列（Queue）。最后 AMQP">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210629175842275.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210629175842275.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/中间件/RabbitMQ/RabbitMQ相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.196Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="RabbtiMQ相关知识点"><a href="#RabbtiMQ相关知识点" class="headerlink" title="RabbtiMQ相关知识点"></a>RabbtiMQ相关知识点</h2><h3 id="RabbitMQ中的一些基础概念"><a href="#RabbitMQ中的一些基础概念" class="headerlink" title="RabbitMQ中的一些基础概念"></a>RabbitMQ中的一些基础概念</h3><h4 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h4><p>​    AMQP（Advanced Message Queuing Protocol，高级消息队列协议）是一个进程间传递异步消息的网络协议。</p>
+<p>​    过程：发布者（Publisher）发布消息（Message），经由交换机（Exchange）。交换机根据路由规则将收到的消息分发给与该交换机绑定的队列（Queue）。最后 AMQP 代理会将消息投递给订阅了此队列的消费者，或者消费者按照需求自行获取。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210629175842275.png" alt="image-20210629175842275"></p>
+<h5 id="Exchange交换机"><a href="#Exchange交换机" class="headerlink" title="Exchange交换机"></a>Exchange交换机</h5><p>​    交换机是用来发送消息的 AMQP 实体。交换机拿到一个消息之后将它路由给一个或零个队列。它使用哪种路由算法是由交换机类型和绑定（Bindings）规则所决定的。有四种类型的交换机。</p>
+<ul>
+<li>默认交换机（default exchange）实际上是一个由消息代理预先声明好的没有名字（名字为空字符串）的直连交换机（direct exchange）。它有一个特殊的属性使得它对于简单应用特别有用处：那就是每个新建队列（queue）都会自动绑定到默认交换机上，绑定的路由键（routing key）名称与队列名称相同。</li>
+<li>直连型交换机（direct exchange）是根据消息携带的路由键（routing key）将消息投递给对应绑定键的队列。直连交换机用来处理消息的单播路由（unicast routing）（尽管它也可以处理多播路由）。</li>
+<li>扇型交换机（funout exchange）将消息路由给绑定到它身上的所有队列，而不理会绑定的路由键。如果 N 个队列绑定到某个扇型交换机上，当有消息发送给此扇型交换机时，交换机会将消息的拷贝分别发送给这所有的 N 个队列。</li>
+<li>主题交换机（Topic exchange）Topic 的路由规则是一种模糊匹配，可以通过通配符满足一部分规则就可以传送。</li>
+<li>头交换机（headers exchange）headers 类型的 Exchange 不依赖于 routing key 与 binding key 的匹配规则来路由消息，而是根据发送的消息内容中的 headers 属性进行匹配。</li>
+</ul>
+<h5 id="Queue队列"><a href="#Queue队列" class="headerlink" title="Queue队列"></a>Queue队列</h5><p>​    AMQP 中的队列（queue）跟其他消息队列或任务队列中的队列是很相似的：它们存储着即将被应用消费掉的消息。</p>
+<p>​    队列在声明（declare）后才能被使用。如果一个队列尚不存在，声明一个队列会创建它。如果声明的队列已经存在，并且属性完全相同，那么此次声明不会对原有队列产生任何影响。如果声明中的属性与已存在队列的属性有差异，那么一个错误代码为 406 的通道级异常就会被抛出。</p>
+<p>​    持久化队列（Durable queues）会被存储在磁盘上，当消息代理（broker）重启的时候，它依旧存在。没有被持久化的队列称作暂存队列（Transient queues）。并不是所有的场景和案例都需要将队列持久化。（持久化的队列并不会使得路由到它的消息也具有持久性。）</p>
+<h6 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h6><p>​    当一条消息在队列中出现以下三种情况的时候，该消息就会变成一条死信。</p>
+<ul>
+<li>消息被拒绝(basic.reject / basic.nack)，并且requeue = false</li>
+<li>消息TTL过期</li>
+<li>队列达到最大长度</li>
+</ul>
+<p>​    “死信”消息会被RabbitMQ进行特殊处理，如果配置了死信队列信息，那么该消息将会被丢进死信队列中，如果没有配置，则该消息将会被丢弃。</p>
+<h5 id="消息的机制"><a href="#消息的机制" class="headerlink" title="消息的机制"></a>消息的机制</h5><h6 id="RabbitMQ确认消息收到的机制"><a href="#RabbitMQ确认消息收到的机制" class="headerlink" title="RabbitMQ确认消息收到的机制"></a>RabbitMQ确认消息收到的机制</h6><p>​    生产者发送消息到 RabbitMQ Server 后，RabbitMQ Server 需要对生产者进行消息 Confirm 确认。</p>
+<p>​    消费者确认指的就是 RabbitMQ 需要确认消息到底有没有被收到，来确定要不要将该条消息从队列中删除掉。这就需要消费者来告诉 RabbitMQ，有以下两种方式。</p>
+<ul>
+<li>消费者在消费消息的时候，如果设定应答模式为自动，则消费者收到消息后，消息就会立即被 RabbitMQ 从 队列中删除掉。 </li>
+<li>手动应答模式：可以在既定的正常情况下进行确认（告诉 RabbitMQ，我已经消费过该消息了，你可以删除该条数据了）；可以在既定的异常情况下不进行确认（RabbitMQ 会继续保留该条数据），这样下一次可以继续消费该条数据。    </li>
+</ul>
+<h6 id="RabbitMQ消息的持久化"><a href="#RabbitMQ消息的持久化" class="headerlink" title="RabbitMQ消息的持久化"></a>RabbitMQ消息的持久化</h6><p>持久化可以提高 RabbitMQ 的可靠性，以防止在异常情况（比如：重启、关机、宕机等）下的数据丢失。</p>
+<p>RabbitMQ 持久化分为三部分：交换机的持久化、队列的持久化、消息的持久化。</p>
+<ul>
+<li>交换机持久化是指将交换机的属性数据存储在磁盘上，当 MQ 的服务器发生意外或关闭之后，在重启 RabbitMQ 时不需要重新手动或执行代码去创建交换机了，交换机会自动被创建，相当于一直存在。</li>
+<li>如果不将队列设置为持久化，那么在 RabbitMQ 服务重启之后，相关队列的元数据会丢失，数据也会丢失。队列都没有了，消息也找不到地方存储了。队列的持久化能保证其本身的元数据不会因异常情况而丢失，但是并不能保证内部所存储的消息不会丢失；</li>
+<li>RabbitMQ 的消息是依附于队列存在的，所以要想消息持久化，那么前提是队列也必须设置持久化。</li>
+</ul>
+<h6 id="RabbitMQ消息的唯一性"><a href="#RabbitMQ消息的唯一性" class="headerlink" title="RabbitMQ消息的唯一性"></a>RabbitMQ消息的唯一性</h6><p>对每条消息，MQ系统内部必须生成一个inner-msg-id，作为去重和幂等的依据，这个内部消息ID的特性是：</p>
+<p>（1）全局唯一</p>
+<p>（2）MQ生成，具备业务无关性，对消息发送方和消息接收方屏蔽</p>
+<p>有了这个inner-msg-id，就能保证上半场重发，也只有1条消息落到MQ-server的DB中，实现上半场幂等。</p>
+<h4 id="RabbitMQ中一些详细的概念"><a href="#RabbitMQ中一些详细的概念" class="headerlink" title="RabbitMQ中一些详细的概念"></a>RabbitMQ中一些详细的概念</h4><ul>
+<li>Connection（连接）：Producer 和 Consumer 通过 TCP 连接到 RabbitMQ Server。一个连接就代表了一个TCP连接。</li>
+<li>Channel（信道）：基于 Connection 创建，数据流动都是在 Channel 中进行。一个连接可以有多个信道，因为TCP的创建和删除非常消耗资源。信道是双向数据流通道，是一个建立在TCP连接内的虚拟连接，每个信道有一个ID。</li>
+<li>Vhost（虚拟主机） ： 虚拟主机，一个消息代理（Broker）里可以开设多个虚拟主机（Vhost），用作不同用户的权限分离。</li>
+<li>Broker（消息代理）：实际上就是消息服务器实体。</li>
+</ul>
+<h3 id="RabbitMQ使用的场景"><a href="#RabbitMQ使用的场景" class="headerlink" title="RabbitMQ使用的场景"></a>RabbitMQ使用的场景</h3><ul>
+<li>异步处理：比如用户注册后，需要写入数据库并且发送邮件和短信，这里可以通过RabbitMQ将发送邮件和短信异步化，因为这些操作对于目前的流程没有影响。</li>
+<li>应用解耦：两个系统之间的应用解耦，A系统发送消息队列通知B系统，B系统完成数据持久化后，发送消息队列返回告知A系统。</li>
+<li>流量削峰：用户发起请求,服务器收到之后,首先写入消息队列,加入消息队列长度超过最大值,超过一定阈值后则直接抛弃用户请求或跳转到错误页面。可以缓解短时间的高流量压垮应用。</li>
+</ul>
+<h3 id="RabbitMQ和Mosquitto的区别"><a href="#RabbitMQ和Mosquitto的区别" class="headerlink" title="RabbitMQ和Mosquitto的区别"></a>RabbitMQ和Mosquitto的区别</h3><p>​    MQTT一般是物联网首选的协议，基于发布订阅的轻量级协议。一字节报头，两字节心跳报文。开销比较小，能够减少网络流量。</p>
+<p>​    AMQP高级消息队列协议，是面向消息中间件提供的开放的应用层协议，其设计目标是对于消息的排序、路由（包括点对点和订阅-发布）、保持可靠性、保证安全性。AMQP规范了消息传递方和接收方的行为，以使消息在不同的提供商之间实现互操作性，就像SMTP，HTTP，FTP等协议可以创建交互系统一样。</p>
+<p>​    RabbitMQ和Mosquitto分别是这两种协议的broker。Mosquitto比较轻量级。</p>
+<h3 id="RabbitMQ使用中遇到的一些问题"><a href="#RabbitMQ使用中遇到的一些问题" class="headerlink" title="RabbitMQ使用中遇到的一些问题"></a>RabbitMQ使用中遇到的一些问题</h3><ul>
+<li>RabbitMQ如何保证消息顺序性</li>
+</ul>
+<p>​    通过添加一个属性，上一条消息的ID，生产者顺序发送。消费者拿到消息后，如何没有上一条消息的ID，就进行正常消费，同时在缓存中存储一下这条消息的ID。如果有上一条id的属性，但是不对或者缓存中没有，把消息重新放到队列里面，或者睡眠一段时间，等待其他消费者消费完上一条消息。</p>
+<p>​    也可以将生产者和消费者绑定，就是一个生产者对应一个消费者。将业务分离，本身RabbitMQ到消息就有顺序性，这样就能保证整体的顺序性。</p>
+<p>​    也可以将生产者的消息都发到一个队列里面，消费者这对应一个队列。生产者轮流发送消息。</p>
+<ul>
+<li>RabbitMQ如何保证消息的幂等性</li>
+</ul>
+<p>​    生产者在发送消息时，可以添加一个业务ID，例如SessionID，消费者收到消息后，在redis中进行设置，如果redis中存在，认为消息已经消费了，丢弃当前消息，如果没有key，认为消息没有被消费。执行业务逻辑。</p>
+<p>​    还有一种就是将id当作数据库主键，如果该数据存在了，就update一下，不再新增数据。</p>
+<ul>
+<li>RabbitMQ如何保证消息可靠性？</li>
+</ul>
+<p>​    首先有三个地方需要保证。1）生产者发送消息到交换机，这里可以通过confirmCallBack来实现，还有消息投递队列失败后会调用一个ReturnCallback，不过这个消耗比较高。2）MQ里面如果宕机了，可以通过队列持久化和消息持久化解决这个问题，可能会影响吞吐量。3）消费者这边取消自动ack，手动确认收到消息。业务处理完成之后ack。</p>
+<ul>
+<li>RabbitMQ消费者如果长时间不ack会怎么样？</li>
+</ul>
+<p>猜想：消费者连接时通过心跳机制可以检测消费者是否在线，如果一条消息没有ack，并且消费者心跳不在线，认为消费者挂了，将消息重新放到队列里面。</p>
+<ul>
+<li>RabbitMQ如何实现延时发送</li>
+</ul>
+<p>​    因为我们的系统里面很少遇到这样的需求，所以后续的说法可能不太准确。1）可以利用死信队列来达到这样的效果，生产者生产消息，到一个普通交换机中，绑定这个交换机的队列就是延时队列，设置过期时间ttl，然后等待过期时间，消息过期后回转到指定的死信交换机的死信队列里面，再让消费者去消费死信队列里面的消息即可。达到延时的效果。但是这种存在一些缺点，因为延时时间是不固定的，所以队列的设置也比较多，给代码开发带来很多繁琐。2）利用rabbitMQ插件来实现延时队列，安装插件、创建指定的队列和交换机发送的时候指定延时时间就可以了。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>//Rabbbit使用场景</p>
+<p>//RabbitMQ确认消息收到的机制</p>
+<p>//RabbitMQ确认消息唯一的机制</p>
+<p>//RabbitMQ消息的持久化</p>
+<p>//RabbitMQ的死信队列</p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>一般编写了config类，直接使用即可，因为springboot对当前包的bean都扫描了</p>
+<p>启用对@ConfigurationProperties注释 bean 的支持。 @ConfigurationProperties bean 可以以标准方式注册（例如使用@Bean方法），或者为了方便，可以直接在此注释上指定。</p>
+<p>@SpringBootApplicationh注解是三个注解的集合体@Configuration,@EnableAutoConfiguration,@ComponentScan，会自动扫描当前包及子包的所有注入bean吗，会自动根据xml文件配置相关bean</p>
+<p>导入相关依赖</p>
+<p>创建bean，指定创建的交换机和队列的属性，是否持久化</p>
+<p>使用rabbitTemplate发送消息即可，发送消息时需要指定交换机、绑定key、发送的对象</p>
+<p>持久化需要交换机持久化、队列持久化。消息持久化</p>
+<p>交换机和队列可以在创建bean的时候指定是否持久化</p>
+<p>消息持久化需要在发送的时候确定，默认是自动持久化的。不过需要队列先持久化</p>
+<p>message 从 producer 到 rabbitmq broker cluster 则会返回一个 confirmCallback 。</p>
+<p>重点是 CorrelationData 对象，每个发送的消息都需要配备一个 CorrelationData 相关数据对象，CorrelationData 对象内部只有一个 id 属性，用来表示当前消息唯一性。</p>
+<p>发送的时候创建一个 CorrelationData 对象。</p>
+<p>message 从 exchange-&gt;queue 投递失败则会返回一个 returnCallback 。我们将利用这两个 callback 控制消息的最终一致性和部分纠错能力。</p>
+<p>必须 rabbitTemplate.setMandatory(true)，不然当 发送到交换器成功，但是没有匹配的队列，不会触发 ReturnCallback 回调。而且 ReturnCallback 比 ConfirmCallback 先回调。</p>
+<p>后一个callback会导致性能下降，尽量少用</p>
+<p>接收：</p>
+<p>接收需要手动确认，需要在配置文件中开启一项设置</p>
+<p>编写方法即可，填写相关的入参，然后判断ID，就是deliverTag，deliverTag是递增的，然后ack即可。处理完毕或者先ACK都可以。</p>
+<p>练习</p>
+<p>//练习RabbitMQ中的一些基础概念</p>
+<p>//练习发送的确认</p>
+<p>//练习消费的确认</p>
+<p>controller发送指定交换机的消息</p>
+<p>消费者消费，并且返回ack</p>
+<p>打印这条消息</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckupl1rs400236rupajpo1c5u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BA%86%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Storm集群部署​    上一篇博客写了一个demo，在IDEA中也跑成功了，下面就是部署到集群环境中去运行，也是搞了一天，和普通的Java项目有点不太一样。开始。 ​    部署Storm集群比较繁琐，网上资料也鱼龙混杂，所以还是建议大家去官网上找官方文档。 ​    Storm官方部署流程：http:&#x2F;&#x2F;storm.apache.org&#x2F;releases&#x2F;2.2.0&#x2F;Setting-up-a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/storm%E5%AD%A6%E4%B9%A0/Storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Storm集群部署​    上一篇博客写了一个demo，在IDEA中也跑成功了，下面就是部署到集群环境中去运行，也是搞了一天，和普通的Java项目有点不太一样。开始。 ​    部署Storm集群比较繁琐，网上资料也鱼龙混杂，所以还是建议大家去官网上找官方文档。 ​    Storm官方部署流程：http:&#x2F;&#x2F;storm.apache.org&#x2F;releases&#x2F;2.2.0&#x2F;Setting-up-a">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710104725796.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710110638215.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710114634347.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710112836552.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710114916495.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710104725796.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/storm学习/Storm集群部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/storm%E5%AD%A6%E4%B9%A0/Storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.195Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Storm集群部署"><a href="#Storm集群部署" class="headerlink" title="Storm集群部署"></a>Storm集群部署</h2><p>​    上一篇博客写了一个demo，在IDEA中也跑成功了，下面就是部署到集群环境中去运行，也是搞了一天，和普通的Java项目有点不太一样。开始。</p>
+<p>​    部署Storm集群比较繁琐，网上资料也鱼龙混杂，所以还是建议大家去官网上找官方文档。</p>
+<p>​    Storm官方部署流程：<a target="_blank" rel="noopener" href="http://storm.apache.org/releases/2.2.0/Setting-up-a-Storm-cluster.html">http://storm.apache.org/releases/2.2.0/Setting-up-a-Storm-cluster.html</a></p>
+<p>​    首先就是下载基础的东西，jdk和Strom、zookeeper安装包。地址如下：</p>
+<p>​    JDK下载地址：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a></p>
+<p>​    Storm下载地址：<a target="_blank" rel="noopener" href="http://storm.apache.org/downloads.html">http://storm.apache.org/downloads.html</a></p>
+<p>​    ZooKeeper下载地址：<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/releases.html">https://zookeeper.apache.org/releases.html</a></p>
+<p>​    需要注意的是下载的时候注意，Storm和ZooKeeper需要下载发行版本，不要下载源码版本，要不然会出现问题，很蛋疼。如下图</p>
+<p>​    <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710104725796.png" alt="image-20200710104725796"></p>
+<p>​    下载完毕，放到自己指定的目录，解压就可以了。一步一步来吧。</p>
+<ul>
+<li><p>安装JDK</p>
+<p>1.查看是否已经安装jdk</p>
+<p>rpm -qa|grep jdk</p>
+<p>2.卸载原有jdk，因为openjdk不适用</p>
+<p>yum -y remove java-1.8.0-openjdk-headless-1.8.0.65-3.b17.el7.x86_64</p>
+<p>3.将jdk安装包上传到服务器上。将其解压到指定位置。记得先创建文件夹</p>
+<p>tar -zxvf jdk-8u191-linux-x64.tar.gz -C /usr/local/java/</p>
+<p>4.在/etc/profile文件末尾添加</p>
+<p>export JAVA_HOME=/usr/local/java/jdk1.8.0_191</p>
+<p>export JRE_HOME=${JAVA_HOME}/jre</p>
+<p>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib</p>
+<p>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<p>5.使/etc/profile文件生效</p>
+<p>source /etc/profile</p>
+<p>6.验证安装是否成功</p>
+<p>Java -version</p>
+</li>
+<li><p>安装ZooKeeper</p>
+<p>Zookeeper有一个官方安装文档，很详细。地址：<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/doc/r3.3.3/zookeeperAdmin.html#sc_systemReq">https://zookeeper.apache.org/doc/r3.3.3/zookeeperAdmin.html#sc_systemReq</a></p>
+<p>需要注意的就是，Storm使用Zookeeper协调集群。ZooKeeper 不用于消息传递，因此Storm在Zookeeper上的负载非常低。在大多数情况下，单节点Zookeeper集群就足够了。所以我安装的就是单节点的ZooKeeper。按照文档来就可以了，没有什么可以讲的点，如果不行在网上搜一下错误信息。</p>
+</li>
+<li><p>安装Storm</p>
+<p>把Storm的包解压到指定目录，修改配置文件，这一步需要注意的是，例如：<code>storm.local.dir: &quot;/mnt/storm&quot;</code>前面是有一个空格的，要不然启动时会抱错误。安装流程文档就是最上面的一个链接。</p>
+<p>修改完毕配置文件后，依次启动服务。<code>bin/storm nimbus</code>,<code>bin/storm nimbus</code>,<code>bin/storm ui</code>。因为UI服务默认占用的是8080端口，如果有修改需要，只需要在配置文件添加：<code>ui.port: 8083</code>（注意空格）。</p>
+<p>剩下就没有什么了，启动三个服务后，输入一下网址：<code>http://&#123;ui host&#125;:8080</code>就可以看到Storm的UI，如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710110638215.png" alt="image-20200710110638215"></p>
+<p>这里就不再介绍各个组件的意思了，都很容易看懂。</p>
+</li>
+<li><p>提交自己的Topology</p>
+<p>提交自己的Topology也很简单，官网上也有详细的介绍，地址：<a target="_blank" rel="noopener" href="http://storm.apache.org/releases/2.2.0/Running-topologies-on-a-production-cluster.html">http://storm.apache.org/releases/2.2.0/Running-topologies-on-a-production-cluster.html</a></p>
+<p>需要注意的是，如果你的Storm没有加入环境变量，需要使用全路径，如下：</p>
+<p><code>/apache-storm-2.2.0/bin/storm jar strom-0.0.1-SNAPSHOT.jar com.example.strom.StromApplication count </code> </p>
+<p>另外，打包的时候也需要注意，要指定主类，要不然会一直报找不到主类的错误。</p>
+<p>打包需要注意去除SpringBoot的依赖，因为他本身带有打包插件，打包会报错误。</p>
+<p>打包插件代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">transformers</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ServicesResourceTransformer&quot;</span> /&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.example.strom.StromApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">transformer</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上传正常截图如下：<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710114634347.png" alt="image-20200710114634347"><br>删除Topology截图如下：<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710112836552.png" alt="image-20200710112836552"></p>
+<p>StormUI截图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200710114916495.png" alt="image-20200710114916495"></p>
+</li>
+</ul>
+<p>​    剩下就没有什么要说的了。这样就初步完成集群部署了。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/storm%E5%AD%A6%E4%B9%A0/Storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" data-id="ckupl1rrd001g6rupfqw572kp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/storm%E5%AD%A6%E4%B9%A0/Storm%E7%AE%80%E5%8D%95demo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

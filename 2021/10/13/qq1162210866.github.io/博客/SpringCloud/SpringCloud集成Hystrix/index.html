@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringCloud集成Hystrix​    之前在SpringCLoud了解的博客简单介绍了Hystrix，现在就来详细介绍一下，顺带编写一个demo。 ​    为了防止雪崩现象（一个系统中的错误导致系统大面积不可用），所以要让请求在发生错误时仍然可以维持后续的步骤，就是让操作降级，或者后续再处理。总之就是要维持后续的步骤，让系统在发生错误的情况下仍然可用。（这个感觉需要和业务紧密连接，虽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Hystrix/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringCloud集成Hystrix​    之前在SpringCLoud了解的博客简单介绍了Hystrix，现在就来详细介绍一下，顺带编写一个demo。 ​    为了防止雪崩现象（一个系统中的错误导致系统大面积不可用），所以要让请求在发生错误时仍然可以维持后续的步骤，就是让操作降级，或者后续再处理。总之就是要维持后续的步骤，让系统在发生错误的情况下仍然可用。（这个感觉需要和业务紧密连接，虽">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704171401715.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704172314545.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704172521744.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704175652527.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704180406092.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704171401715.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/SpringCloud/SpringCloud集成Hystrix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Hystrix/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.195Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud集成Hystrix"><a href="#SpringCloud集成Hystrix" class="headerlink" title="SpringCloud集成Hystrix"></a>SpringCloud集成Hystrix</h2><p>​    之前在SpringCLoud了解的博客简单介绍了Hystrix，现在就来详细介绍一下，顺带编写一个demo。</p>
+<p>​    为了防止雪崩现象（一个系统中的错误导致系统大面积不可用），所以要让请求在发生错误时仍然可以维持后续的步骤，就是让操作降级，或者后续再处理。总之就是要维持后续的步骤，让系统在发生错误的情况下仍然可用。（这个感觉需要和业务紧密连接，虽然组件可以达到高可用，但是业务上的后续处理还是需要自己编写相关的业务代码的。）</p>
+<p>​    Hystrix的原理。</p>
+<blockquote>
+<ul>
+<li>防止任何单个依赖项耗尽所有容器（例如Tomcat）用户线程。</li>
+<li> 减少负载并快速失败，而不是排队。</li>
+<li>在可行的情况下提供备用，以保护用户免受故障的影响。</li>
+<li>使用隔离技术（例如如 bulkhead, swimlane, 和 circuit breaker 模式）来限制任何一种依赖关系的影响。</li>
+<li>通过近实时指标，监视和警报优化发现时间。</li>
+<li>通过在Hystrix的大多数方面中以低延迟传播配置更改来优化恢复时间，并支持动态属性更改，这使您可以通过低延迟反馈回路进行实时操作修改。</li>
+<li>防止整个依赖性客户端执行失败，而不仅仅是网络流量失败。</li>
+</ul>
+</blockquote>
+<p>  为了实现这些目标，Hystrix也做了一些处理。</p>
+<blockquote>
+<ul>
+<li>将对外部系统（或“依赖关系”）的所有调用包装在通常在单独线程中执行的<code>HystrixCommand</code>或<code>HystrixObservableCommand</code>对象中（这是<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Command_pattern">命令模式</a>的示例）。</li>
+<li>超时呼叫花费的时间超过您定义的阈值。有一个默认的，而是由“属性”，使它们比测量的99.5略高的方式对大多数依赖你自定义设置这些超时个百分点每个依存性的性能。</li>
+<li>为每个依赖项维护一个小的线程池（或信号灯）；如果已满，发往该依赖项的请求将立即被拒绝，而不是排队。</li>
+<li>测量成功，失败（客户端抛出的异常），超时和线程拒绝。</li>
+<li>如果某个服务的错误百分比超过阈值，则使断路器跳闸，以在一段时间内手动或自动停止所有对特定服务的请求。</li>
+<li>当请求失败，被拒绝，超时或短路时执行回退逻辑。</li>
+<li>几乎实时监控指标和配置更改。</li>
+</ul>
+</blockquote>
+<p>  上面都是翻译自Hystrix的GitHub页面，找了一圈，没有找到官网，只找到这个GitHub页面，上面也有一些文档。GitHub地址如下：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Netflix/hystrix/wiki">https://github.com/Netflix/hystrix/wiki</a></p>
+<p>​    然后就是一些图片，关于服务的正常调用和异常调用。</p>
+<center>正常的服务之间的调用</center>
+
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704171401715.png" alt="image-20200704171401715"></p>
+<center>异常的服务之间的调用</center>
+
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704172314545.png" alt="image-20200704172314545"></p>
+<p>​    一个服务的节点阻塞，导致阻塞用户的整个请求，最后产生雪崩现象。</p>
+<center>Hystrix之间的调用</center>
+
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704172521744.png" alt="image-20200704172521744"></p>
+<p>​    还是那句话，有能力的最好直接看官网文档，比较详细而且比较全。</p>
+<p>​    介绍完了大致的原理，下面就开始撸代码。</p>
+<p>​    因为feign默认集成了Hystrix，所以这里和上一节的Ribbon都不需要添加新的依赖。直接就可以编写。需要修改的地方有三个，一个是在feign接口代码添加一个回调类，还有就是创建一个回调类，写一些业务逻辑代码。最后就是在配置文件中开启Hystrix，因为feign默认不开启。</p>
+<p>​    接口代码修改如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.psq.eurekaclient.feign;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.psq.eurekaclient.hystrix.UserHystrix;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UserFeign.java</span></span><br><span class="line"><span class="comment"> * Description: User的feign</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/6/16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FeignClient(name = &quot;provider-mysql&quot;, fallback = UserHystrix.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeign</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 查询list中的id所对应的用户信息</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> java.lang.String</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/6/16</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">selectUserByID</span><span class="params">(<span class="meta">@RequestParam</span> List&lt;String&gt; ids)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    回调类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.psq.eurekaclient.hystrix;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.psq.eurekaclient.feign.UserFeign;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UserHystrix.java</span></span><br><span class="line"><span class="comment"> * Description: UserFeign的回调类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/4</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserHystrix</span> <span class="keyword">implements</span> <span class="title">UserFeign</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: 查询的回调方法，里面可以放一些异常后处理机制</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ids</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> java.lang.String</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/7/4</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">selectUserByID</span><span class="params">(List&lt;String&gt; ids)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;调用异常，但是可以继续往下执行&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    配置代码如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################### common config : ####################################</span></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">application</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">name</span>: <span class="string">eureka-client</span></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8081</span></span><br><span class="line"><span class="comment">#eureka注册中心的配置</span></span><br><span class="line"><span class="attr">eureka</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">client</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">service-url</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">defaultZone</span>: <span class="string">http://127.0.0.1:8080/eureka</span></span><br><span class="line">  <span class="attr">instance</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">prefer-ip-address</span>: <span class="string">true</span></span><br><span class="line"><span class="comment">#日志的级别</span></span><br><span class="line"><span class="attr">logging</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">level</span>:<span class="string"></span></span><br><span class="line">    <span class="meta">com.psq.eurekaclient.feign.UserFeign</span>: <span class="string">debug</span></span><br><span class="line"><span class="comment">#feign默认不开启Hystrix，需要配置开启</span></span><br><span class="line"><span class="attr">feign</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">hystrix</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">enabled</span>: <span class="string">true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​    关闭生产者前的调用截图如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704175652527.png" alt="image-20200704175652527"></p>
+<p>关闭生产者后的调用截图如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200704180406092.png" alt="image-20200704180406092"></p>
+<p>​    以上就是简单的调用，说了这么多，这些组件都是为了保证服务的高可用，但是写下来后发现，企业里面要保证高可用只有这些事不够的，需要结合自己公司的情况做对应的修改，有可能需要对这些组件的源码修。还是之前说的，公司的实力不够还是不要搞微服务了，很坑。</p>
+<p>​    上面简单的调用没有什么技术点，后面还是需要看看源码或者分析具体的原理。但是现在显然短短一篇博客是不可能的了，这些都可以算到后面的债。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90Hystrix/" data-id="ckupl1rr600156rup23be7iai" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/SpringCloud/SpringCloud%E9%9B%86%E6%88%90OpenFeign/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

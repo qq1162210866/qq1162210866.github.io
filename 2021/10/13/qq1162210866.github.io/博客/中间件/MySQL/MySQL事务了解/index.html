@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MySQL事务了解​    上次使用了最基本的MySQL，只是简单的查询一个表中的数据，这次练习一下事务。开始。 ​    MySQL有四层架构，分别为：连接层、服务层、引擎层、存储层。这四层的作用如下：  ​    需要注意的是，事务的执行是在引擎层，并不是服务层。目前使用最广泛的就是InnoDB，其他的引擎很少有支持事务的。 ​    事务的特性有四个。原子性、一致性、隔离性、持久性。四个特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MySQL事务了解​    上次使用了最基本的MySQL，只是简单的查询一个表中的数据，这次练习一下事务。开始。 ​    MySQL有四层架构，分别为：连接层、服务层、引擎层、存储层。这四层的作用如下：  ​    需要注意的是，事务的执行是在引擎层，并不是服务层。目前使用最广泛的就是InnoDB，其他的引擎很少有支持事务的。 ​    事务的特性有四个。原子性、一致性、隔离性、持久性。四个特性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200608233609217.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612170140499.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202259136.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202326662.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202505995.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202611299.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612212946695.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200608233609217.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/中间件/MySQL/MySQL事务了解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.196Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MySQL事务了解"><a href="#MySQL事务了解" class="headerlink" title="MySQL事务了解"></a>MySQL事务了解</h2><p>​    上次使用了最基本的MySQL，只是简单的查询一个表中的数据，这次练习一下事务。开始。</p>
+<p>​    MySQL有四层架构，分别为：<strong>连接层</strong>、<strong>服务层</strong>、<strong>引擎层</strong>、<strong>存储层</strong>。这四层的作用如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200608233609217.png" alt="image-20200608233609217"></p>
+<p>​    需要注意的是，事务的执行是在引擎层，并不是服务层。目前使用最广泛的就是InnoDB，其他的引擎很少有支持事务的。</p>
+<p>​    事务的特性有四个。<strong>原子性</strong>、<strong>一致性</strong>、<strong>隔离性</strong>、<strong>持久性</strong>。四个特性简称为<strong>ACID</strong>，其含义和解释如下：</p>
+<ul>
+<li>原子性：操作这些指令时，要么全部执行成功，要么全部不执行。只要其中一个指令执行失败，所有的指令都执行失败，数据进行回滚，回到执行指令前的数据状态。</li>
+<li>一致性：事务的执行使数据从一个状态转换为另一个状态，但是对于整个数据的完整性保持稳定。</li>
+<li>隔离性：隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</li>
+<li>持久性：当事务正确完成后，它对于数据的改变是永久性的。</li>
+</ul>
+<p>​    MySQL中的事务为了保证原子性，通过undo log日志来进行事务的撤销和数据的回滚。一致性则是MySQL中最终追求的目标，需要其他三个特性的支持。为了保持隔离性，MySQL中使用锁来对数据进行保护和同步。持久性则是使用InnoDB存储引擎中的redo log日志来实现的。下面分别介绍。</p>
+<ul>
+<li><p>undo log 日志。回滚日志的作用就是对数据进行回滚，属于逻辑日志。它对SQL语句执行相关的信息进行记录。当发生回滚时，InnoDB引擎会根据undo log日志中的记录做与之前相反的工作。比如对于每个数据插入操作（insert），回滚时会执行数据删除操作（delete）。</p>
+</li>
+<li><p>说锁之前先说一下MySQL中的数据存储形式，分为：数据库、数据表、数据页、行。各个形式如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612170140499.png" alt="image-20200612170140499"></p>
+<p>MySQL中的锁有下面几种：行锁、表锁、页锁。粒度分别如下：</p>
+<ul>
+<li><p>行锁：粒度最小的锁，表示只针对当前操作的行进行加锁；</p>
+</li>
+<li><p>表锁：粒度最大的锁，表示当前的操作对整张表加锁；</p>
+</li>
+<li><p>页锁：粒度介于行级锁和表级锁中间的一种锁，表示对页进行加锁；</p>
+</li>
+</ul>
+<p>表锁因为锁定的是整张表，所以并发性比较差，行锁如果过多，占用的资源比较多。</p>
+<p>涉及到锁了，就要提及数据的读写问题了，读写问题有三类：脏读、不可重复读、幻读。</p>
+<ul>
+<li><p>脏读。当前事务中读到其他事务未提交的数据，也就是脏数据。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202259136.png" alt="image-20200612202259136"></p>
+</li>
+<li><p>不可重复读。在事务A中先后两次读取同一个数据，但是两次读取的结果不一样。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202326662.png" alt="image-20200612202326662"></p>
+</li>
+<li><p>幻读。在事务A中按照某个条件先后两次查询数据库，两次查询结果的行数不同，这种现象称为幻读。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202505995.png" alt="image-20200612202505995"></p>
+</li>
+</ul>
+<p>根据这些问题产生了四种隔离级别，如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612202611299.png" alt="image-20200612202611299"></p>
+<p>然后就是MVCC（多版本的并发控制协议）相当于git，这个可以解决脏读和不可重复读读问题。这个放在后面讲吧。</p>
+</li>
+<li><p>redo log日志。重做日志是InnoDB引擎层的日志，用来记录事务操作引起数据的变化，记录的是数据页的物理修改。InnoDB引擎对数据的更新，是先将更新记录写入redo log日志，然后会在系统空闲的时候或者是按照设定的更新策略再将日志中的内容更新到磁盘之中。这就是所谓的<strong>预写式技术（Write Ahead logging）</strong>。这种技术可以大大减少IO操作的频率，提升数据刷新的效率。redo log是一种物理日志，记录的是实际上对某个数据进行了怎么样的修改；而binlog是逻辑日志，记录的是SQL语句的原始逻辑，比如”给ID=2这一行的a字段加1 “。binlog日志中的内容是二进制的，根据日记格式参数的不同，可能基于SQL语句、基于数据本身或者二者的混合。一般常用记录的都是SQL语句。详细执行步骤如下：（在对redo log写入时有两个阶段的提交，一是binlog写入之前<code>prepare</code>状态的写入，二是binlog写入之后<code>commit</code>状态的写入。）</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200612212946695.png" alt="image-20200612212946695"></p>
+<p>其实是看了一篇博客，详细了了解了事务的原理和关于MySQL的一些信息。链接如下：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/HQh_HpbtvJv6Y5k3OAlfsQ">https://mp.weixin.qq.com/s/HQh_HpbtvJv6Y5k3OAlfsQ</a></p>
+<p>后面也回简单写一个demo，具体把这些概念了解一下。就这样吧，结束。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/" data-id="ckupl1rs1001y6rup958pd2xx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E5%8D%8F%E8%AE%AE/HTTP/HTTP%E5%9B%BE%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

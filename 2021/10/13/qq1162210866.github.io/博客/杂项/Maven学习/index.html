@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="​    又是工作中遇到了一个Maven的问题，解决了好久都是迷迷糊糊的，这次记录下来防止自己再次忘记。 Maven是什么​    Maven 是一个意第绪语单词，意思是知识的积累，最初是为了简化 Jakarta Turbine 项目中的构建过程。每个项目都有自己的 Ant 构建文件，都略有不同。我们想要一种构建项目的标准方法、对项目组成的清晰定义、一种发布项目信息的简单方法以及一种在多个项目之间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/Maven%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="​    又是工作中遇到了一个Maven的问题，解决了好久都是迷迷糊糊的，这次记录下来防止自己再次忘记。 Maven是什么​    Maven 是一个意第绪语单词，意思是知识的积累，最初是为了简化 Jakarta Turbine 项目中的构建过程。每个项目都有自己的 Ant 构建文件，都略有不同。我们想要一种构建项目的标准方法、对项目组成的清晰定义、一种发布项目信息的简单方法以及一种在多个项目之间">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902214851086.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215259888.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215525898.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215723521.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215910039.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902220047445.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902220700371.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902223704130.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.197Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.197Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902214851086.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/杂项/Maven学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/Maven%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.197Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    又是工作中遇到了一个Maven的问题，解决了好久都是迷迷糊糊的，这次记录下来防止自己再次忘记。</p>
+<h2 id="Maven是什么"><a href="#Maven是什么" class="headerlink" title="Maven是什么"></a>Maven是什么</h2><p>​    Maven 是一个意第绪语单词，意思是知识的积累，最初是为了简化 Jakarta Turbine 项目中的构建过程。每个项目都有自己的 Ant 构建文件，都略有不同。我们想要一种构建项目的标准方法、对项目组成的清晰定义、一种发布项目信息的简单方法以及一种在多个项目之间共享 JAR 的方法。</p>
+<p>​    结果是现在可以用于构建和管理任何基于 Java 的项目的工具。我们希望我们已经创建了一些东西，使 Java 开发人员的日常工作更容易，并且通常有助于理解任何基于 Java 的项目。</p>
+<p>​    这个是Maven官网上对于Maven是什么的一个介绍。也可以看出Maven这个工具的用处，就是简单的管理项目依赖的jar包，但是随着Maven的发展，后续也增加了许多有用的功能。想我们使用的话，也就是简单的管理jar包或者依赖。</p>
+<h2 id="配置Maven环境"><a href="#配置Maven环境" class="headerlink" title="配置Maven环境"></a>配置Maven环境</h2><p>​     配置Maven环境不是本篇博客的重点，所以不在这里详细的介绍，只是说一下大致的环节。</p>
+<p>​     安装Java环境，将Java的安装地址配置到系统的环境变量里面。下载Maven压缩包，解压到你指定的目录，配置Maven的系统环境变量即可。最后修改一下settings文件，修改镜像地址和本地仓库地址即可。</p>
+<p>​    执行<code>mvn -version</code>出现以下画面就代表安装成功。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902214851086.png" alt="image-20210902214851086"></p>
+<h2 id="简单使用Maven"><a href="#简单使用Maven" class="headerlink" title="简单使用Maven"></a>简单使用Maven</h2><p>​    Maven安装完毕，下面就可以搞一个简单的小Demo，看到成功的画面才有学下去的动力，这个Demo也是官方的例子，具体的地址如下： <a target="_blank" rel="noopener" href="https://maven.apache.org/guides/getting-started/Maven-in-five-minutes.html">Maven简单Demo</a></p>
+<p>​    在目录下执行如下命令：</p>
+<p><code>mvn archetype:generate -DgroupId=com.psq.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false</code></p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215259888.png" alt="image-20210902215259888"></p>
+<p>​    这个命令就是依据你选定的原型创建了一个Maven结构的项目，项目名称为<code>my-app</code>。项目的结构如下：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215525898.png" alt="image-20210902215525898"></p>
+<p>​    可以看到和我们平时的SpringBoot应用相差不多，其实SpringBoot应用也是按照Maven的原型修改了一下。</p>
+<p>​    下面执行<code>mvn package</code>，可以看到</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215723521.png" alt="image-20210902215723521"></p>
+<p>​    这里因为我依赖都下载过了，所以很快，第一次执行会稍微慢一些。能够看到项目目录中多了一些东西，多出来的东西就是Maven编译和打包产生的文件，还有一些其他的文件，目前暂时不清楚。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902215910039.png" alt="image-20210902215910039"></p>
+<p>​    我们再执行命令<code>java -cp ./target/my-app-1.0-SNAPSHOT.jar com.psq.app.App </code>就能够看到一个输出了。到此，Maven的简单Demo就结束了。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902220047445.png" alt="image-20210902220047445"></p>
+<p>​    这个例子完成是不是对于Maven的使用更加的清晰了。下面就介绍一下涉及到的点，当然目前肯定不全，后续遇到其他的知识点也会慢慢补齐。</p>
+<h2 id="一些关于Maven的知识点"><a href="#一些关于Maven的知识点" class="headerlink" title="一些关于Maven的知识点"></a>一些关于Maven的知识点</h2><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>​    Maven将构建和分发项目的过程进行了明确的定义，这个就是Maven中的生命周期。一般默认的有以下几种：</p>
+<ul>
+<li><code>validate</code> 验证项目正确，并获取所有必要信息</li>
+<li><code>compile</code>编译项目源代码</li>
+<li><code>test</code>使用合适的单元测试框架测试编译后的源代码。这些测试不应要求打包或部署代码</li>
+<li><code>package</code> 取编译后的代码，并以可分发格式打包，例如JAR</li>
+<li><code>verify</code>对集成测试结果进行任何检查，以确保满足质量标准</li>
+<li><code>install</code>将软件包安装到本地存储库中，用于本地其他项目中的依赖项</li>
+<li><code>deploy</code>在构建环境中完成，将最终的软件包复制到远程存储库中，以便与其他开发人员和项目共享</li>
+</ul>
+<p>​    看着是不是特别熟悉，Idea中的Maven也有类似的。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902220700371.png" alt="image-20210902220700371"></p>
+<p>​    是不是也知道了Idea中这些按钮的含义。也知道了自己以后应该在什么步骤执行点击什么按钮了吧。</p>
+<h3 id="Maven文件结构介绍"><a href="#Maven文件结构介绍" class="headerlink" title="Maven文件结构介绍"></a>Maven文件结构介绍</h3><p>​    这一部分就是Maven对于项目各种文件的一种限制，不一定非要你完全执行，只是一个建议，和我们平时的项目结构差不多，和我上面的截图类似。具体含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>存放文件类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/main/java</code></td>
+<td>应用程序代码</td>
+</tr>
+<tr>
+<td><code>src/main/resources</code></td>
+<td>资源库资源</td>
+</tr>
+<tr>
+<td><code>src/main/filters</code></td>
+<td>资源筛选文件</td>
+</tr>
+<tr>
+<td><code>src/main/webapp</code></td>
+<td>网络应用程序资源</td>
+</tr>
+<tr>
+<td><code>src/test/java</code></td>
+<td>测试代码</td>
+</tr>
+<tr>
+<td><code>src/test/resources</code></td>
+<td>测试需要资源</td>
+</tr>
+<tr>
+<td><code>src/test/filters</code></td>
+<td>测试资源筛选文件</td>
+</tr>
+<tr>
+<td><code>src/it</code></td>
+<td>集成测试（主要用于插件）</td>
+</tr>
+<tr>
+<td><code>src/assembly</code></td>
+<td>汇编描述符</td>
+</tr>
+<tr>
+<td><code>src/site</code></td>
+<td>站点</td>
+</tr>
+<tr>
+<td><code>LICENSE.txt</code></td>
+<td>项目许可证</td>
+</tr>
+<tr>
+<td><code>NOTICE.txt</code></td>
+<td>项目所依赖的库需要的通知和归属</td>
+</tr>
+<tr>
+<td><code>README.txt</code></td>
+<td>项目介绍</td>
+</tr>
+</tbody></table>
+<p>​    还有一些文件没有列出来，例如git、svn的文件，但是大致的结构都差不多。现在是不是清楚了为什么GitHub上下载的代码都是一个结构了吧。</p>
+<h3 id="原型简单介绍"><a href="#原型简单介绍" class="headerlink" title="原型简单介绍"></a>原型简单介绍</h3><p>​    上面简单Demo中使用到了一个原型，原型就是Maven为了方便我们创建项目而创建的基础项目。我们按照这个原型创建自己的项目。Maven的原型挺多的，当然，我们也可以自己定制自己的原型。</p>
+<table>
+<thead>
+<tr>
+<th align="center">原型工件</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Maven-archetype-archetype</td>
+<td align="center">生成示例原型项目的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-j2ee-simple</td>
+<td align="center">生成简单示例J2EE应用程序的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-mojo</td>
+<td align="center">用于生成示例Maven插件示例的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-plugin</td>
+<td align="center">生成示例 Maven 插件的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-plugin-site</td>
+<td align="center">生成Maven插件站点示例的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-portlet</td>
+<td align="center">生成JSR-268 Portlet样本的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-quickstart</td>
+<td align="center">生成Maven项目示例的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-simple</td>
+<td align="center">生成简单 Maven 项目的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-site</td>
+<td align="center">一个原型，用于生成Maven站点示例，演示一些受支持的文档类型，如APT、XDoc和FML，并演示如何i18n您的站点。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-site-simple</td>
+<td align="center">生成Maven站点样本的原型。</td>
+</tr>
+<tr>
+<td align="center">Maven-archetype-webapp</td>
+<td align="center">生成Maven Webapp项目示例的原型。</td>
+</tr>
+</tbody></table>
+<p>​    可以按照自己的需求下载对应的原型，然后进行改造和开发。具体的介绍地址在这里：<a target="_blank" rel="noopener" href="https://maven.apache.org/guides/introduction/introduction-to-archetypes.html">Maven原型介绍</a></p>
+<h3 id="pom文件介绍"><a href="#pom文件介绍" class="headerlink" title="pom文件介绍"></a>pom文件介绍</h3><p>​    Maven项目最重要的就是Pom文件，但是Pom文件里面的内容实在太多了，我一篇博客很难讲完，这里偷个懒，讲Maven的介绍和参考链接放上来，也算是防止自己忘记吧。还是要说一句，任何的教程和文档都没有官方文档讲的详细。</p>
+<p><a target="_blank" rel="noopener" href="https://maven.apache.org/pom.html">Maven官方Pom文件参考</a></p>
+<p>​    其实我们常用的就是本项目的坐标配置和项目需要的依赖。再顶多配置一下远程仓库、插件。细看这些配置就可以满足日常开发需求了。</p>
+<h2 id="开发中常用的功能"><a href="#开发中常用的功能" class="headerlink" title="开发中常用的功能"></a>开发中常用的功能</h2><p>​    最后一个环节介绍一下平时开发中会用到的功能。也算比较常见吧。</p>
+<h3 id="配置私服地址-从私服下载依赖"><a href="#配置私服地址-从私服下载依赖" class="headerlink" title="配置私服地址,从私服下载依赖"></a>配置私服地址,从私服下载依赖</h3><p>​    大部分公司都搭建了私服，也就是边缘端端中心仓库。你的项目要想从这些仓库下载地址也很简单，有以下办法。</p>
+<ul>
+<li>修改你的Maven的配置文件settings.xml,如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>myprofile<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>my-repo2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">name</span>&gt;</span>your custom repo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://jarsm2.dyndns.dk<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>myprofile<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改你的项目文件（会覆盖上一步的配置，所以是常用做法）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>my-repo1<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>your custom repo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://jarsm2.dyndns.dk<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>my-repo2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>your custom repo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://jarsm2.dyndns.dk<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="pom中增加构建配置"><a href="#pom中增加构建配置" class="headerlink" title="pom中增加构建配置"></a>pom中增加构建配置</h3><p>​    通过配置profiles标签，来达到选定打包文件的操作，idea中的显示也比较方便，如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210902223704130.png" alt="image-20210902223704130"></p>
+<p>​    具体的代码看自己项目定。    </p>
+<h3 id="上传jar包到私服"><a href="#上传jar包到私服" class="headerlink" title="上传jar包到私服"></a>上传jar包到私服</h3><p>​    这个步骤也是简单，首先在项目增加配置，你要上传的仓库的地址。再在你的Maven全局配置文件里面配置私服的用户名和地址，也可以配置其他验证方式。配置完成后，执行deploy命令即可。这里就不再详细的展示步骤了，不清楚的可以看看官网的介绍。</p>
+<p><a target="_blank" rel="noopener" href="https://maven.apache.org/guides/getting-started/index.html#How_do_I_deploy_my_jar_in_my_remote_repository">部署到远程仓库</a></p>
+<p>​    但是需要注意，开发版本和稳定版本是有区别的，有时某些远程仓库是只能上传开发版本的，有些是只能上传稳定版本的。需要你上传时注意。</p>
+<h3 id="打包到本地仓库"><a href="#打包到本地仓库" class="headerlink" title="打包到本地仓库"></a>打包到本地仓库</h3><p>​    这个就更加简单了，就是本地install命令即可，在仓库中寻找对应目录的jar即可。我这里也不演示了。</p>
+<p>​    至此，Maven的介绍和一些我能想到的点就全部介绍完毕了。后续有机会还是会继续更新的。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/Maven%E5%AD%A6%E4%B9%A0/" data-id="ckupl1rri001o6ruphkyz0lb1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/JAVA%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E7%9A%8435%E4%B8%AA%E7%BB%86%E8%8A%82/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/RESTful%E9%A3%8E%E6%A0%BC%E4%BA%86%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

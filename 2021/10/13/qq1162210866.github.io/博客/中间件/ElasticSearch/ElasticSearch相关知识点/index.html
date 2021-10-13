@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ElasticSearch相关知识点ES基础知识点​    ES集群可以包含多个索引（indices）(数据库)，每一个索引可以包含多个类型（types）（表），每一个类型包含多个文档（documents）（行），然后每个文档包含多个字段（fields）（列）。 索引（Index）​    索引是文档(Document)的容器，是一类文档的集合。在ES中有三种索引的概念，意思分别为：  索引(名词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ElasticSearch相关知识点ES基础知识点​    ES集群可以包含多个索引（indices）(数据库)，每一个索引可以包含多个类型（types）（表），每一个类型包含多个文档（documents）（行），然后每个文档包含多个字段（fields）（列）。 索引（Index）​    索引是文档(Document)的容器，是一类文档的集合。在ES中有三种索引的概念，意思分别为：  索引(名词">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-7c4b590346650f5e32088458da5df48d_r.jpg">
+<meta property="article:published_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.195Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-7c4b590346650f5e32088458da5df48d_r.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/中间件/ElasticSearch/ElasticSearch相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.195Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ElasticSearch相关知识点"><a href="#ElasticSearch相关知识点" class="headerlink" title="ElasticSearch相关知识点"></a>ElasticSearch相关知识点</h2><h3 id="ES基础知识点"><a href="#ES基础知识点" class="headerlink" title="ES基础知识点"></a>ES基础知识点</h3><p>​    ES集群可以包含多个索引（indices）(数据库)，每一个索引可以包含多个类型（types）（表），每一个类型包含多个文档（documents）（行），然后每个文档包含多个字段（fields）（列）。</p>
+<h4 id="索引（Index）"><a href="#索引（Index）" class="headerlink" title="索引（Index）"></a>索引（Index）</h4><p>​    索引是文档(Document)的容器，是一类文档的集合。在ES中有三种索引的概念，意思分别为：</p>
+<ul>
+<li>索引(名词)。类比传统的关系型数据库领域来说，索引相当于SQL中的一个数据库(Database)。索引由其名称(必须为全小写字符)进行标识。</li>
+<li>索引(动词)。保存一个文档到索引(名词)的过程。这非常类似于SQL语句中的 INSERT关键词。如果该文档已存在时那就相当于数据库的UPDATE。</li>
+<li>倒排索引。关系型数据库通过增加一个B+树索引到指定的列上，以便提升数据检索速度。索引ElasticSearch 使用了一个叫做 倒排索引 的结构来达到相同的目的。</li>
+</ul>
+<h4 id="类型（Type）"><a href="#类型（Type）" class="headerlink" title="类型（Type）"></a>类型（Type）</h4><p>​    Type 可以理解成关系数据库中Table。</p>
+<p>​    之前的版本中，索引和文档中间还有个类型的概念，每个索引下可以建立多个类型，文档存储时需要指定index和type。从6.0.0开始单个索引中只能有一个类型，7.0.0以后将将不建议使用，8.0.0 以后完全不支持。但是后续的版本弃用了，原因如下：</p>
+<p>​    我们虽然可以通俗的去理解Index比作 SQL 的 Database，Type比作SQL的Table。但这并不准确，因为如果在SQL中,Table 之前相互独立，同名的字段在两个表中毫无关系。但是在ES中，同一个Index 下不同的 Type 如果有同名的字段，他们会被 Luecence 当作同一个字段 ，并且他们的定义必须相同。所以我觉得Index现在更像一个表，而Type字段并没有多少意义。目前Type已经被Deprecated，在7.0开始，一个索引只能建一个Type为_doc</p>
+<h4 id="文档（Document）"><a href="#文档（Document）" class="headerlink" title="文档（Document）"></a>文档（Document）</h4><p>​    Document Index 里面单条的记录称为Document（文档）。等同于关系型数据库表中的行。</p>
+<h4 id="映射（Mapping）"><a href="#映射（Mapping）" class="headerlink" title="映射（Mapping）"></a>映射（Mapping）</h4><p>​    映射(Mapping)相当于数据表的表结构。ElasticSearch中的映射（Mapping）用来定义一个文档，可以定义所包含的字段以及字段的类型、分词器及属性等等。</p>
+<p>​    映射定义了类型中的域，每个域的数据类型，以及Elasticsearch如何处理这些域。映射也用于配置与类型有关的元数据。（元数据就是指和文档相关的数据，例如：文档的id、文档的index、文档的版本号）</p>
+<p>​    映射创建完毕后就不能修改了，只能后续增加映射，不能修改已经存在的映射。映射也分为动态和静态。动态就是根据传入的json的类型去猜测映射的类型，例如“123”回被当为String。静态映射是在创建index时指定映射。</p>
+<h4 id="字段（fields）"><a href="#字段（fields）" class="headerlink" title="字段（fields）"></a>字段（fields）</h4><p>​    代表传统DB中的列的概念，例如学生表中的name列，一般映射也是对字段进行限制。</p>
+<h4 id="分片（Shard）"><a href="#分片（Shard）" class="headerlink" title="分片（Shard）"></a>分片（Shard）</h4><p>​    一个分片是一个底层的工作单元 ，它仅保存了全部数据中的一部分。索引实际上是指向一个或者多个物理分片的逻辑命名空间 。分片是数据的容器，文档保存在分片内，分片又被分配到集群内的各个节点里。分片分为主分片和副本。</p>
+<ul>
+<li>主分片：主要的数据存储分片，也是和用户打交道的主要分片。</li>
+<li>副本：主要对主分片的数据做冗余备份。当主分片异常时，副本可以继续提供读访问。</li>
+</ul>
+<p>注意：一个index可能存在多个主分片上。主分片数量在创建时指定后就不能修改了，但是副本的数量可以修改。主分片不能和本分片的副本在同一个节点上。</p>
+<h4 id="节点（Node）"><a href="#节点（Node）" class="headerlink" title="节点（Node）"></a>节点（Node）</h4><p>​    节点是一个ElasticSearch的实例，其本质就是一个Java进程；Node 是组成集群的一个单独的服务器，用于存储数据并提供集群的搜索和索引功能。与集群一样，节点也有一个唯一名字，默认在节点启动时会生成一个uuid作为节点名，该名字也可以手动指定。单个集群可以由任意数量的节点组成。如果只启动了一个节点，则会形成一个单节点的集群。一台机器可以部署多个节点，但是建议一台机器部署一个节点。</p>
+<h4 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h4><p>​    Elasticsearch 使用一种称为倒排索引的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。文档列表里面存储该词出现的文档和文档中该词出现的频率。</p>
+<p>​    倒排索引就是将文档中出现的不重复的词语建立一个列表，然后对于各个文档，标注出该词语在文档中出现的次数。第一列是不重复词语，第一行是各个文档的id或者名称。表格中间填写的就是各个文档中各个词语出现的次数。</p>
+<p>​    正排索引就是像MySQL这样类似，根据id查询该行的信息。倒排就是根据信息查询id。</p>
+<h4 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h4><p>​    分析器就是从一串文本中切分出一个一个的词条，并対每个词条进行标准化。分析器实际上是将三个功能封装到了一个包里</p>
+<ul>
+<li>字符过滤器：首先，字符串按顺序通过每个字符过滤器 。他们的任务是在分词前整理字符串。一个字符过滤器可以用来去掉HTML，或者将 &amp; 转化成 and。</li>
+<li>分词器：其次，字符串被分词器分为单个的词条。一个简单的分词器遇到空格和标点的时候，可能会将文本拆分成词条。</li>
+<li>Token 过滤器：最后，词条按顺序通过每个 token 过滤器 。这个过程可能会改变词条（例如，小写化 Quick ），删除词条（例如， 像 a， and， the 等无用词），或者增加词条（例如，像 jump 和 leap 这种同义词）。</li>
+</ul>
+<p>​    内置的分析器有一下几种：</p>
+<ul>
+<li>标准分析器是Elasticsearch默认使用的分析器。它是分析各种语言文本最常用的选择。它根据 Unicode 联盟 定义的 单词边界 划分文本。删除绝大部分标点。最后，将词条小写。</li>
+<li>简单分析器在任何不是字母的地方分隔文本，将词条小写。</li>
+<li>空格分析器在空格的地方划分文本。</li>
+<li>特定语言分析器可用于很多语言。它们可以考虑指定语言的特点。例如， 英语 分析器附带了一组英语无用词（常用单词，例如 and 或者 the ，它们对相关性没有多少影响），它们会被删除。 由于理解英语语法的规则，这个分词器可以提取英语单词的词干。</li>
+</ul>
+<h3 id="ES中相关原理"><a href="#ES中相关原理" class="headerlink" title="ES中相关原理"></a>ES中相关原理</h3><h4 id="如何索引到文档"><a href="#如何索引到文档" class="headerlink" title="如何索引到文档"></a>如何索引到文档</h4><p>​    当索引一个文档的时候，文档会被存储到一个主分片中。这个时候是通过计算得到该文档所在的分片的。通过以下公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shard = hash(routing) % number_of_primary_shards</span><br></pre></td></tr></table></figure>
+
+<p>​    routing 是一个可变值，默认是文档的 _id ，也可以设置成一个自定义的值。 routing 通过 hash 函数生成一个数字，然后这个数字再除以 number_of_primary_shards （主分片的数量）后得到 余数 。这个分布在 0 到 number_of_primary_shards-1 之间的余数，就是我们所寻求的文档所在分片的位置。这也就是为什么不能修改主分片的数量，如果修改了，后续的索引就无法找到对应的分片，之前的存放的文档也会有影响。</p>
+<h4 id="搜索的过程"><a href="#搜索的过程" class="headerlink" title="搜索的过程"></a>搜索的过程</h4><p>​    先说普通的CURD操作，因为CURD一般都带有三个属性：_index, _type, 和 routing values ，基本可以确定集群中的那个分片处理这个请求。</p>
+<p>​    但是搜索比较复杂一些。主要分为查询阶段和取回阶段。</p>
+<h5 id="查询阶段"><a href="#查询阶段" class="headerlink" title="查询阶段"></a>查询阶段</h5><p>​    当一个搜索请求被发送到某个节点时，这个节点就变成了协调节点。 这个节点的任务是广播查询请求到所有相关分片并将它们的响应整合成全局排序后的结果集合，这个结果集合会返回给客户端。</p>
+<p>​    第一步是广播请求到索引中每一个节点的分片拷贝。就像 document GET requests 所描述的， 查询请求可以被某个主分片或某个副本分片处理， 这就是为什么更多的副本（当结合更多的硬件）能够增加搜索吞吐率。 协调节点将在之后的请求中轮询所有的分片拷贝来分摊负载。</p>
+<p>​    每个分片在本地执行查询请求并且创建一个长度为 from + size 的优先队列—也就是说，每个分片创建的结果集足够大，均可以满足全局的搜索请求。 分片返回一个轻量级的结果列表到协调节点，它仅包含文档 ID 集合以及任何排序需要用到的值，例如 _score 。</p>
+<p>​    协调节点将这些分片级的结果合并到自己的有序优先队列里，它代表了全局排序结果集合。至此查询过程结束。</p>
+<h5 id="取回阶段"><a href="#取回阶段" class="headerlink" title="取回阶段"></a>取回阶段</h5><p>​    协调节点首先决定哪些文档 确实 需要被取回。例如，如果我们的查询指定了 { “from”: 90, “size”: 10 } ，最初的90个结果会被丢弃，只有从第91个开始的10个结果需要被取回。这些文档可能来自和最初搜索请求有关的一个、多个甚至全部分片。</p>
+<p>​    协调节点给持有相关文档的每个分片创建一个 multi-get request ，并发送请求给同样处理查询阶段的分片副本。</p>
+<p>​    分片加载文档体– _source 字段—如果有需要，用元数据和 search snippet highlighting 丰富结果文档。 一旦协调节点接收到所有的结果文档，它就组装这些结果为单个响应返回给客户端。</p>
+<ul>
+<li><p>想象一下有两个文档有同样值的时间戳字段，搜索结果用 timestamp 字段来排序。 由于搜索请求是在所有有效的分片副本间轮询的，那就有可能发生主分片处理请求时，这两个文档是一种顺序， 而副本分片处理请求时又是另一种顺序。</p>
+<p>这就是所谓的结果震荡问题: 每次用户刷新页面，搜索结果表现是不同的顺序。 让同一个用户始终使用同一个分片，这样可以避免这种问题， 可以设置 preference 参数（偏好参数选定对应的节点）为一个特定的任意值比如用户会话ID来解决。</p>
+</li>
+</ul>
+<h4 id="节点故障后选举的流程"><a href="#节点故障后选举的流程" class="headerlink" title="节点故障后选举的流程"></a>节点故障后选举的流程</h4><p>​    Elasticsearch在满足如下时间点的时候会触发选举1.集群启动初始化2.集群的Master崩溃的时候3.任何一个节点发现当前集群中的Master节点没有得到n/2 + 1节点认可的时候，触发选举。</p>
+<p>​    选举的流程：</p>
+<p><img src="https://pic2.zhimg.com/v2-7c4b590346650f5e32088458da5df48d_r.jpg" alt="preview"></p>
+<p>​    详细看文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110079342">https://zhuanlan.zhihu.com/p/110079342</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281021501">https://zhuanlan.zhihu.com/p/281021501</a></p>
+<h4 id="处理冲突的流程"><a href="#处理冲突的流程" class="headerlink" title="处理冲突的流程"></a>处理冲突的流程</h4><p>​    每个文档都有一个 _version （版本）号，当文档被修改时版本号递增。 Elasticsearch 使用这个 _version 号来确保变更以正确顺序得到执行。如果旧版本的文档在新版本之后到达，它可以被简单的忽略。</p>
+<p>​    我们可以利用 _version 号来确保 应用中相互冲突的变更不会导致数据丢失。我们通过指定想要修改文档的 version 号来达到这个目的。 如果该版本不是当前版本号，我们的请求将会失败。</p>
+<p>也可以通过外部版本号：</p>
+<p>如果你的主数据库已经有了版本号 — 或一个能作为版本号的字段值比如 timestamp — 那么你就可以在 Elasticsearch 中通过增加 version_type=external 到查询字符串的方式重用这些相同的版本号， 版本号必须是大于零的整数， 且小于 9.2E+18 — 一个 Java 中 long 类型的正值。</p>
+<p>外部版本号的处理方式和我们之前讨论的内部版本号的处理方式有些不同， Elasticsearch 不是检查当前 _version 和请求中指定的版本号是否相同， 而是检查当前 _version 是否 小于 指定的版本号。 如果请求成功，外部的版本号作为文档的新 _version 进行存储。</p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><h4 id="POSTMAN练习"><a href="#POSTMAN练习" class="headerlink" title="POSTMAN练习"></a>POSTMAN练习</h4><ul>
+<li>PUT /index/type/id {body} 添加一个文档。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request PUT &#x27;http://127.0.0.1:9200/megacorp/employee/4&#x27; \</span><br><span class="line">--header &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">--data-raw &#x27;&#123;</span><br><span class="line">    &quot;first_name&quot; : &quot;Li&quot;,</span><br><span class="line">    &quot;last_name&quot; :  &quot;Si&quot;,</span><br><span class="line">    &quot;age&quot; :        26,</span><br><span class="line">    &quot;about&quot; :      &quot;I love to sleep&quot;,</span><br><span class="line">    &quot;interests&quot;: [ &quot;bed&quot;, &quot;work&quot; ]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GET /megacorp/employee/1 查询一个id为1的文档。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request GET &#x27;http://127.0.0.1:9200/megacrop/employee/1&#x27; \</span><br><span class="line">--header &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">--data-raw &#x27;&#123;</span><br><span class="line">    &quot;from&quot;:2,</span><br><span class="line">    &quot;size&quot;:1</span><br><span class="line">&#125; &#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GET /megacorp/employee/_search    搜索文档。可以添加相关的json来限制查询条件</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request GET &#x27;http://127.0.0.1:9200/megacrop/employee/_search&#x27; \</span><br><span class="line">--header &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">--data-raw &#x27;&#123;</span><br><span class="line">    &quot;query&quot; : &#123;</span><br><span class="line">        &quot;match&quot; : &#123;</span><br><span class="line">            &quot;last_name&quot; : &quot;Smith&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>HEAD /megacorp/employee/123 查询文档是否存在。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --location --head &#x27;http://127.0.0.1:9200/megacrop/employee/23&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>PUT /website/blog/123/_create    如果ID不存在创建新文档</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request PUT &#x27;http://127.0.0.1:9200/website/blog/123/_create&#x27; \</span><br><span class="line">--header &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">--data-raw &#x27;&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;:  &quot;I am starting to get the hang of this...&quot;,</span><br><span class="line">  &quot;date&quot;:  &quot;2014/01/02&quot;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DELETE /website/blog/123    删除文档</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request DELETE &#x27;http://127.0.0.1:9200/website/blog/123&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>POST /website/blog/1/_update    更新文档，存在的字段就更新，不存在的字段就增加。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl --location --request POST &#x27;http://127.0.0.1:9200/megacorp/employee/4/_update&#x27; \</span><br><span class="line">--header &#x27;Content-Type: application/json&#x27; \</span><br><span class="line">--data-raw &#x27;&#123;</span><br><span class="line">   &quot;doc&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;l love to sleep and work&quot;</span><br><span class="line">      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_most_important_queries.html">ES常用的查询语句</a></p>
+</li>
+<li><p>多个查询的组合。比较复杂，后面如果经常使用需要多看</p>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;bool&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;must&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;age&quot;</span>: <span class="number">25</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;must_not&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;first_name&quot;</span>: <span class="string">&quot;Zhang&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;should&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">                        <span class="attr">&quot;about&quot;</span>: <span class="string">&quot;rock&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">&quot;filter&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;exists&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;field&quot;</span>: <span class="string">&quot;interests&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>后续需要多看官方的文档，多了解了解</p>
+<h4 id="SpringBoot整合"><a href="#SpringBoot整合" class="headerlink" title="SpringBoot整合"></a>SpringBoot整合</h4><p>​    整合依赖，添加esstarter即可，注意这个依赖使用的是elasticsearch-rest-high-level-client</p>
+<p>​    添加相关配置，例如集群的url，这里可以添加多个，客户端会轮询</p>
+<p>​    添加相关实体类，加上@Document(indexName = “user”)注解</p>
+<p>​    添加UserRepository接口继承ElasticsearchRepository&lt;User, Integer&gt;，一般的方法默认都实现了，也可以是使用@Query注解修改你方法的Query</p>
+<p>​    查询即可，后续高级的用法再说。</p>
+<h3 id="ES的面试问题"><a href="#ES的面试问题" class="headerlink" title="ES的面试问题"></a>ES的面试问题</h3><ul>
+<li>ES集群相关的配置。</li>
+</ul>
+<p>我们公司使用的是单节点架构，分片是默认的5分片。索引大概4个索引。主要存储的数据都是设备的历史数据和状态记录。这样是没法达到高可用的，可以设置多节点，保证高可用，因为主分片和他的副本是不会在同一个节点上的。索引的话可以设置多个主分片，但是后续不能修改，这个就需要结合你的业务增长速度，每个分片其实会占用一定的计算机资源。副本的话可以后续修改，如果你某个索引吞吐量达，可以添加副本的数量。</p>
+<ul>
+<li>ES是如何找到一个文档的</li>
+</ul>
+<p>​    首先以我们公司使用的单节点架构为例，寻找一个文档很简单，知道文档的id和index，直接就能判断出文档在哪个分片，然后获取数据并且返回即可。这一步骤没有什么可以讲的点。搜索就复杂一点，因为不知道文档属于哪个分片，所以需要将请求发送到这个索引的所有副本分片上，同时后续的请求会轮询其他分片。每个分片建立一个优先队列，长度为from+size。默认的是0和10。然后该分片将符合要求的文档的id和排序值返回给协调节点，协调节点将所有节点的结果排序，取出客户端需要的数据，再次请求对应的分片，将分片返回的文档返回给客户端即可。多节点的话，最先请求的节点会处理客户端的请求，也叫做协调节点，但是我们只有一个节点，所以也就只有一个协调节点。</p>
+<ul>
+<li>项目中什么地方使用到ES，为什么这样用？</li>
+</ul>
+<p>因为我们公司项目本身是用来给政府单位开发的，所以在设计上会存在一些过量的设计，以此凸显自己项目的优势。这个我认为在开发中是没法避免的。后期的话，公司会做一个设备信息状态的判断 ，然后演算某些隧道的设备是否达到替换的标准，以此给业主提供参考意见，我觉这个地方可以展示es的一些优势，将es利用起来，例如：对某条隧道故障设备进行排名，再按照设备的供应商、地理位置等等条件。当然，这只是我的一个想法，目前的使用还是简单的将其作为一个数据库，对设备的历史数据进行维护。</p>
+<ul>
+<li>ES如果某一时刻需要开启大批量的查询，如何做？</li>
+</ul>
+<p>可以通过游标查询，游标查询允许我们 先做查询初始化，然后再批量地拉取结果。游标查询是取某个时间点的快照数据，通过请求中设置游标的时间参数，获取到游标的id，后续的请求发送这个id即可。达到大批量的查询。 游标查询的过期时间会在每次做查询的时候刷新，所以你的时间点设置只要本地查询处理就可以了。不需要设置很大。初始搜索请求和每个后续滚动请求返回一个新的 _scroll_id。</p>
+<ul>
+<li>ES如何解决脑裂现象的</li>
+</ul>
+<p>脑裂现象是指集群中因为网络分区或者其他原因导致出现两个master的现象，例如123选举3节点为master节点。456选举6节点为master节点。esmaster节点的选举来源分为两个地方，activemaster列表和mastercanditancees列表，前者是通过禁止本地节点入选来解决脑裂现象，后者是通过通过设置最小节点数来解决脑裂现象。当然，在我们项目实际使用过程中没有涉及到集群的这一方面，所以有些实际的问题可能没有涉及到。</p>
+<ul>
+<li>什么是倒排索引</li>
+</ul>
+<p>​    说到倒排索引，其实可以先提一下正排索引，类似MySQL这种，根据某行记录的ID查询该行记录，例如查询id为9的用户的信息，这就是正排索引，倒排索引相反，根据信息查询id，例如，有很多用户的信息，每个用户有一个备注，例如：我喜欢打篮球或者我喜欢打排球。倒排索引就是将这段话分词，分为各个词语，然后将形成一个列表，第一列就是各个词语，第一行就是各个文档id，中间内容就是记录各个词语在各个文档中是否出现或者出现的频率。这样就能达到一个效果，根据词语搜索文档的id，再搜索文档的信息。这样的表格就是倒排索引。</p>
+<ul>
+<li>ES集群是如何处理故障的？</li>
+</ul>
+<p>​    其他节点发现master节点故障后，发起选举，选举出新的master节点，然后新的主节点重新分配主分片，为挂掉的主节点创建分片的副本。</p>
+<ul>
+<li>ES集群的选举过程？</li>
+</ul>
+<p>​    选举的情况有三种：1）master节点崩溃。2）集群初始化的时候。3）任意节点发现当前master节点没有n/2+1节点支持时。</p>
+<p>​    es的节点成员先发送ping请求给其他节点，构建两个列表：当前其他节点认为的存活的master节点列表和master候选节点列表。activeMaster和masterCanditances存在优先级，先从activeMaster中选举，如果该列表为空，在从masterCanditance列表中选举。</p>
+<p>activeMaster节点不包含本地节点，这样就可以避免脑裂现象。该列表的选举采用Bully算法，就是每个节点都有一个优先级，从这些节点中选取出优先级最高的节点当作master节点。优先级的判断主要有两点：版本号和id。版本号越大优先级越高、id越小优先级越高。</p>
+<p>masterCanditances列表里面先判断是否达到最小节点数，如果达到了就按照优先级进行选举。</p>
+<p>选举出来master节点后，还存在两种情况：本地节点是master节点，会等待其他节点投票，如果超时或者设置的最小节点，就重新选举，如果票数大于，就当选为master节点。本地节点不是master时，首先禁止其他节点加入自己，然后监听集群的发布状态。如果新的master和自己的一致，就进行状态更新，否则重新发起选举。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>//索引的概念</p>
+<p>//文档的概念</p>
+<p>//映射的相关概念</p>
+<p>//主分片和复制分片的概念</p>
+<p>//es如何确保请求被分开（可能是轮询）</p>
+<p>//es中的文本分析和</p>
+<p>//倒排索引（分词）</p>
+<p>//分析器</p>
+<p>//结构化查询（通过json体进行查询）</p>
+<p>//查询语句和过滤语句</p>
+<p>//结果震荡</p>
+<p>//字典树</p>
+<p>练习</p>
+<p>//简单的CURD</p>
+<p>//指定映射和分析器</p>
+<p>//结构化查询（通过json体进行查询）</p>
+<p>//查询语句和过滤语句</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckupl1rry001w6rup4f3o9bgh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/storm%E5%AD%A6%E4%B9%A0/Storm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

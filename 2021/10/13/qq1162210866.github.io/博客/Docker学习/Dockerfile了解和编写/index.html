@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dockerfile了解和编写​    这个也是之前欠下的技术帐，也是慢慢补上吧，算是对于Docker的更加深入的理解和应用。 ​    Docker非常好用，简单快捷。但是如果想要自己构建一个独特的镜像，简单的使用显然不能够完成，需要更加深入的理解。这篇博客就是记录这个事情的。下面就开始吧。 ​    在学习编写Dockerfile文件前，需要先了解Docker中镜像的构成。 ​    一个镜像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Docker%E5%AD%A6%E4%B9%A0/Dockerfile%E4%BA%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Dockerfile了解和编写​    这个也是之前欠下的技术帐，也是慢慢补上吧，算是对于Docker的更加深入的理解和应用。 ​    Docker非常好用，简单快捷。但是如果想要自己构建一个独特的镜像，简单的使用显然不能够完成，需要更加深入的理解。这篇博客就是记录这个事情的。下面就开始吧。 ​    在学习编写Dockerfile文件前，需要先了解Docker中镜像的构成。 ​    一个镜像">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20201120103701404.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.186Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.186Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20201120103701404.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/Docker学习/Dockerfile了解和编写" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Docker%E5%AD%A6%E4%B9%A0/Dockerfile%E4%BA%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.186Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Dockerfile了解和编写"><a href="#Dockerfile了解和编写" class="headerlink" title="Dockerfile了解和编写"></a>Dockerfile了解和编写</h2><p>​    这个也是之前欠下的技术帐，也是慢慢补上吧，算是对于Docker的更加深入的理解和应用。</p>
+<p>​    Docker非常好用，简单快捷。但是如果想要自己构建一个独特的镜像，简单的使用显然不能够完成，需要更加深入的理解。这篇博客就是记录这个事情的。下面就开始吧。</p>
+<p>​    在学习编写Dockerfile文件前，需要先了解Docker中镜像的构成。</p>
+<p>​    一个镜像最开始是由父镜像生成的，这个则是由Dockerfile中<code>FROM</code>指令指定的。例如<code>FROM ubuntu:18.04</code>就是代表这个镜像是基于ubuntu镜像构建的。Docker中的镜像是由多个镜像层构成的，例如你下载的时候就会显示多个镜像层。如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20201120103701404.png" alt="image-20201120103701404"></p>
+<p>一行就代表一个镜像层，可以看到这个镜像有8个镜像层。下载也是分别下载镜像层，这样做的好处是可以减少下载的流量，有可能不同的镜像用的是同一个镜像层。有时候你删除某个镜像，如果它依赖于java镜像，可能java镜像并不会删除。镜像层的概念就类似于此。为什么一个镜像会有多层的概念，这时就要讲到Dockerfile文件命令了，Dockerfile文件中有多少个命令，构建的镜像就会有多少层镜像层。例如下面的Dockerfile文件就会构建一个有三层的镜像。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> hello /</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;/hello&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>​    介绍完了简单的镜像的一些知识，下面就开始编写Dockerfile文件。Dockerfile文件通过由以下命令组成。FROM、MAINTAINER、RUN、CMD、EXPOSE、ENV、ADD、COPY、ENTRYPOINT、VOLUME、USER、WORKDIR、ONBUILD。这些命令的使用组成了一个Dockerfile文件。再简单举个例子。这里以Docker官方的ruby文件为例。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> buildpack-deps:buster</span><br><span class="line"><span class="comment"># skip installing gem documentation</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">set</span> -eux; \</span></span><br><span class="line"><span class="bash">	mkdir -p /usr/<span class="built_in">local</span>/etc; \</span></span><br><span class="line"><span class="bash">	&#123; \</span></span><br><span class="line"><span class="bash">		<span class="built_in">echo</span> <span class="string">&#x27;install: --no-document&#x27;</span>; \</span></span><br><span class="line"><span class="bash">		<span class="built_in">echo</span> <span class="string">&#x27;update: --no-document&#x27;</span>; \</span></span><br><span class="line"><span class="bash">	&#125; &gt;&gt; /usr/<span class="built_in">local</span>/etc/gemrc</span></span><br><span class="line"><span class="keyword">ENV</span> LANG C.UTF-<span class="number">8</span></span><br><span class="line"><span class="keyword">ENV</span> RUBY_MAJOR <span class="number">3.0</span>-rc</span><br><span class="line"><span class="keyword">ENV</span> RUBY_VERSION <span class="number">3.0</span>.<span class="number">0</span>-preview1</span><br><span class="line"><span class="keyword">ENV</span> RUBY_DOWNLOAD_SHA256 aa7cce0c99f4ea2145fef9b78d74a44857754396790cd23bad75d759811e7a2a</span><br><span class="line"><span class="comment"># some of ruby&#x27;s build scripts are written in ruby</span></span><br><span class="line"><span class="comment">#   we purge system ruby later to make sure our final image uses what we just built</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">set</span> -eux; \</span></span><br><span class="line"><span class="bash">	\</span></span><br><span class="line"><span class="bash">	savedAptMark=<span class="string">&quot;<span class="subst">$(apt-mark showmanual)</span>&quot;</span>; \</span></span><br><span class="line"><span class="bash">	apt-get update; \</span></span><br><span class="line"><span class="bash">	apt-get install -y --no-install-recommends \</span></span><br><span class="line"><span class="bash">		bison \</span></span><br><span class="line"><span class="bash">		dpkg-dev \</span></span><br><span class="line"><span class="bash">		libgdbm-dev \</span></span><br><span class="line"><span class="bash">		ruby \</span></span><br><span class="line"><span class="bash">	; \</span></span><br><span class="line"><span class="bash">	rm -rf /var/lib/apt/lists/*; \</span></span><br><span class="line"><span class="bash">	\</span></span><br><span class="line"><span class="bash">	wget -O ruby.tar.xz <span class="string">&quot;https://cache.ruby-lang.org/pub/ruby/<span class="variable">$&#123;RUBY_MAJOR%-rc&#125;</span>/ruby-<span class="variable">$RUBY_VERSION</span>.tar.xz&quot;</span>; \</span></span><br><span class="line"><span class="bash">	<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$RUBY_DOWNLOAD_SHA256</span> *ruby.tar.xz&quot;</span> | sha256sum --check --strict; \</span></span><br><span class="line"><span class="bash">	\</span></span><br><span class="line"><span class="bash">	mkdir -p /usr/src/ruby; \</span></span><br><span class="line"><span class="bash">	tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1; \</span></span><br><span class="line"><span class="bash">	rm ruby.tar.xz; \</span></span><br><span class="line"><span class="bash">	\</span></span><br><span class="line"><span class="bash">	<span class="built_in">cd</span> /usr/src/ruby; \</span></span><br><span class="line"><span class="bash">	\</span></span><br><span class="line"><span class="bash"><span class="comment"># hack in &quot;ENABLE_PATH_CHECK&quot; disabling to suppress:</span></span></span><br><span class="line"><span class="comment">#   warning: Insecure world writable dir</span></span><br><span class="line">	&#123; \</span><br><span class="line">		echo <span class="string">&#x27;#define ENABLE_PATH_CHECK 0&#x27;</span>; \</span><br><span class="line">		echo; \</span><br><span class="line">		cat file.c; \</span><br><span class="line">	&#125; &gt; file.c.new; \</span><br><span class="line">	mv file.c.new file.c; \</span><br><span class="line">	\</span><br><span class="line">	autoconf; \</span><br><span class="line">	gnuArch=<span class="string">&quot;$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)&quot;</span>; \</span><br><span class="line">	./configure \</span><br><span class="line">		--build=<span class="string">&quot;$gnuArch&quot;</span> \</span><br><span class="line">		--disable-install-doc \</span><br><span class="line">		--enable-shared \</span><br><span class="line">	; \</span><br><span class="line">	make -j <span class="string">&quot;$(nproc)&quot;</span>; \</span><br><span class="line">	make install; \</span><br><span class="line">	\</span><br><span class="line">	apt-mark auto <span class="string">&#x27;.*&#x27;</span> &gt; /dev/null; \</span><br><span class="line">	apt-mark manual $savedAptMark &gt; /dev/null; \</span><br><span class="line">	find /usr/local -type f -executable -not \( -name <span class="string">&#x27;*tkinter*&#x27;</span> \) -exec ldd <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span> \</span><br><span class="line">		| awk <span class="string">&#x27;/=&gt;/ &#123; print $(NF-1) &#125;&#x27;</span> \</span><br><span class="line">		| sort -u \</span><br><span class="line">		| xargs -r dpkg-query --search \</span><br><span class="line">		| cut -d: -f1 \</span><br><span class="line">		| sort -u \</span><br><span class="line">		| xargs -r apt-mark manual \</span><br><span class="line">	; \</span><br><span class="line">	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \</span><br><span class="line">	\</span><br><span class="line">	cd /; \</span><br><span class="line">	rm -r /usr/src/ruby; \</span><br><span class="line"><span class="comment"># verify we have no &quot;ruby&quot; packages installed</span></span><br><span class="line">	! dpkg -l | grep -i ruby; \</span><br><span class="line">	[ <span class="string">&quot;$(command -v ruby)&quot;</span> = <span class="string">&#x27;/usr/local/bin/ruby&#x27;</span> ]; \</span><br><span class="line"><span class="comment"># rough smoke test</span></span><br><span class="line">	ruby --version; \</span><br><span class="line">	gem --version; \</span><br><span class="line">	bundle --version</span><br><span class="line"><span class="comment"># don&#x27;t create &quot;.bundle&quot; in all our apps</span></span><br><span class="line"><span class="keyword">ENV</span> GEM_HOME /usr/local/bundle</span><br><span class="line"><span class="keyword">ENV</span> BUNDLE_SILENCE_ROOT_WARNING=<span class="number">1</span> \</span><br><span class="line">	BUNDLE_APP_CONFIG=<span class="string">&quot;$GEM_HOME&quot;</span></span><br><span class="line"><span class="keyword">ENV</span> PATH $GEM_HOME/bin:$PATH</span><br><span class="line"><span class="comment"># adjust permissions of a few directories for running &quot;gem install&quot; as an arbitrary user</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p <span class="string">&quot;<span class="variable">$GEM_HOME</span>&quot;</span> &amp;&amp; chmod 777 <span class="string">&quot;<span class="variable">$GEM_HOME</span>&quot;</span></span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;irb&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<p>​    可以看到上面的例子使用了四种指令，分别为<code>FROM</code>,<code>RUN</code>,<code>ENV</code>,<code>CMD</code>。<code>FROM</code>的作用就是声明基础镜像是哪个，也就是本次构建的镜像是由以哪个镜像为基础构建的。<code>RUN</code>常用就是安装软件，需要注意的就是一条指令会创建一个镜像层，所以尽可能减少多个<code>RUN</code>,让一个指令做更多的事，减少镜像层的臃肿。上面的例子也是如此，可以看到大量的用了<code>\</code>，就是为了避免创建过多的镜像层（比较考验Linux的功底）。<code>ENV</code>就是设置环境变量，需要注意的是，和Java中的类变量类似，上一层的镜像或者基于本镜像创建的镜像都可以使用这个环境变量。<code>CMD</code>是启动容器的时候被执行的命令，一个Dockerfile文件中只有一个<code>CMD</code>,可以有多个<code>RUN</code>.理解了这几个指令，再看上面的例子就能看出大概了，例子中先是声明使用了哪个基础镜像，再输入若干<code>RUN</code>和<code>ENV</code>指令去构建镜像，最好则是<code>CMD</code>指令，代表容器启动的时候镜像执行的命令。这样一个镜像的Dockerfile文件就写完了。</p>
+<p>​    下面就开始执行<code>docker build</code>,构建镜像，然后就可以看到docker中有刚才构建的镜像了。构建镜像的步骤就算结束了，后续如果还有的话就是将镜像推送到云上的仓库，下一篇博客可能会讲一讲。</p>
+<p>​    关于这些指令的详细介绍大家可以看看别的博客的介绍或者官网上的介绍（英文的）。后面就是官方的地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#dockerfile-instructions">https://docs.docker.com</a> 。后续我也会慢慢的补充，慢慢来吧。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Docker%E5%AD%A6%E4%B9%A0/Dockerfile%E4%BA%86%E8%A7%A3%E5%92%8C%E7%BC%96%E5%86%99/" data-id="ckupl1rpq00046rup40mu97e1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Docker%E5%AD%A6%E4%B9%A0/Docker-compose%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/Docker%E5%AD%A6%E4%B9%A0/Docker%E4%B8%AD%E5%8D%B7%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

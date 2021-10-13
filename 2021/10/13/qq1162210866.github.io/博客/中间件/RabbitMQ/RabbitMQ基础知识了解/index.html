@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RabbitMQ基础知识了解​    公司前一段时间重构了一个老项目的代码，转为了SpringBoot，但是中间RabbitMQ在转换的时候我问了大佬一个很弱智的问题，所以抽了空，了解一下这个之前一直用但是不懂原理的中间件。 ​    RabbitMQ是基于AMQP（高级消息队列协议）开发的一个消息队列产品，相当于一个软件，所以其实要讲的AMQP，下面也就简单介绍一下AMQP，然后在介绍中间的一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BA%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RabbitMQ基础知识了解​    公司前一段时间重构了一个老项目的代码，转为了SpringBoot，但是中间RabbitMQ在转换的时候我问了大佬一个很弱智的问题，所以抽了空，了解一下这个之前一直用但是不懂原理的中间件。 ​    RabbitMQ是基于AMQP（高级消息队列协议）开发的一个消息队列产品，相当于一个软件，所以其实要讲的AMQP，下面也就简单介绍一下AMQP，然后在介绍中间的一些">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200924085039570.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200923175758411.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200923180111463.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200924085039570.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/中间件/RabbitMQ/RabbitMQ基础知识了解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BA%86%E8%A7%A3/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.196Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="RabbitMQ基础知识了解"><a href="#RabbitMQ基础知识了解" class="headerlink" title="RabbitMQ基础知识了解"></a>RabbitMQ基础知识了解</h2><p>​    公司前一段时间重构了一个老项目的代码，转为了SpringBoot，但是中间RabbitMQ在转换的时候我问了大佬一个很弱智的问题，所以抽了空，了解一下这个之前一直用但是不懂原理的中间件。</p>
+<p>​    RabbitMQ是基于AMQP（高级消息队列协议）开发的一个消息队列产品，相当于一个软件，所以其实要讲的AMQP，下面也就简单介绍一下AMQP，然后在介绍中间的一些组件。</p>
+<p>​    AMQP高级消息队列协议）是一种消息传递协议，使一致的客户端应用程序可以与一致的消息传递中间件代理进行通信。消息发布到<em>exchanges</em>（交换机），交换机类似于邮局或邮箱。然后，交换机使用称为<em>bindings</em>（绑定）的规则将消息副本分发到队列中。然后，代理要么将消息传递给订阅了队列的消费者，要么消费者按需从队列中获取/拉取消息。这就是AMQP的一些基础概念，下面就来一一叙述中间提及到的概念。概念如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200924085039570.png" alt="image-20200924085039570"></p>
+<h3 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h3><p>​    交换机是接收消息的AMQP中的一种实体。交换记接收一条消息并将其路由到零个或多个队列中。使用的路由算法取决于交换机的类型和绑定的规则。交换机在RabbitMQ官网上只有四种，但是实际使用中还多了一个默认的类型。四种交换机名称分别为：Direct exchange（直接交换）、Fanout exchange（扇形交换）、Topic exchange（主题交换）、Headers exchange（标头交换）。下面就说说实际使用到的五种交换。</p>
+<ul>
+<li>默认交换。默认交换是一种特殊的直接交换，特殊的地方在于：默认交换是预先声明的不带名称（空字符串）的直接交换。创建的每个队列都使用与队列名称相同的路由自动绑定到该队列。举个例子，有一个队列声明为：”search-indexing-online”，那么使用路由关键字”search-indexing-online”发送到默认交换机的消息将会被队列”search-indexing-online”接收。看起来类似于直接将消息发送到队列中。</li>
+<li>直接交换。直接交换是基于消息路由关键字将消息传递到队列，原理也比较容易理解：队列使用路由关键字绑定到交换机，收到消息后，如果消息的路由关键字和前面的关键字一致，该消息就会路由到该队列。需要注意的是，如果有多个消费者接收同一个队列，那么将会在消费者层面进行负载均衡，而不是队列。示意图如下：</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200923175758411.png" alt="image-20200923175758411"></p>
+<ul>
+<li>扇形交换。扇形交换将消息路由到与其绑定的所有队列，并且路由关键字将被忽略。如果将N个队列绑定到扇形交换的交换机，则将新消息发布到该交换机时，会将消息的副本传递到所有N个队列。扇出交换机非常适合消息的广播路由。示意图如下：</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200923180111463.png" alt="image-20200923180111463"></p>
+<ul>
+<li>主题交换。主题交换根据消息的路由关键字和一个匹配规则将消息路由到一个或多个队列。主题交换类型通常用于实现各种发布/订阅模式变体。类似于MQTT中主题的概念，订阅了这个主题的客户端都可以接收到此类消息。没有示意图。</li>
+<li>标头交换。标头交换旨在用于在多个属性上进行路由，这些属性比路由键更容易表示为消息标头。标头交换忽略路由键属性。相反，用于路由的属性取自headers属性。如果标头的值等于绑定时指定的值，则认为消息匹配。</li>
+</ul>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>​    AMQP中队列的概念和其他协议中队列的概念一致，存储由应用程序使用的消息。队列的属性有一些不同于其他的，如下：</p>
+<ul>
+<li><p>名称</p>
+</li>
+<li><p>持久（队列将在代理重新启动后幸存）</p>
+</li>
+<li><p>独占（仅由一个连接使用，并且该连接关闭时队列将被删除）</p>
+</li>
+<li><p>自动删除（至少有一个使用方的队列在最后一个使用方退订时被删除）</p>
+</li>
+<li><p>参数（可选；由插件和特定于代理的功能使用，例如消息TTL，队列长度限制等）</p>
+<p> 需要注意的是，队列必须要先声明再使用，声明这个工作没有定必须由谁做，消费者或者生产者都可以，最好是由谁最先使用谁创建。如果声明已经创建的队列，属性一致的话，声明无效；属性不一致的话，会报一个406的通道异常。</p>
+</li>
+</ul>
+<h3 id="绑定"><a href="#绑定" class="headerlink" title="绑定"></a>绑定</h3><p>​    绑定是交换机使用的规则之一，这个规则的作用就是将消息路由联系到队列。为了指示交换机E将消息路由到队列Q，必须将Q 绑定到E。绑定可能具有某些交换机类型使用的可选 路由键属性。路由键的目的是选择发布到交换机的某些消息以路由到绑定队列。换句话说，路由键就像一个过滤器。</p>
+<h3 id="消息的相关知识"><a href="#消息的相关知识" class="headerlink" title="消息的相关知识"></a>消息的相关知识</h3><p>​    broker(代理)将消息发送到应用程序之后（使用<code>basic.deliver</code>或<code>basic.get-ok</code>方法）。应用程序发送回确认之后（使用<code>basic.ack</code>方法）。前者称为自动确认模型，而后者称为显式确认模型。</p>
+<p>​    关于RabbitMQ或者AMQP的基础知识了解到这里就暂时差不多了，后续的学习需要更加深入。就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BA%86%E8%A7%A3/" data-id="ckupl1rs300226rupeos4acvr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/RabbitMQ%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

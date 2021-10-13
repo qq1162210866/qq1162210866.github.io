@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring内部知识点IOC相关知识点IOC基础概念​    所谓 IOC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系。之前传统的是由对象内部直接生成，这样耦合度太高。通过控制反转，只需要告知IOC容器你需要什么样的实例，IOC容器就会自动将实例注入到你的实例里面。控制反转需要依赖注入的支持，即依赖注入是控制反转的实现。依赖注入就是由容器动态的将某个依赖关系注入到组件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring内部知识点IOC相关知识点IOC基础概念​    所谓 IOC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系。之前传统的是由对象内部直接生成，这样耦合度太高。通过控制反转，只需要告知IOC容器你需要什么样的实例，IOC容器就会自动将实例注入到你的实例里面。控制反转需要依赖注入的支持，即依赖注入是控制反转的实现。依赖注入就是由容器动态的将某个依赖关系注入到组件">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210618220738157.png">
+<meta property="article:published_time" content="2021-10-13T13:28:21.198Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.198Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210618220738157.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/框架/Spring相关框架/Spring相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.198Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring内部知识点"><a href="#Spring内部知识点" class="headerlink" title="Spring内部知识点"></a>Spring内部知识点</h2><h3 id="IOC相关知识点"><a href="#IOC相关知识点" class="headerlink" title="IOC相关知识点"></a>IOC相关知识点</h3><h4 id="IOC基础概念"><a href="#IOC基础概念" class="headerlink" title="IOC基础概念"></a>IOC基础概念</h4><p>​    所谓 IOC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系。之前传统的是由对象内部直接生成，这样耦合度太高。通过控制反转，只需要告知IOC容器你需要什么样的实例，IOC容器就会自动将实例注入到你的实例里面。控制反转需要依赖注入的支持，即依赖注入是控制反转的实现。依赖注入就是由容器动态的将某个依赖关系注入到组件之中。依赖注入的目的并非为软件系统带来更多功能，而是为了提升组件重用的频率，并为系统搭建一个灵活、可扩展的平台。</p>
+<p>​    <a target="_blank" rel="noopener" href="https://juejin.cn/post/6857406008877121550">详细的解释</a></p>
+<h4 id="依赖注入的类型和方式"><a href="#依赖注入的类型和方式" class="headerlink" title="依赖注入的类型和方式"></a>依赖注入的类型和方式</h4><p>​    依赖注入的类型有：</p>
+<ul>
+<li>值类型注入 ：就是基础的数据类型，如字符串和Integer</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- applicationContext.xml --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 普通数据类型注入，通过构造器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;po.User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">&quot;0&quot;</span> <span class="attr">value</span>=<span class="string">&quot;zhangsan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">&quot;1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;18&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 普通数据类型注入，通过setter方法 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;po.User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;lisi&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;20&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>引用类型注入：需要依赖的是一个实例，需要现在xml文件中创建这个实例的bean，再去引用</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- applicationContext.xml --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 引用数据类型注入，通过构造器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dao.impl.UserDaoImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;service.impl.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">&quot;0&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 引用数据类型注入，通过setter方法 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dao.impl.UserDaoImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;service.impl.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>复杂的集合形式：将多个实例放入到集合中，本质和引用类型相差不多，但是需要注意标签。（集合类型的注入只能通过XML来实现）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- applicationContext.xml --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 集合数据类型注入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;po.User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;zhangsan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;18&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;po.User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;lisi&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;20&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dao.impl.UserDaoImpl&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>bbb<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>ccc<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 另一种方法，需要添加第三方约束 --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- xmlns:util=&quot;http://www.springframework.org/schema/util&quot; --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- http://www.springframework.org/schema/util --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- http://www.springframework.org/schema/util/spring-util.xsd --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;util:list list-class=&quot;java.util.ArrayList&quot;&gt;</span></span><br><span class="line"><span class="comment">                &lt;value&gt;aaa&lt;/value&gt;</span></span><br><span class="line"><span class="comment">                &lt;value&gt;bbb&lt;/value&gt;</span></span><br><span class="line"><span class="comment">                &lt;value&gt;ccc&lt;/value&gt;</span></span><br><span class="line"><span class="comment">            &lt;/util:list&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;set&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>ddd<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>eee<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>fff<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userList&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;user1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ref</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;user2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ref</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;k_user1&quot;</span> <span class="attr">value-ref</span>=<span class="string">&quot;user1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;k_user2&quot;</span> <span class="attr">value-ref</span>=<span class="string">&quot;user2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;properties&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;properties_name&quot;</span>&gt;</span>wangwu<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;properties_age&quot;</span>&gt;</span>25<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    依赖注入的方式有：</p>
+<ul>
+<li>第一种：使用构造函数提供。</li>
+<li>第二种：使用set方法提供(常用)。</li>
+<li>第三种：使用注解提供。首先按照类型去Spring容器中圈定出来匹配的对象，接下来使用变量名作为bean的id在圈定出来的内容里继续查找，如果有一样的也可以注入成功，如果都不一样报错。</li>
+</ul>
+<p>​    需要注意的点：</p>
+<ul>
+<li>一个bean代表一个实例，一个实例只能调用一个构造方法。</li>
+<li>一个bean里面可以进行组合，可以使用构造方法注入，也可以使用set方法注入。</li>
+<li>当bean里面有多个注入时，构造方法在前，set在后，会造成覆盖。构造器方法注入-&gt;字段注入-&gt;属性或普通方法注入.</li>
+<li>如何想要使用set方法注入，必须实现默认无参构造方法。如果实现了其他的构造方法，则无参构造方法不会自动生成。（Spring需要先利用无参的构造方法反射创建一个对象，再使用set方法给属性赋值）</li>
+</ul>
+<h4 id="依赖注入常用的注解"><a href="#依赖注入常用的注解" class="headerlink" title="依赖注入常用的注解"></a>依赖注入常用的注解</h4><ul>
+<li>@Qualifier：在按照类中注入的基础之上再按照名称注入。它在给类成员注入时不能单独使用。但是在给方法参数注入时可以。需要搭配@Autowired</li>
+<li>@Autowired默认按类型装配。</li>
+<li>@Resource（常用）：直接按照bean的id注入。它可以独立使用。</li>
+<li>@Value：用于注入基本类型和String类型的数据。</li>
+</ul>
+<h4 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h4><p>​    IOC 容器具有依赖注入功能的容器，它可以创建对象，IOC 容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。</p>
+<p>​    常用的两个容器：</p>
+<ul>
+<li>BeanFactory 容器：最简单的容器，只提供基础的依赖注入的功能。</li>
+<li>ApplicationContext 容器：Spring上下文，比较复杂的容器。提供了其他的功能。</li>
+</ul>
+<h5 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h5><table>
+<thead>
+<tr>
+<th align="center">作用域</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">singleton</td>
+<td align="center">在spring IoC容器仅存在一个Bean实例，Bean以单例方式存在，默认值。（不是线程安全的）</td>
+</tr>
+<tr>
+<td align="center">prototype</td>
+<td align="center">每次从容器中调用Bean时，都返回一个新的实例，即每次调用getBean()时，相当于执行newXxxBean()</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td align="center">每次HTTP请求都会创建一个新的Bean，该作用域仅适用于WebApplicationContext环境</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">同一个HTTP Session共享一个Bean，不同Session使用不同的Bean，仅适用于WebApplicationContext环境</td>
+</tr>
+<tr>
+<td align="center">global-session</td>
+<td align="center">一般用于Portlet应用环境，该作用域仅适用于WebApplicationContext环境</td>
+</tr>
+</tbody></table>
+<h5 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h5><p>全套初始化方法及其标准顺序是：</p>
+<ul>
+<li>BeanNameAware 的setBeanName：在创建此 bean 的 bean 工厂中设置 bean 的名称。</li>
+<li>BeanClassLoaderAware 的setBeanClassLoader：将 bean class loader提供给 bean 实例的回调。</li>
+<li>BeanFactoryAware 的setBeanFactory：将拥有工厂提供给 bean 实例的回调。</li>
+<li>EnvironmentAware 的setEnvironment：设置该组件运行的Environment 。</li>
+<li>EmbeddedValueResolverAware 的setEmbeddedValueResolver：设置 StringValueResolver 以用于解析嵌入的定义值。<br>ResourceLoaderAware 的setResourceLoader （仅在应用程序上下文中运行时适用）：设置运行此对象的 ResourceLoader。</li>
+<li>ApplicationEventPublisherAware 的setApplicationEventPublisher （仅在应用程序上下文中运行时适用）：设置运行此对象的 ApplicationEventPublisher。</li>
+<li>MessageSourceAware 的setMessageSource （仅在应用程序上下文中运行时适用）：设置此对象运行所在的 MessageSource。</li>
+<li>ApplicationContextAware 的setApplicationContext （仅在应用程序上下文中运行时适用）：设置此对象运行所在的 ApplicationContext。通常此调用将用于初始化对象。</li>
+<li>ServletContextAware 的setServletContext （仅在 web 应用上下文中运行时适用）：设置该对象运行所在的ServletContext 。</li>
+<li>BeanPostProcessors 的postProcessBeforeInitialization方法：在任何 bean 初始化回调（如 InitializingBean 的afterPropertiesSet或自定义初始化方法）之前，将此BeanPostProcessor应用于给定的新 bean 实例。bean 已经被填充了属性值。 返回的 bean 实例可能是原始实例的包装器。默认实现按原样返回给定的bean 。</li>
+<li>InitializingBean 的afterPropertiesSet：在设置所有 bean 属性并满足BeanFactoryAware ， ApplicationContextAware等之后，由包含BeanFactory调用。</li>
+<li>自定义初始化方法定义：</li>
+<li>BeanPostProcessors 的postProcessAfterInitialization方法：在任何 bean 初始化回调（如 InitializingBean 的afterPropertiesSet或自定义初始化方法）之后，将此BeanPostProcessor应用于给定的新 bean 实例。bean 已经被填充了属性值。 返回的 bean 实例可能是原始实例的包装器。</li>
+</ul>
+<p>​    在关闭 bean 工厂时，以下生命周期方法适用：</p>
+<ul>
+<li>DestructionAwareBeanPostProcessors 的postProcessBeforeDestruction方法：在销毁之前将此 BeanPostProcessor 应用于给定的 bean 实例，例如调用自定义销毁回调。</li>
+<li>DisposableBean 的destroy：在销毁 bean 时由包含BeanFactory调用。</li>
+<li>自定义销毁方法定义：</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210618220738157.png" alt="image-20210618220738157"></p>
+<p>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
+<h5 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h5><p>​    上面的方式都是通过xml配置bean，非常的复杂和繁琐。自动装配就是解决这个问题，但是自动装配不能装配所谓的简单类型包括基本类型，字符串和类。</p>
+<p>​    自动装配的模式：</p>
+<table>
+<thead>
+<tr>
+<th align="center">模式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">no</td>
+<td align="center">这是默认的设置，它意味着没有自动装配，你应该使用显式的bean引用来连线。你不用为了连线做特殊的事。在依赖注入章节你已经看到这个了。</td>
+</tr>
+<tr>
+<td align="center">byName</td>
+<td align="center">由属性名自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byName。然后尝试匹配，并且将它的属性与在配置文件中被定义为相同名称的 beans 的属性进行连接。</td>
+</tr>
+<tr>
+<td align="center">byType</td>
+<td align="center">由属性数据类型自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byType。然后如果它的<strong>类型</strong>匹配配置文件中的一个确切的 bean 名称，它将尝试匹配和连接属性的类型。如果存在不止一个这样的 bean，则一个致命的异常将会被抛出。</td>
+</tr>
+<tr>
+<td align="center">constructor</td>
+<td align="center">类似于 byType，但该类型适用于构造函数参数类型。如果在容器中没有一个构造函数参数类型的 bean，则一个致命错误将会发生。</td>
+</tr>
+<tr>
+<td align="center">autodetect（3.0版本不支持）</td>
+<td align="center">Spring首先尝试通过 constructor 使用自动装配来连接，如果它不执行，Spring 尝试通过 byType 来自动装配。</td>
+</tr>
+</tbody></table>
+<h3 id="AOP相关知识点"><a href="#AOP相关知识点" class="headerlink" title="AOP相关知识点"></a>AOP相关知识点</h3><p>​    面向方面的编程需要把程序逻辑分解成不同的部分称为所谓的关注点。跨一个应用程序的多个点的功能被称为横切关注点，这些横切关注点在概念上独立于应用程序的业务逻辑。有各种各样的常见的很好的方面的例子，如日志记录、审计、声明式事务、安全性和缓存等。</p>
+<p>​    当出现多个对象需要一个公共行为时，在每个对象里面编写也是不太现实的，所以引入了AOP。AOP有两种实现方式：基于JDK和CGLIB。</p>
+<p>​    AOP中的几个概念：</p>
+<table>
+<thead>
+<tr>
+<th align="center">项</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Aspect</td>
+<td align="center">一个模块具有一组提供横切需求的 APIs。例如，一个日志模块为了记录日志将被 AOP 方面调用。应用程序可以拥有任意数量的方面，这取决于需求。</td>
+</tr>
+<tr>
+<td align="center">Join point</td>
+<td align="center">在你的应用程序中它代表一个点，你可以在插件 AOP 方面。你也能说，它是在实际的应用程序中，其中一个操作将使用 Spring AOP 框架。</td>
+</tr>
+<tr>
+<td align="center">Advice</td>
+<td align="center">这是实际行动之前或之后执行的方法。这是在程序执行期间通过 Spring AOP 框架实际被调用的代码。</td>
+</tr>
+<tr>
+<td align="center">Pointcut</td>
+<td align="center">这是一组一个或多个连接点，通知应该被执行。你可以使用表达式或模式指定切入点正如我们将在 AOP 的例子中看到的。</td>
+</tr>
+<tr>
+<td align="center">Introduction</td>
+<td align="center">引用允许你添加新方法或属性到现有的类中。</td>
+</tr>
+<tr>
+<td align="center">Target object</td>
+<td align="center">被一个或者多个方面所通知的对象，这个对象永远是一个被代理对象。也称为被通知对象。</td>
+</tr>
+<tr>
+<td align="center">Weaving</td>
+<td align="center">Weaving 把方面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时，类加载时和运行时完成。</td>
+</tr>
+</tbody></table>
+<p>​    关于通知的几个概念：</p>
+<table>
+<thead>
+<tr>
+<th align="center">通知</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">前置通知</td>
+<td align="center">在一个方法执行之前，执行通知。</td>
+</tr>
+<tr>
+<td align="center">后置通知</td>
+<td align="center">在一个方法执行之后，不考虑其结果，执行通知。</td>
+</tr>
+<tr>
+<td align="center">返回后通知</td>
+<td align="center">在一个方法执行之后，只有在方法成功完成时，才能执行通知。</td>
+</tr>
+<tr>
+<td align="center">抛出异常后通知</td>
+<td align="center">在一个方法执行之后，只有在方法退出抛出异常时，才能执行通知。</td>
+</tr>
+<tr>
+<td align="center">环绕通知</td>
+<td align="center">在建议方法调用之前和之后，执行通知。</td>
+</tr>
+</tbody></table>
+<h3 id="Spring事务管理"><a href="#Spring事务管理" class="headerlink" title="Spring事务管理"></a>Spring事务管理</h3><p>​    Spring 框架在不同的底层事务管理 APIs 的顶部提供了一个抽象层。Spring 的事务支持旨在通过添加事务能力到 POJOs 来提供给 EJB 事务一个选择方案。Spring 支持编程式和声明式事务管理。EJBs 需要一个应用程序服务器，但 Spring 事务管理可以在不需要应用程序服务器的情况下实现。同时，Spring直接抛出Exception就不会回滚，而抛出RuntimeException或其子类才会回滚</p>
+<p>​    Spring事务管理的五大属性：隔离级别、传播行为、是否只读、事务超时、回滚规则。</p>
+<p>​    隔离级别：</p>
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ISOLATION_DEFAULT</td>
+<td align="center">使用底层数据存储的默认隔离级别。 所有其他级别对应于 JDBC 隔离级别。</td>
+</tr>
+<tr>
+<td align="center">ISOLATION_READ_UNCOMMITTED</td>
+<td align="center">表示可能发生脏读、不可重复读和幻读。<br/>此级别允许由一个事务更改的行在提交该行中的任何更改之前被另一个事务读取（“脏读”）。 如果任何更改被回滚，则第二个事务将检索到无效行。</td>
+</tr>
+<tr>
+<td align="center">ISOLATION_READ_COMMITTED</td>
+<td align="center">表示防止脏读； 可能发生不可重复读和幻读。<br/>此级别仅禁止事务读取其中包含未提交更改的行。</td>
+</tr>
+<tr>
+<td align="center">ISOLATION_REPEATABLE_READ</td>
+<td align="center">表示防止脏读和不可重复读； 可能会发生幻读。<br/>此级别禁止事务读取未提交更改的行，也禁止一个事务读取一行，第二个事务更改该行，第一个事务重新读取该行，第二个获取不同值的情况时间（“不可重复读取”）。</td>
+</tr>
+<tr>
+<td align="center">ISOLATION_SERIALIZABLE</td>
+<td align="center">表示防止脏读、不可重复读和幻读。<br/>该级别包括ISOLATION_REPEATABLE_READ的禁止，并进一步禁止一个事务读取满足WHERE条件的所有行，第二个事务插入满足WHERE条件的行，第一个事务重新读取相同条件的情况，检索第二次阅读中的附加“幻影”行。</td>
+</tr>
+</tbody></table>
+<p>传播行为：传播行为定义关于客户端和被调用方法的事务边界。Spring定义了7中传播行为。</p>
+<table>
+<thead>
+<tr>
+<th align="center">传播行为</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PROPAGATION_REQUIRED</td>
+<td align="center">支持当前事务； 如果不存在，则创建一个新的。 类似于同名的 EJB 事务属性。<br>如果当前没有事务，则自己新建一个事务，如果当前存在事务，则加入这个事务</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_SUPPORTS</td>
+<td align="center">支持当前事务； 如果不存在则以非事务方式执行。 类似于同名的 EJB 事务属性。<br/>当前存在事务，则加入当前事务，如果当前没有事务，就以非事务方法执行</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_MANDATORY</td>
+<td align="center">支持当前事务； 如果当前事务不存在，则抛出异常。 类似于同名的 EJB 事务属性。<br/>当前存在事务，则加入当前事务，如果当前事务不存在，则抛出异常。</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_REQUIRES_NEW</td>
+<td align="center">创建一个新事务，如果存在则暂停当前事务。 类似于同名的 EJB 事务属性。<br/>创建一个新事务，如果存在当前事务，则挂起该事务。</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_NOT_SUPPORTED</td>
+<td align="center">不支持当前事务； 而是始终以非事务方式执行。 类似于同名的 EJB 事务属性。<br/>始终以非事务方式执行,如果当前存在事务，则挂起当前事务</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_NEVER</td>
+<td align="center">不支持当前事务； 如果当前事务存在则抛出异常。 类似于同名的 EJB 事务属性。<br/>不使用事务，如果当前事务存在，则抛出异常</td>
+</tr>
+<tr>
+<td align="center">PROPAGATION_NESTED</td>
+<td align="center">如果当前事务存在，则在嵌套事务中执行，否则行为类似于PROPAGATION_REQUIRED 。 EJB 中没有类似的特性。<br/>如果当前事务存在，则在嵌套事务中执行，否则REQUIRED的操作一样（开启一个事务）</td>
+</tr>
+</tbody></table>
+<h3 id="Spring面试中问到的问题"><a href="#Spring面试中问到的问题" class="headerlink" title="Spring面试中问到的问题"></a>Spring面试中问到的问题</h3><ul>
+<li>Spring启动的流程</li>
+</ul>
+<p>​    </p>
+<ul>
+<li>Spring时如何解决循环依赖的</li>
+</ul>
+<p>​    这里以AB两个bean为例，创建一个bean分为实例化和属性赋值，实例化后的bean还不能使用，属性赋值后才能使用，类似于声明和赋值。实例化A时，发现容器中没有A实例，会创建一个A实例，但是发现A依赖B，再递归去查找B，发现B也没有，于是创建B实例，又发现B依赖A，但这时候A已经有了一个实例化，虽然只是半成品，把A赋值给B里面后，返回递归，最后A的实例化完成。</p>
+<ul>
+<li>Spring中bean的生命周期</li>
+</ul>
+<p>​    Spring中bean的生命周期主要包含四个阶段：实例化、属性赋值、初始化、销毁。实例化相当于声明，有三种实例化的方法，普通构造方法创建、静态工厂方法创建、实例化工厂方法创建。实例化和依赖注入的区别：实例化后的bean不是直接能使用的，还需要后续的初始化操作，依赖注入的bean是直接可以使用的。属性赋值阶段：主要是为bean的属性进行赋值，例如A依赖B，需要在这个时候将B注入到A中。然后就是初始化了：有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作。然后初始化的bean就是可以使用的。最后就是销毁bean，通过DisposableBean 和 destory-method 。</p>
+<ul>
+<li>Spring中的三级缓存和解决循环依赖</li>
+</ul>
+<p>​    Spring中的三级缓存：singletonObjects：一级缓存，主要存放初始化完成之后的对象。singletonFactories：三级缓存：存放的工厂对象，能够生成的实例化后的对象。earlySingletonObjects：相当于半成品：实例化完成，但是初始化没有完成的对象。这里以AB两个实例举例。A实例化后，发现需要依赖B，在一二级缓存中查找，发现没有找到，在三级缓存中调用工厂方法实例化，实例化B的过程中发现需要注入A，在二级缓存中找到，将其注入。返回到A到初始化，A初始化完成，放入一级缓存。需要注意，Spring中多例的循环依赖无法解决，会报错。</p>
+<ul>
+<li>Spring容器的启动流程</li>
+</ul>
+<p>​    这一块的代码主要是在ApplicationContext里面，使用注解的话就是AnnotationConfigApplicationContext，使用xml的话就在ClassPathXmlApplicationContext。主要流程就是1）初始化Spring容器。2）将配置类的BeanDefinition注册到容器中。3）刷新容器。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>Spring内部的：</p>
+<p>//IOC - 控制反转</p>
+<p>//IOC容器</p>
+<p>//Spring 负责创建和管理对象 (Bean)的生命周期和配置（比较复杂，可以后期详细看看）</p>
+<p>//Spring中bean的声明周期和作用域</p>
+<p>//自动装配的原理</p>
+<p>//阅读Spring两个容器相关的源码</p>
+<p>//AOP - 面向切面编程</p>
+<p>//Spring核心容器</p>
+<p>//事务管理 - 提供了用于事务管理的通用抽象层</p>
+<p>Spring是如何加载xml文件的（可能比较复杂，后续再看源码）</p>
+<p>Spring中注解的含义</p>
+<p>//Spring的事务</p>
+<p>Mybatis相关的</p>
+<p>JDBC 异常</p>
+<p>JDBC和ORM</p>
+<p>Spring如何使用jdbc连接的</p>
+<p>Mybatis的原理和使用的逻辑</p>
+<p>web</p>
+<p>WEB和websocket</p>
+<p>Spring中Servlet</p>
+<p>SpringBoot和Spring的区别</p>
+<p>SpringBoot的启动流程和原理</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckupl1rsp002g6rup9yj14ld4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E6%88%90Log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/spring%E9%A1%B9%E7%9B%AE%E5%BB%BA%E7%AB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

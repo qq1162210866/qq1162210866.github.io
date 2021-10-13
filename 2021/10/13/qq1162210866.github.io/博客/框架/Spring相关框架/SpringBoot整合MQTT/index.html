@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringBoot整合MQTT​    公司的项目重新进行了优化，换成了SpringBoot的架构。之前写的一个SSM整合MQTT的demo不能使用了，其实之前的代码写的也是有点烂，所以就来了解一下SpringBoot整合MQTT，顺便写一个比较好的代码。下面直接开始。 ​    关于MQTT协议的一些介绍之前已经讲过了，之前对于协议的记录博客还是可以的。博客地址：https:&#x2F;&#x2F;blog.cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringBoot整合MQTT​    公司的项目重新进行了优化，换成了SpringBoot的架构。之前写的一个SSM整合MQTT的demo不能使用了，其实之前的代码写的也是有点烂，所以就来了解一下SpringBoot整合MQTT，顺便写一个比较好的代码。下面直接开始。 ​    关于MQTT协议的一些介绍之前已经讲过了，之前对于协议的记录博客还是可以的。博客地址：https:&#x2F;&#x2F;blog.cs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-13T13:28:21.198Z">
+<meta property="article:modified_time" content="2021-10-13T13:28:21.198Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-qq1162210866.github.io/博客/框架/Spring相关框架/SpringBoot整合MQTT" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" class="article-date">
+  <time datetime="2021-10-13T13:28:21.198Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringBoot整合MQTT"><a href="#SpringBoot整合MQTT" class="headerlink" title="SpringBoot整合MQTT"></a>SpringBoot整合MQTT</h2><p>​    公司的项目重新进行了优化，换成了SpringBoot的架构。之前写的一个SSM整合MQTT的demo不能使用了，其实之前的代码写的也是有点烂，所以就来了解一下SpringBoot整合MQTT，顺便写一个比较好的代码。下面直接开始。</p>
+<p>​    关于MQTT协议的一些介绍之前已经讲过了，之前对于协议的记录博客还是可以的。博客地址：<code>https://blog.csdn.net/qq_38533859/article/details/81872622</code>。所以这里不再介绍，直接开整。</p>
+<p>​    需要添加pom依赖，这个是官方整合的依赖，官方也有例子（虽然不怎么样）。依赖如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  MQTT依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.integration<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-integration-mqtt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    剩下就是配置入站适配器和出站适配器了。这个是借鉴了一下官方的文档，文档地址在这里：<code>https://docs.spring.io/spring-integration/reference/html/mqtt.html#mqtt</code></p>
+<p>​    因为之前是使用xml文件对mqtt适配器进行配置，所以这个新项目非常不想这样做，最后采用JavaConfig的形式配置。官方的例子写的很清楚了。我的入站适配器和出站适配器写在一起了。MQTT的配置文件如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.psq.train.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttConnectOptions;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.annotation.MessagingGateway;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.annotation.ServiceActivator;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.channel.DirectChannel;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.core.MessageProducer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.core.MqttPahoClientFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.integration.mqtt.support.MqttHeaders;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.Message;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.MessageChannel;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.MessageHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.MessagingException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.handler.annotation.Header;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MQTTConfig.java</span></span><br><span class="line"><span class="comment"> * Description:  MQTT的配置类，主要配置出入站适配器</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/7/13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MQTTConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * =====================================入站适配器1=====================================</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageChannel <span class="title">mqttInputChannel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DirectChannel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageProducer <span class="title">inbound</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MqttPahoMessageDrivenChannelAdapter adapter =</span><br><span class="line">                <span class="keyword">new</span> MqttPahoMessageDrivenChannelAdapter(<span class="string">&quot;tcp://127.0.0.1:1883&quot;</span>, <span class="string">&quot;testClient1&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;testTopic2&quot;</span>);</span><br><span class="line">        adapter.setCompletionTimeout(<span class="number">5000</span>);</span><br><span class="line">        adapter.setConverter(<span class="keyword">new</span> DefaultPahoMessageConverter());</span><br><span class="line">        adapter.setQos(<span class="number">1</span>);</span><br><span class="line">        adapter.setOutputChannel(mqttInputChannel());</span><br><span class="line">        <span class="keyword">return</span> adapter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ServiceActivator(inputChannel = &quot;mqttInputChannel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageHandler <span class="title">handler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MessageHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message&lt;?&gt; message)</span> <span class="keyword">throws</span> MessagingException </span>&#123;</span><br><span class="line">                System.out.println(message.getPayload() + <span class="string">&quot;=====&quot;</span> + message.getHeaders().get(<span class="string">&quot;mqtt_receivedTopic&quot;</span>));</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * =====================================入站适配器2=====================================</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageChannel <span class="title">mqttInputChannelTwo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DirectChannel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageProducer <span class="title">inboundTwo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MqttPahoMessageDrivenChannelAdapter adapter =</span><br><span class="line">                <span class="keyword">new</span> MqttPahoMessageDrivenChannelAdapter(<span class="string">&quot;tcp://127.0.0.1:1883&quot;</span>, <span class="string">&quot;testClient3&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;testTopic2&quot;</span>);</span><br><span class="line">        adapter.setCompletionTimeout(<span class="number">5000</span>);</span><br><span class="line">        adapter.setConverter(<span class="keyword">new</span> DefaultPahoMessageConverter());</span><br><span class="line">        adapter.setQos(<span class="number">1</span>);</span><br><span class="line">        adapter.setOutputChannel(mqttInputChannelTwo());</span><br><span class="line">        <span class="keyword">return</span> adapter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ServiceActivator(inputChannel = &quot;mqttInputChannelTwo&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageHandler <span class="title">handlerTwo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MessageHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message&lt;?&gt; message)</span> <span class="keyword">throws</span> MessagingException </span>&#123;</span><br><span class="line">                System.out.println(message.getPayload() + <span class="string">&quot;=====&quot;</span> + message.getHeaders().get(<span class="string">&quot;mqtt_receivedTopic&quot;</span>));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * =====================================出站适配器=====================================</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MqttPahoClientFactory <span class="title">mqttClientFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DefaultMqttPahoClientFactory factory = <span class="keyword">new</span> DefaultMqttPahoClientFactory();</span><br><span class="line">        MqttConnectOptions options = <span class="keyword">new</span> MqttConnectOptions();</span><br><span class="line">        options.setServerURIs(<span class="keyword">new</span> String[]&#123;<span class="string">&quot;tcp://127.0.0.1:1883&quot;</span>&#125;);</span><br><span class="line">        options.setUserName(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        options.setPassword(<span class="string">&quot;password&quot;</span>.toCharArray());</span><br><span class="line">        factory.setConnectionOptions(options);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ServiceActivator(inputChannel = &quot;mqttOutboundChannel&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageHandler <span class="title">mqttOutbound</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MqttPahoMessageHandler messageHandler =</span><br><span class="line">                <span class="keyword">new</span> MqttPahoMessageHandler(<span class="string">&quot;testClient2&quot;</span>, mqttClientFactory());</span><br><span class="line">        messageHandler.setAsync(<span class="keyword">true</span>);</span><br><span class="line">        messageHandler.setDefaultTopic(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> messageHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageChannel <span class="title">mqttOutboundChannel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DirectChannel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * =====================================发送的接口=====================================</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Component</span></span><br><span class="line">    <span class="meta">@MessagingGateway(defaultRequestChannel = &quot;mqttOutboundChannel&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyGateway</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">sendToMqtt</span><span class="params">(<span class="meta">@Header(MqttHeaders.TOPIC)</span> String topic, String data)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    上面就是代码，解释都在官方文档里面了，大家搞个翻译，翻译一下官方文档就大致明白了。这里说一些注意的点。</p>
+<ul>
+<li><p>代码中配置了两个入站适配器，一个出站适配器，这三个适配器的ClientID最好不要一样，要不然会一直出现断连重连现象。</p>
+</li>
+<li><p>发送的接口最好分离出去一个单独的类，我写在一起，但是实际使用的时候一直出问题，因为时间问题也没有去找原因。</p>
+</li>
+<li><p>代码的这种写法不是MQTT的单独的写法，我了解到这个好像是Spring的一种模式吧，没有来得及了解，后续肯定会去了解一下。</p>
+</li>
+<li><p>SpringBoot的这种整合有一些BUG，好像是MQTT官方解决了，但是SpringBoot官方还存在这个问题。具体没有遇到这个问题，所以不清楚现象，留个坑。</p>
+</li>
+<li><p>官方还可以写一个监听函数，用来监听连接成功和断连的时候，这里没有上代码，没有啥可以讲的。在官方文档的最后面有提到。</p>
+</li>
+</ul>
+<p>​    下面就是上调用的代码，这里直接使用controller调用了，没有啥复杂的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/mqtt&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sendMQTTMsg</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    myGateway.sendToMqtt(<span class="string">&quot;testTopic1&quot;</span>, <span class="string">&quot;hello1&quot;</span>);</span><br><span class="line">    myGateway.sendToMqtt(<span class="string">&quot;testTopic2&quot;</span>, <span class="string">&quot;hello2&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    剩下就没有啥可以讲的了，时间赶的急，后面遇到再说吧，再次留个坑。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" data-id="ckupl1rsm002a6rup4udj27lt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88Elasticsearch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%B0%E6%8D%AE%E4%BD%8D%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/13/qq1162210866.github.io/%E5%8D%9A%E5%AE%A2/%E6%9D%82%E9%A1%B9/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

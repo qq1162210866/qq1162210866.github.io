@@ -1,86 +1,197 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+<html lang="en">
   
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/5/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Hexo</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+  <div id="app">
+    
       
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Hexo</a></h1>
+      <div id="subtitle-box">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <span id="subtitle"></span>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+      </div>
+      <div>
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-框架/Spring相关框架/SpringBoot使用事务" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E4%BD%BF%E7%94%A8%E4%BA%8B%E5%8A%A1/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
   </div>
+</section>
 
-  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  <ul class="ads">
+    
+        <li>
+            <a target="_blank" rel="noopener" href="https://curl.qcloud.com/kvO7hb43">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ten_1.jpg" width="300" alt="云服务器限时秒杀">
+            </a>
+        </li>
+    
+        <li>
+            <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=8630075">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/vultr.png" width="300" alt="vultr优惠vps">
+            </a>
+        </li>
+    
+</ul>
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-框架/Spring相关框架/SpringBoot使用事务"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E4%BD%BF%E7%94%A8%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot使用事务"><a href="#SpringBoot使用事务" class="headerlink" title="SpringBoot使用事务"></a>SpringBoot使用事务</h2><p>​    上次了解了MySQL的事务概念，下面就开始编写代码来实际理解一下概念。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot使用事务"><a href="#SpringBoot使用事务" class="headerlink" title="SpringBoot使用事务"></a>SpringBoot使用事务</h2><p>​    上次了解了MySQL的事务概念，下面就开始编写代码来实际理解一下概念。</p>
 <p>​    配置上面没有什么新加的配置，使用的数据库是MySQL，集成的Mybatis。按照之前的博客配置就可以了，这里不再累述。下面就直接上代码。然后说一下遇到的问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.psq.train.mysql;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.support.SqlSessionDaoSupport;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TransactionalTrain.java</span></span><br><span class="line"><span class="comment"> * Description: SpringBoot数据库事务练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/6/13</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionalTrain</span> <span class="keyword">extends</span> <span class="title">SqlSessionDaoSupport</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSqlSessionFactory</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setSqlSessionFactory(sqlSessionFactory);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mybatisTransactionalTrain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">false</span>);</span><br><span class="line">        TestUser testUser = <span class="keyword">new</span> TestUser();</span><br><span class="line">        testUser.setId(<span class="number">3</span>);</span><br><span class="line">        testUser.setName(<span class="string">&quot;qsp&quot;</span>);</span><br><span class="line">        testUser.setPassword(<span class="string">&quot;87654321&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Integer saveResult = sqlSession.insert(<span class="string">&quot;com.psq.train.dao.UserMapper.insertUser&quot;</span>, testUser);</span><br><span class="line">            <span class="comment">//重复插入，id相同一定回产生异常</span></span><br><span class="line">            Integer saveResult2 = sqlSession.insert(<span class="string">&quot;com.psq.train.dao.UserMapper.insertUser&quot;</span>, testUser);</span><br><span class="line">            sqlSession.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;事务开始回滚&quot;</span>);</span><br><span class="line">            sqlSession.rollback();</span><br><span class="line">            System.err.println(<span class="string">&quot;事务回滚成功&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            sqlSession.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -117,37 +228,47 @@
 </ul>
 </li>
 </ul>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E4%BD%BF%E7%94%A8%E4%BA%8B%E5%8A%A1/" data-id="ckuqw9s980025xcupacwjdd5u" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot整合Elasticsearch" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88Elasticsearch/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot整合Elasticsearch"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88Elasticsearch/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot整合Elasticsearch"><a href="#SpringBoot整合Elasticsearch" class="headerlink" title="SpringBoot整合Elasticsearch"></a>SpringBoot整合Elasticsearch</h2><p>​    又是项目优化，之前的ES整合的版本因为太老了，所以想换成新的，顺带看看有没有什么新的写法。直接开整吧。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot整合Elasticsearch"><a href="#SpringBoot整合Elasticsearch" class="headerlink" title="SpringBoot整合Elasticsearch"></a>SpringBoot整合Elasticsearch</h2><p>​    又是项目优化，之前的ES整合的版本因为太老了，所以想换成新的，顺带看看有没有什么新的写法。直接开整吧。</p>
 <p>​    最开始其实需要先介绍一下Spring Data，Spring Data的任务是为数据访问提供一个熟悉且一致的，基于Spring的编程模型，同时仍保留基础数据存储的特殊特征。它使使用数据访问技术，关系和非关系数据库，map-reduce框架以及基于云的数据服务变得容易。这是一个总括项目，其中包含许多特定于给定数据库的子项目。这些项目是与这些令人兴奋的技术背后的许多公司和开发人员共同开发的。</p>
 <p>​    上面的介绍来自于官网，官网地址如下：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-data">https://spring.io/projects/spring-data</a></p>
 <p>​    其实说白了，Spring Data就是Spring官方将各个中间件整合，对中间件的操作进行了二次封装，让使用者可以更快的使用这些中间件。这样做有好有坏，好处是使用者不用关心底层的实现逻辑，甚至不用关心中间件的特点，可以快速上手。坏处也是这点，因为封装太多，一旦底层暴露出一些BUG，使用者完全不知道如何处理。这不仅仅是Spring Data的痛点，感觉是Spring全家桶的通病。感觉有点扯远了，开始整合Elasticsearch。</p>
@@ -201,37 +322,47 @@
 </ul>
 <p>​    剩下就没有什么可以说的，还是那句话，后续再写的时候再去学习和深入。</p>
 <p>​    就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88Elasticsearch/" data-id="ckuqw9s990026xcup2hvldnu2" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot整合MQTT" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot整合MQTT"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot整合MQTT"><a href="#SpringBoot整合MQTT" class="headerlink" title="SpringBoot整合MQTT"></a>SpringBoot整合MQTT</h2><p>​    公司的项目重新进行了优化，换成了SpringBoot的架构。之前写的一个SSM整合MQTT的demo不能使用了，其实之前的代码写的也是有点烂，所以就来了解一下SpringBoot整合MQTT，顺便写一个比较好的代码。下面直接开始。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot整合MQTT"><a href="#SpringBoot整合MQTT" class="headerlink" title="SpringBoot整合MQTT"></a>SpringBoot整合MQTT</h2><p>​    公司的项目重新进行了优化，换成了SpringBoot的架构。之前写的一个SSM整合MQTT的demo不能使用了，其实之前的代码写的也是有点烂，所以就来了解一下SpringBoot整合MQTT，顺便写一个比较好的代码。下面直接开始。</p>
 <p>​    关于MQTT协议的一些介绍之前已经讲过了，之前对于协议的记录博客还是可以的。博客地址：<code>https://blog.csdn.net/qq_38533859/article/details/81872622</code>。所以这里不再介绍，直接开整。</p>
 <p>​    需要添加pom依赖，这个是官方整合的依赖，官方也有例子（虽然不怎么样）。依赖如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  MQTT依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.integration<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-integration-mqtt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -258,37 +389,47 @@
 
 <p>​    剩下就没有啥可以讲的了，时间赶的急，后面遇到再说吧，再次留个坑。</p>
 <p>​    就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" data-id="ckuqw9s990027xcup1ij4bl8k" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot相关知识点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot知识点"><a href="#SpringBoot知识点" class="headerlink" title="SpringBoot知识点"></a>SpringBoot知识点</h2><p>​    Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot知识点"><a href="#SpringBoot知识点" class="headerlink" title="SpringBoot知识点"></a>SpringBoot知识点</h2><p>​    Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。</p>
 <h3 id="SpringBoot的启动流程"><a href="#SpringBoot的启动流程" class="headerlink" title="SpringBoot的启动流程"></a>SpringBoot的启动流程</h3><p>​    流程图如下：</p>
 <p>​    <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623161300236.png" alt="image-20210623161300236"></p>
 <p>​    流程暂时还不是很清楚，可以后续完善</p>
@@ -371,37 +512,47 @@
 <p>//日志框架</p>
 <p>//spring.factories</p>
 <p>需要练习的有：</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckuqw9s9a0028xcupf3cmbqcm" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot连接Mysql" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Mysql/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot连接Mysql"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Mysql/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot连接Mysql"><a href="#SpringBoot连接Mysql" class="headerlink" title="SpringBoot连接Mysql"></a>SpringBoot连接Mysql</h2><p>​    第一个SpringBoot的练习就是连接数据库，使用的是就是基础的组件，没有使用web和mybatis。也是作为一个基础的demo。开始。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot连接Mysql"><a href="#SpringBoot连接Mysql" class="headerlink" title="SpringBoot连接Mysql"></a>SpringBoot连接Mysql</h2><p>​    第一个SpringBoot的练习就是连接数据库，使用的是就是基础的组件，没有使用web和mybatis。也是作为一个基础的demo。开始。</p>
 <p>​    因为之前的java项目是通过导入jar包来实现，非常的繁琐并且jar包不容易管理。后来产生了maven，通过maven来管理jar包。本次项目也是通过pom文件来管理依赖，同时，因为SpringBoot设置了默认的依赖版本，这里也不再叙述导入依赖的版本。</p>
 <p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200530152138145.png" alt="image-20200530152138145"></p>
 <p>​    导入的依赖如下：下面的代码就是全部的依赖，有些最开始创建项目的时候已经导入了，这里仍然放在下面了。记得添加依赖后要更新一下，要不然很多东西IDE无法做配置。</p>
@@ -419,37 +570,47 @@
 <p>​    运行项目这里也没有什么可以讲的地方。就是SpringBoot内置了Tomcat，但是因为我这个项目没有web模块，所以没有内嵌tomcat，关于这些可以放到后面来说。本次就是打成了jar包，通过jvm运行。结果如下：</p>
 <p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200531132745688.png" alt="image-20200531132745688"></p>
 <p>​    上面说的可能有些地方不对，大家可以指导一下。就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Mysql/" data-id="ckuqw9s9a0029xcup2zq1bn1u" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot连接Redis" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot连接Redis"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot连接Redis"><a href="#SpringBoot连接Redis" class="headerlink" title="SpringBoot连接Redis"></a>SpringBoot连接Redis</h2><p>​    下面就开始练习连接Redis，这里也是没有集成web模块。web模块感觉这些东西也没有必要。连接池这里可以讲一下，上一篇MySQL的连接池放在Mybatis那里再讲，估计也快了，如果不出意外的话。。。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot连接Redis"><a href="#SpringBoot连接Redis" class="headerlink" title="SpringBoot连接Redis"></a>SpringBoot连接Redis</h2><p>​    下面就开始练习连接Redis，这里也是没有集成web模块。web模块感觉这些东西也没有必要。连接池这里可以讲一下，上一篇MySQL的连接池放在Mybatis那里再讲，估计也快了，如果不出意外的话。。。</p>
 <p>​    首先安装Redis和配置Redis的信息，这里不再累述，我之前的博客也有。刚才看了一下，我之前的博客讲的还挺详细的，我这次有可能重复了，尽量讲讲之前没有讲到的。</p>
 <p>​    仍然是添加依赖，因为Redis官方开发了一个连接工具Jedis，这个工具挺好用的。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  Redis依赖      --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--  不添加这个依赖会导致RedisTemplate无法注入      --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -473,37 +634,47 @@
 <p>​    配置了密码后，一切都解决了。真是一个SB问题，果然是老了。。。</p>
 <p>​    剩下就遗留了一个问题，我看别人的demo都写了一个redis配置类，估计是为了定制自己的<code>RedisTemplate</code>，我这里没有什么定制的，就是简单的用了一下，所以没有写redis配置类。如果我说错了，大家也指点一下。</p>
 <p>​    就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/" data-id="ckuqw9s9b002axcup0xur9ykk" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot集合Mybatis连接PostgreSQL" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E5%90%88Mybatis%E8%BF%9E%E6%8E%A5PostgreSQL/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot集合Mybatis连接PostgreSQL"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E5%90%88Mybatis%E8%BF%9E%E6%8E%A5PostgreSQL/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot集合MyBatis连接PostgreSQL"><a href="#SpringBoot集合MyBatis连接PostgreSQL" class="headerlink" title="SpringBoot集合MyBatis连接PostgreSQL"></a>SpringBoot集合MyBatis连接PostgreSQL</h2><p>​    正好最近需要使用PostgreSQL，蹭着这个机会把MyBatis练习一下。下面就直接开始。    </p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot集合MyBatis连接PostgreSQL"><a href="#SpringBoot集合MyBatis连接PostgreSQL" class="headerlink" title="SpringBoot集合MyBatis连接PostgreSQL"></a>SpringBoot集合MyBatis连接PostgreSQL</h2><p>​    正好最近需要使用PostgreSQL，蹭着这个机会把MyBatis练习一下。下面就直接开始。    </p>
 <p>​    本次也顺带把配置文件修改为yml文件，方便后面的修改和配置。改文件很简单，只需要修改配置文件后缀名为yml即可。Spring可以直接识别，不需要修改其他的配置文件内容。将<code>application.properties</code>修改为<code>application.yml</code>。同时需要注意两个文件的格式是不一样的。需要注意的就是<code>:</code>后面有一个空格。</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################### common config : ####################################</span></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8080</span></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">application</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">name</span>: <span class="string">train</span></span><br><span class="line"><span class="comment">  #Redis依赖</span></span><br><span class="line"><span class="comment">  # Redis服务器地址</span></span><br><span class="line">  <span class="attr">redis</span>:<span class="string"></span></span><br><span class="line">    <span class="attr">host</span>: <span class="string">127.0.0.1</span></span><br><span class="line"><span class="comment">    # Redis数据库索引（默认为0）</span></span><br><span class="line">    <span class="attr">database</span>: <span class="string">0</span></span><br><span class="line"><span class="comment">    # Redis服务器连接端口</span></span><br><span class="line">    <span class="attr">port</span>: <span class="string">6379</span></span><br><span class="line"><span class="comment">    # Redis服务器连接密码（默认为空）</span></span><br><span class="line">    <span class="attr">password</span>: <span class="string">mima</span></span><br><span class="line"><span class="comment">    # 连接超时时间（毫秒）</span></span><br><span class="line">    <span class="attr">timeout</span>: <span class="string">1000</span></span><br><span class="line">    <span class="attr">lettuce</span>:<span class="string"></span></span><br><span class="line">      <span class="attr">pool</span>:<span class="string"></span></span><br><span class="line"><span class="comment">        ## 连接池最大连接数（使用负值表示没有限制）</span></span><br><span class="line">        <span class="meta">max-active</span>: <span class="string">200</span></span><br><span class="line"><span class="comment">        ## 连接池最大阻塞等待时间（使用负值表示没有限制）</span></span><br><span class="line">        <span class="meta">max-wait</span>: <span class="string">-1</span></span><br><span class="line"><span class="comment">        ## 连接池中的最大空闲连接</span></span><br><span class="line">        <span class="meta">max-idle</span>: <span class="string">10</span></span><br><span class="line"><span class="comment">        ## 连接池中的最小空闲连接</span></span><br><span class="line">        <span class="meta">min-idle</span>: <span class="string">0</span></span><br><span class="line">  <span class="attr">datasource</span>:<span class="string"></span></span><br><span class="line"><span class="comment">    #PostgreSQL配置</span></span><br><span class="line">    <span class="attr">url</span>: <span class="string">jdbc:postgresql://127.0.0.1:5432/postgres</span></span><br><span class="line">    <span class="attr">username</span>: <span class="string">postgres</span></span><br><span class="line">    <span class="attr">password</span>: <span class="string">mima</span></span><br><span class="line">    <span class="meta">driver-class-name</span>: <span class="string">org.postgresql.Driver</span></span><br><span class="line"><span class="comment">    #druid连接池配置</span></span><br><span class="line">    <span class="attr">type</span>: <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"><span class="comment">    # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时</span></span><br><span class="line">    <span class="attr">initialSize</span>: <span class="string">5</span></span><br><span class="line">    <span class="attr">minIdle</span>: <span class="string">5</span></span><br><span class="line"><span class="comment">    # 最大连接池数量</span></span><br><span class="line">    <span class="attr">maxActive</span>: <span class="string">20</span></span><br><span class="line">    <span class="attr">maxWait</span>: <span class="string">60000</span></span><br><span class="line">    <span class="attr">timeBetweenEvictionRunsMillis</span>: <span class="string">60000</span></span><br><span class="line">    <span class="attr">minEvictableIdleTimeMillis</span>: <span class="string">300000</span></span><br><span class="line">    <span class="attr">validationQuery</span>: <span class="string">SELECT 1</span></span><br><span class="line">    <span class="attr">testWhileIdle</span>: <span class="string">true</span></span><br><span class="line">    <span class="attr">testOnBorrow</span>: <span class="string">false</span></span><br><span class="line">    <span class="attr">testOnReturn</span>: <span class="string">false</span></span><br><span class="line">    <span class="attr">poolPreparedStatements</span>: <span class="string">true</span></span><br><span class="line"><span class="comment">    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，&#x27;wall&#x27;用于防火墙</span></span><br><span class="line">    <span class="attr">filters</span>: <span class="string">stat,wall</span></span><br><span class="line">    <span class="attr">maxPoolPreparedStatementPerConnectionSize</span>: <span class="string">20</span></span><br><span class="line">    <span class="attr">useGlobalDataSourceStat</span>: <span class="string">true</span></span><br><span class="line">    <span class="attr">connectionProperties</span>: <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line"></span><br><span class="line"><span class="attr">mybatis</span>:<span class="string"></span></span><br><span class="line"><span class="comment">	# 加载配置文件</span></span><br><span class="line">  <span class="meta">mapper-locations</span>: <span class="string">classpath:mapper/*.xml</span></span><br><span class="line"><span class="comment">  # 实体类所在路径，填写改路径mapper文件中可以不写全路径</span></span><br><span class="line">  <span class="meta">type-aliases-package</span>: <span class="string">com.psq.train.mysql</span></span><br></pre></td></tr></table></figure>
 
@@ -562,37 +733,47 @@
 </ul>
 <p>​    关于PostgreSQL数据库的其他信息，下面一篇博客再说吧，要不然博客就太多了。</p>
 <p>​    就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E5%90%88Mybatis%E8%BF%9E%E6%8E%A5PostgreSQL/" data-id="ckuqw9s9b002bxcupdhte9rii" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/SpringBoot集成Log4j2日志框架" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E6%88%90Log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/SpringBoot集成Log4j2日志框架"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E6%88%90Log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="SpringBoot集成Log4j2日志框架"><a href="#SpringBoot集成Log4j2日志框架" class="headerlink" title="SpringBoot集成Log4j2日志框架"></a>SpringBoot集成Log4j2日志框架</h2><p>​    今天写代码的时候遇到了日志的问题，于是顺带学习一下日志框架和如何使用。以SpringBoot集成作为练习。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot集成Log4j2日志框架"><a href="#SpringBoot集成Log4j2日志框架" class="headerlink" title="SpringBoot集成Log4j2日志框架"></a>SpringBoot集成Log4j2日志框架</h2><p>​    今天写代码的时候遇到了日志的问题，于是顺带学习一下日志框架和如何使用。以SpringBoot集成作为练习。</p>
 <p>​    说到日志框架不得不提SLF4J，SLF4J使用门面模式定义了日志操作的相关接口。就是说SLF4J只是定义了日志操作的相关接口，而不是具体的日志实现方案。SLF4J提供了操作日志的通用接口规范，只要你实现了这些规范接口，那么你就制作了一个符合SLF4J约定的日志框架。而比较出名的开源日志框架有：java.util.logging, logback and log4j。</p>
 <p>​    本次整合的就是log4j日志框架。还是和以前一样，直接上官网地址，上面讲解的很详细。<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/index.html">https://logging.apache.org/log4j/2.x/index.html</a></p>
 <p>​    因为是一个日志框架，和本身开发没有太多的关系，所以这里不再详细描述原理和基础概念。只是把练习demo列出来。</p>
@@ -614,37 +795,47 @@
 
 <p>​    上面的网页讲的挺清楚，我再写一遍有点浪费。这样大家看看，记不住再到我这里看看就可以了。</p>
 <p>​    就这样吧，结束。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E6%88%90Log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" data-id="ckuqw9s9d002cxcupdxhyetfm" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/Spring相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/Spring相关知识点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h2 id="Spring内部知识点"><a href="#Spring内部知识点" class="headerlink" title="Spring内部知识点"></a>Spring内部知识点</h2><h3 id="IOC相关知识点"><a href="#IOC相关知识点" class="headerlink" title="IOC相关知识点"></a>IOC相关知识点</h3><h4 id="IOC基础概念"><a href="#IOC基础概念" class="headerlink" title="IOC基础概念"></a>IOC基础概念</h4><p>​    所谓 IOC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系。之前传统的是由对象内部直接生成，这样耦合度太高。通过控制反转，只需要告知IOC容器你需要什么样的实例，IOC容器就会自动将实例注入到你的实例里面。控制反转需要依赖注入的支持，即依赖注入是控制反转的实现。依赖注入就是由容器动态的将某个依赖关系注入到组件之中。依赖注入的目的并非为软件系统带来更多功能，而是为了提升组件重用的频率，并为系统搭建一个灵活、可扩展的平台。</p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Spring内部知识点"><a href="#Spring内部知识点" class="headerlink" title="Spring内部知识点"></a>Spring内部知识点</h2><h3 id="IOC相关知识点"><a href="#IOC相关知识点" class="headerlink" title="IOC相关知识点"></a>IOC相关知识点</h3><h4 id="IOC基础概念"><a href="#IOC基础概念" class="headerlink" title="IOC基础概念"></a>IOC基础概念</h4><p>​    所谓 IOC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系。之前传统的是由对象内部直接生成，这样耦合度太高。通过控制反转，只需要告知IOC容器你需要什么样的实例，IOC容器就会自动将实例注入到你的实例里面。控制反转需要依赖注入的支持，即依赖注入是控制反转的实现。依赖注入就是由容器动态的将某个依赖关系注入到组件之中。依赖注入的目的并非为软件系统带来更多功能，而是为了提升组件重用的频率，并为系统搭建一个灵活、可扩展的平台。</p>
 <p>​    <a target="_blank" rel="noopener" href="https://juejin.cn/post/6857406008877121550">详细的解释</a></p>
 <h4 id="依赖注入的类型和方式"><a href="#依赖注入的类型和方式" class="headerlink" title="依赖注入的类型和方式"></a>依赖注入的类型和方式</h4><p>​    依赖注入的类型有：</p>
 <ul>
@@ -948,37 +1139,47 @@
 <p>Spring中Servlet</p>
 <p>SpringBoot和Spring的区别</p>
 <p>SpringBoot的启动流程和原理</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckuqw9s9e002dxcupdpz14hgn" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
-  
-    <article id="post-框架/Spring相关框架/spring项目建立" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/spring%E9%A1%B9%E7%9B%AE%E5%BB%BA%E7%AB%8B/" class="article-date">
-  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
-  </div>
-
-  </div>
+    <article
+  id="post-框架/Spring相关框架/spring项目建立"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
   <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+     
+    <div class="article-meta">
+      <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/spring%E9%A1%B9%E7%9B%AE%E5%BB%BA%E7%AB%8B/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a> / <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+   
+    </div>
       
-        <h1 id="SpringBoot学习"><a href="#SpringBoot学习" class="headerlink" title="SpringBoot学习"></a>SpringBoot学习</h1><h2 id="建立一个SpringBoot项目"><a href="#建立一个SpringBoot项目" class="headerlink" title="建立一个SpringBoot项目"></a>建立一个SpringBoot项目</h2><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>新建一个项目，在spring的官网上面，网址如下：<a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a></p>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="SpringBoot学习"><a href="#SpringBoot学习" class="headerlink" title="SpringBoot学习"></a>SpringBoot学习</h1><h2 id="建立一个SpringBoot项目"><a href="#建立一个SpringBoot项目" class="headerlink" title="建立一个SpringBoot项目"></a>建立一个SpringBoot项目</h2><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>新建一个项目，在spring的官网上面，网址如下：<a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a></p>
 <p>该页面打开如下：选择自己合适的选项，点击下载即可下载一个zip包，解压就是你的项目。比较方便。</p>
 <p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/%E5%9B%BE%E5%83%8F2020-5-28%20%E4%B8%8B%E5%8D%887.08.JPG" alt="图像2020-5-28 下午7.08"></p>
 <h3 id="导入IDE"><a href="#导入IDE" class="headerlink" title="导入IDE"></a>导入IDE</h3><p>​    这里使用自己的IDE导入刚才解压的目录，这里没有什么可以讲的点，就是IDE的使用方法，不在本次记录范围内。我使用的IDEA，导入后如下图。</p>
@@ -1004,126 +1205,386 @@
 </ul>
 <p>的两个策略：开箱即用和约定优于配置（百度）。目的也是让更多的东西成为约定或者减少不必要的配置。  </p>
 <p>​        作为开发人员，使用工具固然重要，但是不能一直认为工具就是工具，作为编程人，要了解工具背后的设计思想和原理，这样才能开发出类似于SpringBoot这样的工具（可把我厉害坏了，插会腰）。我一直认为代码谁都可以写，但是思想这种东西抄不来，也模仿不了。但是正是思想这种东西才将程序员分为三六九等，说了半天，没有实质性的东西。。。诸君，努力吧。</p>
-
+ 
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/spring%E9%A1%B9%E7%9B%AE%E5%BB%BA%E7%AB%8B/" data-id="ckuqw9s9f002excuph9kafuhr" class="article-share-link">Share</a>
-      
-      
+       
     </footer>
   </div>
-  
+
+    
+ 
+    
 </article>
 
-
+    
+  </article>
   
 
-
-  <nav id="page-nav">
+  
+  <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
-
+  
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C%E5%AD%A6%E4%B9%A0/">C学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%AD%A6%E4%B9%A0/">Docker学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/">ElasticSearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/">PostgreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/">RabbitMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/">Redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/">协议</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/HTTP/">HTTP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E5%BE%97/">心得</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Dubbo%E6%A1%86%E6%9E%B6/">Dubbo框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
-    </div>
-  </div>
+</div>
 
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/SQL%E8%AF%AD%E6%B3%95/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/">(no title)</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
+      <footer class="footer">
   <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2021 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> John Doe
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
   </div>
-</footer>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
     </div>
-    <nav id="mobile-nav">
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+  <ul class="nav nav-main">
     
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
 
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
+    
 
   </div>
 </body>
+
 </html>

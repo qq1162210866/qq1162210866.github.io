@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringBoot知识点​    Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。 SpringBoot的启动流程​    流程图如下： ​     ​    流程暂时还不是很清楚，可以后续完善 SpringBoot中的自动配置原理​    项目中只要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringBoot知识点​    Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。 SpringBoot的启动流程​    流程图如下： ​     ​    流程暂时还不是很清楚，可以后续完善 SpringBoot中的自动配置原理​    项目中只要">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623161300236.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623170034583.png">
+<meta property="article:published_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:modified_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623161300236.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-框架/Spring相关框架/SpringBoot相关知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringBoot知识点"><a href="#SpringBoot知识点" class="headerlink" title="SpringBoot知识点"></a>SpringBoot知识点</h2><p>​    Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。</p>
+<h3 id="SpringBoot的启动流程"><a href="#SpringBoot的启动流程" class="headerlink" title="SpringBoot的启动流程"></a>SpringBoot的启动流程</h3><p>​    流程图如下：</p>
+<p>​    <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623161300236.png" alt="image-20210623161300236"></p>
+<p>​    流程暂时还不是很清楚，可以后续完善</p>
+<h3 id="SpringBoot中的自动配置原理"><a href="#SpringBoot中的自动配置原理" class="headerlink" title="SpringBoot中的自动配置原理"></a>SpringBoot中的自动配置原理</h3><p>​    项目中只要配置了redis的信息，在代码中直接注入redis模版bean，就可以直接使用了，这个就是自动配置。将配置文件中的信息配置到bean上，自动配置分为bean的自动配置和属性的自动配置。</p>
+<p>​    其中<code>@EnableAutoConfiguration</code>是关键(启用自动配置)，内部实际上就去加载<code>META-INF/spring.factories</code>文件的信息，然后筛选出以<code>EnableAutoConfiguration</code>为key的数据，加载到IOC容器中，实现自动配置功能！</p>
+<h3 id="Spring-JavaConfig"><a href="#Spring-JavaConfig" class="headerlink" title="Spring JavaConfig"></a>Spring JavaConfig</h3><p>​    因为xml配置bean的方式比较复杂，并且不符合面向对象的逻辑。所以就有了Spring JavaConfig，它允许开发者将bean定义和在Spring配置XML文件到Java类中。这两者是可以混用的。</p>
+<h3 id="SpringBoot中配置文件加载顺序"><a href="#SpringBoot中配置文件加载顺序" class="headerlink" title="SpringBoot中配置文件加载顺序"></a>SpringBoot中配置文件加载顺序</h3><p>​    spring boot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件。properties优先级会高一些，相同名称的配置，会将 yml内的配置覆盖掉。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">–file:./config/</span><br><span class="line">–file:./</span><br><span class="line">–classpath:/config/</span><br><span class="line">–classpath:/</span><br></pre></td></tr></table></figure>
+
+<p>​    顺序如下，由一到四：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210623170034583.png" alt="image-20210623170034583"></p>
+<p>注意：bootstrap 是应用程序的父上下文，也就是说 bootstrap 加载优先于 applicaton。bootstarp是spring cloud中使用的配置文件。</p>
+<h3 id="YAML文件"><a href="#YAML文件" class="headerlink" title="YAML文件"></a>YAML文件</h3><p>​    YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲（例如：许多电子邮件标题格式和YAML非常接近）。</p>
+<p>​    YAML 的配置文件后缀为 <strong>.yml</strong>，如：<strong>runoob.yml</strong> 。</p>
+<h3 id="SpringBoot中的监听器"><a href="#SpringBoot中的监听器" class="headerlink" title="SpringBoot中的监听器"></a>SpringBoot中的监听器</h3><p>​    监听器模式是由观察者模式发展而来，有一下几个重要部分。</p>
+<ul>
+<li>事件：步骤1和步骤2，通过对天气进行抽象，并实现下雨和下雪的天气状态</li>
+<li>监听器：步骤3和步骤4，规范对天气监听的模式，并且规范对应天气下，需要如何处理</li>
+<li>广播器：步骤5、步骤6和步骤7，当有事件发生的时候，广播器发出信号，告知所有的监听器，监听器根据事件作出相应的处理。触发下雨事件的时候，下雨监听器收到消息，它抬头一看乌云密布电闪雷鸣，微微一愣，大喊一句：“打雷下雨收衣服啊！！”，广播器继续通知下一个监听器下雪监听器，下雪监听器看看天空，摆摆手，说：“这事与我无关去找别人”</li>
+<li>触发机制：步骤8，demo中采用的硬编码的形式触发的，在实际运用中，可能是湿度仪检测到湿度暴涨开始下雨了，触发广播。</li>
+</ul>
+<p>​    具体的流程就是：监听器中编写对某些事件发生的处理情况，然后监听器注册到广播器中，当有时间触发时，广播器告知所有的监听器，监听器在做相应的处理。</p>
+<p>​    ApplicationListener是Spring事件机制的一部分，与抽象类ApplicationEvent类配合来完成ApplicationContext的事件机制，实现ApplicationListener接口的类，会在SpringBoot加入到广播器中，当ApplicationContext触发了一个事件，就用广播器通知所有实现ApplicationListener接口的类。</p>
+<p>​    SpringBoot中九大事件：</p>
+<ul>
+<li>EventObject：事件顶级对象，所有事件对象的根对象</li>
+<li>ApplicationEvent：应用事件</li>
+<li>SpringApplicationEvent：Spring自己的事件，Spring框架自身的事件都会实现这个接口</li>
+<li>ApplicationStartingEvent：启动事件，框架刚刚启动就会发出这个事件</li>
+<li>ApplicationEnvironmentPreparedEvent：环境在变完成，系统属性和用户指定已经加载完成</li>
+<li>ApplicationContextInitializedEvent：已经创建好了上下文，并且还没有加载任何bean之前发出这个事件</li>
+<li>ApplicationPreparedEvent：在Bean定义开始加载之后，尚未完全加载之前，刷新上下文之前触发</li>
+<li>ApplicationStartedEvent：bean已经创建完成，上下文已经刷新完成，但是ApplicationRunner和CommandLineRunne两个扩展接口并未执行</li>
+<li>ApplicationReadyEvent：ApplicationRunner和CommandLineRunne两个扩展接口执行完成之后触发</li>
+<li>ApplicationFailedEvent：在启动发生异常时触发</li>
+</ul>
+<p>​    启动 —》ApplicationStartingEvent —》ApplicationEnvironmentPreparedEvent —》ApplicationContextInitializedEvent —》 ApplicationPreparedEvent —》ApplicationStartedEvent —》 ApplicationReadyEvent —》启动完毕</p>
+<h3 id="Spring-Boot-中的-starter"><a href="#Spring-Boot-中的-starter" class="headerlink" title="Spring Boot 中的 starter"></a>Spring Boot 中的 starter</h3><p>​    在spring中引入一个中间件或者JPA，需要先在pom文件中导入需要的依赖，再添加相应的配置。然后再调试完毕，直到项目正常启动。多个项目也是这样的配置，只不过多个项目可能配置直接复制即可，本质还是复杂的。</p>
+<p>​    starter的主要目的就是为了解决上面的这些问题。</p>
+<p>　　starter的理念：starter会把所有用到的依赖都给包含进来，避免了开发者自己去引入依赖所带来的麻烦。需要注意的是不同的starter是为了解决不同的依赖，所以它们内部的实现可能会有很大的差异，例如jpa的starter和Redis的starter可能实现就不一样，这是因为starter的本质在于synthesize，这是一层在逻辑层面的抽象，也许这种理念有点类似于Docker，因为它们都是在做一个“包装”的操作，如果你知道Docker是为了解决什么问题的，也许你可以用Docker和starter做一个类比。</p>
+<p>　　starter的实现：虽然不同的starter实现起来各有差异，但是他们基本上都会使用到两个相同的内容：ConfigurationProperties和AutoConfiguration。因为Spring Boot坚信“约定大于配置”这一理念，所以我们使用ConfigurationProperties来保存我们的配置，并且这些配置都可以有一个默认值，即在我们没有主动覆写原始配置的情况下，默认值就会生效，这在很多情况下是非常有用的。除此之外，starter的ConfigurationProperties还使得所有的配置属性被聚集到一个文件中（一般在resources目录下的application.properties），这样我们就告别了Spring项目中XML地狱。</p>
+<p>​    对于starter中的配置，用户仍然可以再application配置文件中进行覆盖掉，达到自己的定制化。没有覆盖的就使用starter中的默认值。</p>
+<h3 id="Spring-Security-和-Shiro"><a href="#Spring-Security-和-Shiro" class="headerlink" title="Spring Security 和 Shiro"></a>Spring Security 和 Shiro</h3><p>​    Spring Security是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。它提供了一组可以在Spring应用上下文中配置的Bean，充分利用了Spring IoC，DI（控制反转Inversion of Control ,DI:Dependency Injection 依赖注入）和AOP（面向切面编程）功能，为应用系统提供声明式的安全访问控制功能，减少了为企业系统安全控制编写大量重复代码的工作。</p>
+<p>​    Apache Shiro 是一个开源安全框架，提供身份验证、授权、密码学和会话管理。Shiro 框架具有直观、易用等特性，同时也能提供健壮的安全性，虽然它的功能不如 Spring Security 那么强大，但是在常规的企业级应用中，其实也够用了。</p>
+<p>​    两者都是权限框架，用来做安全验证的，考点估计也比较少。后续遇到再注意。</p>
+<h3 id="WebSockets"><a href="#WebSockets" class="headerlink" title="WebSockets"></a>WebSockets</h3><p>​    WebSocket是一种网络传输协议，可在单个TCP连接上进行全双工通信，位于OSI模型的应用层。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以创建持久性的连接，并进行双向数据传输。</p>
+<p>​    后续如果有人问的话，可以看看这篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chyingp/p/websocket-deep-in.html">https://www.cnblogs.com/chyingp/p/websocket-deep-in.html</a></p>
+<h3 id="日志框架"><a href="#日志框架" class="headerlink" title="日志框架"></a>日志框架</h3><p>​    在Java开发中，常用的日志记录框架有JDKLog、Log4J、LogBack、SLF4J、SLF4J。这些日志记录框架各有各的特点，各有各的应用场景。</p>
+<p>​    日志框架使用的是门面模式，分为门面和实现。JCL、SLF4J是日志门面。JUL、LOG4J1、LOG4J2、LOGBACK是日志实现框架。</p>
+<p>​    common-logging 与 slf4j 都是日志实现门面，它们本身都不具体实现写日记操作，只是提供统一的接口。</p>
+<p>​    common-logging 是最早的日志门面实现，而 SLF4J 是较新的日志门面实现。因此 SLF4J 在性能以及兼容性处理会比 common-logging要好。</p>
+<ul>
+<li>JDKLog：jdk自带的日志，直接就可以使用。但 JDKLog 功能比较太过于简单，不支持占位符显示，拓展性比较差，所以现在用的人也很少。</li>
+<li>Log4J： 是 Apache 的一个日志开源框架，有多个分级（DEBUG/INFO/WARN/ERROR）记录级别，可以很好地将不同日志级别的日志分开记录，极大地方便了日志的查看。</li>
+<li>LogBack ：其实可以说是 Log4J 的进化版，因为它们两个都是同一个人（Ceki Gülcü）设计的开源日志组件。LogBack 除了具备 Log4j 的所有优点之外，还解决了 Log4J 不能使用占位符的问题。</li>
+</ul>
+<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><h4 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h4><p>​    SPI的全名为Service Provider Interface.我们系统里抽象的各个模块，往往有很多不同的实现方案，比如日志模块的方案，xml解析模块、jdbc模块的方案等。面向的对象的设计里，我们一般推荐模块之间基于接口编程，模块之间不对实现类进行硬编码。一旦代码里涉及具体的实现类，就违反了可拔插的原则，如果需要替换一种实现，就需要修改代码。为了实现在模块装配的时候能不在程序里动态指明，这就需要一种服务发现机制。<br>​    java SPI就是提供这样的一个机制：为某个接口寻找服务实现的机制。有点类似IOC的思想，就是将装配的控制权移到程序之外，在模块化设计中这个机制尤其重要。</p>
+<p>​    在Spring中也有一种类似与Java SPI的加载机制。它在META-INF/spring.factories文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。 这种自定义的SPI机制是Spring Boot Starter实现的基础。 </p>
+<h3 id="SpringBoot中常用的注解"><a href="#SpringBoot中常用的注解" class="headerlink" title="SpringBoot中常用的注解"></a>SpringBoot中常用的注解</h3><ul>
+<li>@ComponentScan主要就是定义扫描的路径从中找出标识了需要装配的类自动装配到spring的bean容器中。常和@Component搭配使用。</li>
+<li>@Component：表示带注释的类是“组件”。 在使用基于注释的配置和类路径扫描时，此类类被视为自动检测的候选对象。</li>
+<li>@Autowired:默认按类型匹配注入Bean.如果找到两个，就会报异常，因为没法判断到底使用哪个</li>
+<li>@Resource:默认按名称匹配注入Bean，先是按照名称查询bean，如果没有找到按照类型，多个也会报错。</li>
+<li>@Qualifier:指定注入bean的名称，需要搭配@Autowired一起使用。</li>
+</ul>
+<h3 id="SpringBoot面试问题"><a href="#SpringBoot面试问题" class="headerlink" title="SpringBoot面试问题"></a>SpringBoot面试问题</h3><ul>
+<li>SpringBoot启动流程</li>
+</ul>
+<p>​    第一部分进行SpringApplication的初始化模块，配置一些基本的环境变量、资源、构造器、监听器，第二部分实现了应用具体的启动方案，包括启动流程的监听模块、加载配置环境模块、及核心的创建上下文环境模块，第三部分是自动化配置模块。背不住</p>
+<p>​    </p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>//springboot自动配置原理</p>
+<p>//javaconfig</p>
+<p>//@ComponentScan扫描</p>
+<p>//springboot配置加载顺序</p>
+<p>//springboot监听器</p>
+<p>//Spring Boot 中的 starter </p>
+<p>//yaml文件</p>
+<p>//Spring Security 和 Shiro的区别和作用</p>
+<p>//websockets</p>
+<p>//日志框架</p>
+<p>//spring.factories</p>
+<p>需要练习的有：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckuqw9s9a0028xcupf3cmbqcm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E6%95%B4%E5%90%88MQTT/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C%E5%AD%A6%E4%B9%A0/">C学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%AD%A6%E4%B9%A0/">Docker学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/">ElasticSearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/">PostgreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/">RabbitMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/">Redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/">协议</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/HTTP/">HTTP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E5%BE%97/">心得</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Dubbo%E6%A1%86%E6%9E%B6/">Dubbo框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/SQL%E8%AF%AD%E6%B3%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringBoot连接Redis​    下面就开始练习连接Redis，这里也是没有集成web模块。web模块感觉这些东西也没有必要。连接池这里可以讲一下，上一篇MySQL的连接池放在Mybatis那里再讲，估计也快了，如果不出意外的话。。。 ​    首先安装Redis和配置Redis的信息，这里不再累述，我之前的博客也有。刚才看了一下，我之前的博客讲的还挺详细的，我这次有可能重复了，尽量讲讲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringBoot连接Redis​    下面就开始练习连接Redis，这里也是没有集成web模块。web模块感觉这些东西也没有必要。连接池这里可以讲一下，上一篇MySQL的连接池放在Mybatis那里再讲，估计也快了，如果不出意外的话。。。 ​    首先安装Redis和配置Redis的信息，这里不再累述，我之前的博客也有。刚才看了一下，我之前的博客讲的还挺详细的，我这次有可能重复了，尽量讲讲">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200601090901717.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200601092939704.png">
+<meta property="article:published_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:modified_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200601090901717.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-框架/Spring相关框架/SpringBoot连接Redis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>►<a class="article-category-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringBoot连接Redis"><a href="#SpringBoot连接Redis" class="headerlink" title="SpringBoot连接Redis"></a>SpringBoot连接Redis</h2><p>​    下面就开始练习连接Redis，这里也是没有集成web模块。web模块感觉这些东西也没有必要。连接池这里可以讲一下，上一篇MySQL的连接池放在Mybatis那里再讲，估计也快了，如果不出意外的话。。。</p>
+<p>​    首先安装Redis和配置Redis的信息，这里不再累述，我之前的博客也有。刚才看了一下，我之前的博客讲的还挺详细的，我这次有可能重复了，尽量讲讲之前没有讲到的。</p>
+<p>​    仍然是添加依赖，因为Redis官方开发了一个连接工具Jedis，这个工具挺好用的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  Redis依赖      --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--  不添加这个依赖会导致RedisTemplate无法注入      --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    下面就是配置Redis连接和连接池信息。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Redis依赖</span></span><br><span class="line"><span class="comment"># Redis服务器地址</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="comment"># Redis数据库索引（默认为0）</span></span><br><span class="line"><span class="meta">spring.redis.database</span>=<span class="string">0</span></span><br><span class="line"><span class="comment"># Redis服务器连接端口</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="comment"># Redis服务器连接密码（默认为空）</span></span><br><span class="line"><span class="meta">spring.redis.password</span>=<span class="string">自己的密码</span></span><br><span class="line"><span class="comment"># 连接超时时间（毫秒）</span></span><br><span class="line"><span class="meta">spring.redis.timeout</span>=<span class="string">1000</span></span><br><span class="line"><span class="comment">## 连接池最大连接数（使用负值表示没有限制）</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-active</span>=<span class="string">200</span></span><br><span class="line"><span class="comment">## 连接池最大阻塞等待时间（使用负值表示没有限制）</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-wait</span>=<span class="string">-1</span></span><br><span class="line"><span class="comment">## 连接池中的最大空闲连接</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-idle</span>=<span class="string">10</span></span><br><span class="line"><span class="comment">## 连接池中的最小空闲连接</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.min-idle</span>=<span class="string">0</span></span><br></pre></td></tr></table></figure>
+
+<p>​    下面就开始编写代码，需要注意的是代码中引用的类是StringRedisTemplate，有一些不同的地方。</p>
+<ul>
+<li><p>RedisTemplate，RedisTemplate是最基本的操作类，它默认的序列化方式是JdkSerializationRedisSerializer，在存值时，键值会被序列化为字节数组，可读性差，取值时也是一样，如果redis中存的值正常的字符串形式，取值时将返回null。</p>
+</li>
+<li><p>StringRedisTemplateStringRedisTemplate继承于 RedisTemplate&lt;String, String&gt;，默认的序列化方式是StringRedisSerializer，存值取值都是按照字符串的形式。</p>
+<p>代码如下，但是中间遇到了一些问题，解决起来很蛋疼。下面说说，最开始使用的是上面的依赖，但是启动一直报错，一开始怀疑注入的方式不对，把<code>@Resource</code>换成<code>@Autowired</code>，结果还是不行，又怀疑方法不能正常调用（菜鸟的智障怀疑），后来又排除了。在网上找了一圈，怀疑redis版本的问题，换成了jedis，结果就可以了。然后就认为是依赖的版本问题，生菜（最新redis使用的）和目前的SpringBoot融合的不是很好。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.psq.train.redis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.psq.train.mysql.TestUser;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * RedisTrain.java</span></span><br><span class="line"><span class="comment"> * Description: Redis练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peng Shiquan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/5/31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTrain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用StringRedisTemplate，类似于RedisTemplate&lt;String,String&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: Redis练习的主方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/5/31</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">redisTrainmain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        TestUser testUser = <span class="keyword">new</span> TestUser();</span><br><span class="line">        testUser.setId(<span class="number">3</span>);</span><br><span class="line">        testUser.setName(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">        testUser.setPassword(<span class="string">&quot;1234567&quot;</span>);</span><br><span class="line">        System.err.println(<span class="string">&quot;下面开始Redis插入&quot;</span>);</span><br><span class="line">        redisTrainInsert(testUser);</span><br><span class="line">        System.err.println(<span class="string">&quot;下面开始查询&quot;</span>);</span><br><span class="line">        redisTrainSelect(testUser.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: redis插入方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> testUser</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/6/1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">redisTrainInsert</span><span class="params">(TestUser testUser)</span> </span>&#123;</span><br><span class="line">        String key = testUser.getName();</span><br><span class="line">        String value = testUser.toString();</span><br><span class="line">        stringRedisTemplate.opsForValue().set(key, value);</span><br><span class="line">        System.err.println(<span class="string">&quot;存储成功，存储对象为:key:&quot;</span> + key + <span class="string">&quot;,value:&quot;</span> + value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Description: redis查询方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>: Peng Shiquan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Date</span>: 2020/6/1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">redisTrainSelect</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        System.err.println(<span class="string">&quot;需要查询的name为:&quot;</span> + name);</span><br><span class="line">        System.err.println(name);</span><br><span class="line">        String value = stringRedisTemplate.opsForValue().get(name);</span><br><span class="line">        System.err.println(<span class="string">&quot;查询到到结果为:&quot;</span> + value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>Lettuce</code>和<code>Jedis</code>的都是连接<code>Redis Server</code>的客户端程序。<code>Jedis</code>在<strong>实现上是直连<code>redis server</code>，多线程环境下非线程安全，除非使用连接池，为每个Jedis实例增加物理连接</strong>。<code>Lettuce</code>基于Netty的连接实例（StatefulRedisConnection），<strong>可以在多个线程间并发访问，且线程安全，满足多线程环境下的并发访问，同时它是可伸缩的设计，一个连接实例不够的情况也可以按需增加连接实例</strong>。</p>
+<p>我也这样认为，直到我再次启动的时候，发现下面一个问题。  <img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200601090901717.png" alt="image-20200601090901717"></p>
+<p>如上图，最后显示的是一个密码的问题，是客户端配置了密码，但是服务端没有配置密码，我又查看了redis启动的时候，没有使用正确的配置文件。</p>
+</li>
+</ul>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200601092939704.png" alt="image-20200601092939704"></p>
+<p>​    配置了密码后，一切都解决了。真是一个SB问题，果然是老了。。。</p>
+<p>​    剩下就遗留了一个问题，我看别人的demo都写了一个redis配置类，估计是为了定制自己的<code>RedisTemplate</code>，我这里没有什么定制的，就是简单的用了一下，所以没有写redis配置类。如果我说错了，大家也指点一下。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Redis/" data-id="ckuqw9s9b002axcup0xur9ykk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E8%BF%9E%E6%8E%A5Mysql/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/14/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/SpringBoot%E9%9B%86%E5%90%88Mybatis%E8%BF%9E%E6%8E%A5PostgreSQL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C%E5%AD%A6%E4%B9%A0/">C学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%AD%A6%E4%B9%A0/">Docker学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/">ElasticSearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/">PostgreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/">RabbitMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/">Redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/">协议</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/HTTP/">HTTP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E5%BE%97/">心得</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Dubbo%E6%A1%86%E6%9E%B6/">Dubbo框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/SQL%E8%AF%AD%E6%B3%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

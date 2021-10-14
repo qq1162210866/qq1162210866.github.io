@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Storm初步使用​    上一篇博客简单的介绍了Strom的一个Demo，但是没有介绍使用中的细节，这篇博客就来介绍一下上次遗漏的细节。算是一个进阶的学习吧。开始。 Strom分组策略 Shuffle grouping: 随机分组，Tuples以一定方式随机分布在blot的task上，从而确保每个blot都具有相等数量的tuples。 Fields grouping: 字段分组，stream按f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/14/storm%E5%AD%A6%E4%B9%A0/Storm%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Storm初步使用​    上一篇博客简单的介绍了Strom的一个Demo，但是没有介绍使用中的细节，这篇博客就来介绍一下上次遗漏的细节。算是一个进阶的学习吧。开始。 Strom分组策略 Shuffle grouping: 随机分组，Tuples以一定方式随机分布在blot的task上，从而确保每个blot都具有相等数量的tuples。 Fields grouping: 字段分组，stream按f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200904174302403.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200904174842732.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200906234133843.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200907000012034.png">
+<meta property="article:published_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:modified_time" content="2021-10-14T10:09:31.648Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200904174302403.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-storm学习/Storm初步使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/14/storm%E5%AD%A6%E4%B9%A0/Storm%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.648Z" itemprop="datePublished">2021-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Storm初步使用"><a href="#Storm初步使用" class="headerlink" title="Storm初步使用"></a>Storm初步使用</h2><p>​    上一篇博客简单的介绍了Strom的一个Demo，但是没有介绍使用中的细节，这篇博客就来介绍一下上次遗漏的细节。算是一个进阶的学习吧。开始。</p>
+<h3 id="Strom分组策略"><a href="#Strom分组策略" class="headerlink" title="Strom分组策略"></a>Strom分组策略</h3><ul>
+<li><strong>Shuffle grouping</strong>: 随机分组，Tuples以一定方式随机分布在blot的task上，从而确保每个blot都具有相等数量的tuples。</li>
+<li><strong>Fields grouping</strong>: 字段分组，stream按fields中指定的字段进行分组。例如，如果stream按照“ user-id”字段分组，则具有相同“ user-id”的Tuples将始终分到相同的task，但是具有不同“ user-id”的元组可能会到不同的task。</li>
+<li><strong>Partial Key grouping</strong>: 部分密钥分组，stream按照指定的字段进行分组（如同上面的字段分组策略），但在两个下游blot之间进行负载平衡，当输入数据倾斜时，可以更好地利用资源。官方文档对它的工作原理和优点提供了很好的解释。地址如下：<a target="_blank" rel="noopener" href="https://melmeric.files.wordpress.com/2014/11/the-power-of-both-choices-practical-load-balancing-for-distributed-stream-processing-engines.pdf">官网</a></li>
+<li><strong>All grouping</strong>: 所有分组，stream在blot的所有task之间复制。请谨慎使用此分组策略。</li>
+<li><strong>Global grouping</strong>: 全局分组，整个stream进入blot的task的其中一项。具体来说，它将转到ID最低的task上。</li>
+<li><strong>None grouping</strong>:无分组，此分组指定您不关心stream的分组方式。没有分组策略等效于随机分组策略。不过，最终Storm会向下推没有分组的blot，最后让其订阅的blot或spout在同一线程中执行（如果可能）。（翻译就是这样，感觉还是不清楚细节，但是类似于随机分组）</li>
+<li><strong>Direct grouping</strong>:直接分组，这是一种特殊的分组。以这种方式分组意味着Tuples的<strong>生产者</strong>决定消费者的哪个task将接收此Tuples。直接分组只能在已经声明为直接流的流上声明。直接流发出的元组必须使用<code>emitDirect</code>方法之一发出。blot可以使用提供的<code>TopologyContext</code>或通过<code>emit</code>在<code>OutputCollector</code>中跟踪方法的输出（返回处理Tuples的task的ID）来获取其使用者的任务ID。</li>
+<li><strong>Local or shuffle grouping</strong>: 本地或随机分组，如果目标blot在同一工作进程中具有一个或多个任务，则元组将被随机转换为那些正在进行的任务。否则，这就像常规的随机分组。</li>
+</ul>
+<p>​    讲完了上面的八种分组策略，下面就来看看之前的demo中是如何使用的。</p>
+<p>​    <code>fieldsGrouping(&quot;ExampleSpout&quot;, new Fields(&quot;word&quot;));</code>这段代码表示的是从实体<code>ExampleSpout</code>出来的ID为<code>default</code>的流按照字段分组，字段<code>word</code>内容相同的<code>tuple</code>将会交给相同的<code>task</code>处理。如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200904174302403.png" alt="image-20200904174302403"></p>
+<p>​    在blot中声明出去的流时，一个blot可能会发送出多个格式的流。同时，也可以指定流的ID，方便下游的多个blot接收。如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200904174842732.png" alt="image-20200904174842732"></p>
+<h2 id="Storm中并行度理解"><a href="#Storm中并行度理解" class="headerlink" title="Storm中并行度理解"></a>Storm中并行度理解</h2><p>​    Storm中有一个并行度的概念，在设置blot的时候也可以设置这个东西，下面就来说说这个概念和它牵扯的一下东西。</p>
+<p>​    了解并行度需要先了解Strom的三个实体的概念。</p>
+<ul>
+<li>Worker processes。一个工作进程执行拓扑的一个子集。辅助进程属于特定的拓扑，并且可以为该拓扑的一个或多个组件（blot或spout）运行一个或多个执行程序。正在运行的拓扑就是由在Storm集群中，许多计算机上运行的许多此类进程组成。</li>
+<li>Executors (threads)。一个执行者是由一个工作进程催生了的一个线程。它可以为同一组件（blot或spout）运行一项或多项任务。</li>
+<li>Tasks。一个任务是执行实际的数据处理的最小单元。您在代码中实现的每个spout或blot在整个集群中执行的任务数量一样多。在拓扑的整个生命周期中，组件的任务数量始终是相同的，但是组件的执行程序（线程）的数量会随着时间而变化。这意味着以下条件成立：threads ≤ tasks。默认情况下，任务数设置为与执行程序数相同，即Storm将在每个线程中运行一个任务。</li>
+</ul>
+<p>​    他们的关系如下图：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200906234133843.png" alt="image-20200906234133843"></p>
+<p>​    详细的解析也可以看这个博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ae619304d881">https://www.jianshu.com/p/ae619304d881</a>这个博客将的比较细，同时还有一些自己想法后的测试。</p>
+<p>​    当然，也可以看官网上的解析，这些都是从官网了解到的，官网地址如下：<a target="_blank" rel="noopener" href="http://storm.apache.org/releases/2.2.0/Understanding-the-parallelism-of-a-Storm-topology.html">http://storm.apache.org/releases/2.2.0/Understanding-the-parallelism-of-a-Storm-topology.html</a>。</p>
+<p>​    了解了这些基础概念，就需要引入一个demo，开始了解并行度。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Config conf = <span class="keyword">new</span> Config();</span><br><span class="line">conf.setNumWorkers(<span class="number">2</span>); <span class="comment">// use two worker processes</span></span><br><span class="line"></span><br><span class="line">topologyBuilder.setSpout(<span class="string">&quot;blue-spout&quot;</span>, <span class="keyword">new</span> BlueSpout(), <span class="number">2</span>); <span class="comment">// set parallelism hint to 2</span></span><br><span class="line"></span><br><span class="line">topologyBuilder.setBolt(<span class="string">&quot;green-bolt&quot;</span>, <span class="keyword">new</span> GreenBolt(), <span class="number">2</span>)</span><br><span class="line">               .setNumTasks(<span class="number">4</span>)</span><br><span class="line">               .shuffleGrouping(<span class="string">&quot;blue-spout&quot;</span>);</span><br><span class="line"></span><br><span class="line">topologyBuilder.setBolt(<span class="string">&quot;yellow-bolt&quot;</span>, <span class="keyword">new</span> YellowBolt(), <span class="number">6</span>)</span><br><span class="line">               .shuffleGrouping(<span class="string">&quot;green-bolt&quot;</span>);</span><br><span class="line"></span><br><span class="line">StormSubmitter.submitTopology(</span><br><span class="line">        <span class="string">&quot;mytopology&quot;</span>,</span><br><span class="line">        conf,</span><br><span class="line">        topologyBuilder.createTopology()</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<p>​    代码很好理解，spout和第一个blot的parallelism hint为2，最后的blot则为6。则得出这段程序总的并行度为：（2+2+6）/2=5至于原因上面的博客和官网也有解释。下面的图也是讲解：</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20200907000012034.png" alt="image-20200907000012034"></p>
+<p>​    因为config设置了两个worker，但是总的线程有10个，相除即得并行度为5。但是这里还是不清楚并行度为5的意义和参考价值。可能是一个worker里面有多少executor吧。</p>
+<p>​    后续公司也会把Strom的框架换掉，后续很有可能不再更新Strom的博客了。没有深入了解很是遗憾，但是人生不就是这样吧，终会有点不完美。事在人为有时就是说说而已，很多事我们没法决定和左右，只能尽自己最大的努力。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/14/storm%E5%AD%A6%E4%B9%A0/Storm%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" data-id="ckuqw9s8f001axcup1o7nazbd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/14/netty/Netty%E7%BC%96%E5%86%99%E5%AE%A2%E6%88%B7%E7%AB%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/14/storm%E5%AD%A6%E4%B9%A0/Storm%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C%E5%AD%A6%E4%B9%A0/">C学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%AD%A6%E4%B9%A0/">Docker学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/">ElasticSearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/">PostgreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/">RabbitMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/">Redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/">协议</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/HTTP/">HTTP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E5%BE%97/">心得</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Dubbo%E6%A1%86%E6%9E%B6/">Dubbo框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/SQL%E8%AF%AD%E6%B3%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

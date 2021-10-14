@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HashMap源码分析​    今天来看一下HashMap的源码，学习一下相关的知识点。不多啰嗦了，直接开始吧。 ​    先看一段代码，是使用HashMap的代码，比较简单，先从代码入手。 123456Map&lt;String, Date&gt; test &#x3D; new HashMap&lt;&gt;();test.put(&quot;test1&quot;, new Date());test.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/10/14/Java%E5%9F%BA%E7%A1%80/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="HashMap源码分析​    今天来看一下HashMap的源码，学习一下相关的知识点。不多啰嗦了，直接开始吧。 ​    先看一段代码，是使用HashMap的代码，比较简单，先从代码入手。 123456Map&lt;String, Date&gt; test &#x3D; new HashMap&lt;&gt;();test.put(&quot;test1&quot;, new Date());test.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210228215831632.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210301161338805.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210301161814463.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302141253511.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302110441809.png">
+<meta property="og:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302113927205.png">
+<meta property="article:published_time" content="2021-10-14T10:09:31.647Z">
+<meta property="article:modified_time" content="2021-10-14T10:09:31.647Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210228215831632.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java基础/HashMap源码分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/14/Java%E5%9F%BA%E7%A1%80/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2021-10-14T10:09:31.647Z" itemprop="datePublished">2021-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HashMap源码分析"><a href="#HashMap源码分析" class="headerlink" title="HashMap源码分析"></a>HashMap源码分析</h2><p>​    今天来看一下HashMap的源码，学习一下相关的知识点。不多啰嗦了，直接开始吧。</p>
+<p>​    先看一段代码，是使用HashMap的代码，比较简单，先从代码入手。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Date&gt; test = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">test.put(<span class="string">&quot;test1&quot;</span>, <span class="keyword">new</span> Date());</span><br><span class="line">test.put(<span class="string">&quot;test2&quot;</span>, <span class="keyword">new</span> Date());</span><br><span class="line">test.put(<span class="string">&quot;test1&quot;</span>, <span class="keyword">new</span> Date());</span><br><span class="line">Date date = test.get(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">System.err.println(date);</span><br></pre></td></tr></table></figure>
+
+<p>​    代码比较简单，建立一个map，存放date，先后放了三次，代表三个场景，第一次当map为空时放入、第二次放入不同的key，第三次放入相同key，但是value不同。最后取出第一次放入的key的value并且打印出来。下面就来具体看看源码，看看HashMap到底做了什么。</p>
+<p>​    先看第一行代码，看到声明了一个map，执行了key和value的类型。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210228215831632.png" alt="image-20210228215831632"></p>
+<p>​    构造函数只有一行，指定了负载系数，下面看一下这个负载系数是什么东西。<code>负载因子是在自动增加其哈希表容量之前允许哈希表获得的满度的度量。</code>不难理解，这个负载系数是map自动扩增的一个阈值。好像这个构造函数比较简单，只是简单的赋值了，也没有什么初始化的操作，别急，看看第二行代码吧。</p>
+<p>​    第二行代码就是放入一个key为test，value为当前时间的操作。来看看<code>put(K key, V value)</code>做了什么。<code>put(K key, V value)</code>的代码只有一行。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210301161338805.png" alt="image-20210301161338805"></p>
+<p>​    <code>putVal(int hash, K key, V value, boolean onlyIfAbsent,boolean evict)</code>是一个实现，看一下传参的含义，需要注意的参数不多，就一个hash值，下面看一下hash方法。<br><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210301161814463.png" alt="image-20210301161814463"></p>
+<p>​    方法注释如下：<strong>计算key.hashCode（）并将哈希的较高位（XOR）扩展为较低。 由于该表使用2的幂次掩码，因此仅在当前掩码上方的位中发生变化的哈希集将始终发生冲突。 （众所周知的示例是在小表中包含连续整数的Float键集。）因此，我们应用了一种变换，将向下扩展较高位的影响。 在速度，实用性和位扩展质量之间需要权衡。 由于许多常见的哈希集已经合理分布（因此无法从扩展中受益），并且由于我们使用树来处理容器中的大量冲突集，因此我们仅以最便宜的方式对某些移位后的位进行XOR，以减少系统损失，以及合并最高位的影响，否则由于表范围的限制，这些位将永远不会在索引计算中使用。</strong>这边说一下自己的理解：这个方法返回的是int类型，四个字节，后面是用来确定key在数组中的下标，但是map中数组长度是有限制的，一般小于2^16，即65536。获取key下标的代码如下：<code>tab[i = (n - 1) &amp; hash]</code>（hash%n等价于(n - 1) &amp; hash）,也就是说只可能会和四个字节的低两个字节进行位运算，所以这里的hash方法作用也就不难判断出来，将hash值变得更加散乱，减少哈希冲突。这里的实现就是让hashCode和高16位进行异或运算（异或的运算不偏向于0或者1）。<code>hashCode()</code>方法调用底层C的代码，这里能力有限，就不再列出来叙述了。到这里，明白了HashMap并不是将hashCode直接拿来用，还是有一定的运算。这里参考了一片博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42034205/article/details/90384772">讲解hash方法</a></p>
+<p>​    回到<code>putVal(int hash, K key, V value, boolean onlyIfAbsent,boolean evict)</code>方法，代码比较多，这里直接粘贴出来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></span><br><span class="line"><span class="params"><span class="function">               <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt; e; K k;</span><br><span class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            e = p;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                        treeifyBin(tab, hash);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                p = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">                e.value = value;</span><br><span class="line">            afterNodeAccess(e);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ++modCount;</span><br><span class="line">    <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">        resize();</span><br><span class="line">    afterNodeInsertion(evict);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这里初看代码有些不知道看哪里，可以按照最开始编写的代码去跑这个代码逻辑。下面就开始按照第二行代码梳理。</p>
+<p>​    代码先是判断数组存不存在，数组每个位置存放的是一个节点链表。如果数组为空，就调用初始化方法<code>resize()</code>,这个方法可以放在后面讲，现在暂时略过，方法作用很简单，就是初始化或者增加表大小。下面就是根据哈希值获取key所在的下标，因为这里第一次放入，代码肯定位空，所以直接新建节点并且放入，next节点置为空。接着就来到了最后，判断当前负载系数是否超过最开始设置的值（默认0.75），如果超过，就再执行一次<code>resize()</code>.最后返回一个空。以上解析就是HashMap在放入第一个值时做的事，看着还是挺多的，下面接着看最开始编写的第三行代码。</p>
+<p>​    第三行代码放入了一个不同的key，不同的value。按照上面的代码再走一遍，不过这个时候数组已经有了，不需要再次创建。但是因为key不相同，所以哈希值不相同（假设没有哈希冲突），所以后面的步骤就和上面的一样了：新建一个节点，放入到数组中。同时在最后也会对数组长度做判断，达到负载系数就扩容。那就来看第四行代码。</p>
+<p>​    第四行代码是继续放入一个相同的key，但是value不同。仍然走上面的代码，发现数组已经创建，但是通过计算下标发现该下标已经有节点，执行了else部分。先是判断key是否相同，这里判断方法为：<code>hash值是否相等&amp;&amp;(两个key相等||两个key的eques方法返回true)</code>。看到这里，是不是也清楚了：重写eques方法一定要重写hashCode方法。因为如果这里没有重写hashCode方法，即哈希值不一定相同，就会造成相同的key，却有两个下标，导致后续的put无法覆盖掉原有的key。回到源码，看到else最后将原有的value取出，将新的放进去，并且将原有value返回，结束本次放入。（这里可能理解不太对，欢迎大佬们指正）</p>
+<p>​    到了最后一行，将放入到值取出。看看源码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">return</span> (e = getNode(hash(key), key)) == <span class="keyword">null</span> ? <span class="keyword">null</span> : e.value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> Node&lt;K,V&gt; <span class="title">getNode</span><span class="params">(<span class="keyword">int</span> hash, Object key)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; first, e; <span class="keyword">int</span> n; K k;</span><br><span class="line">    <span class="keyword">if</span> ((tab = table) != <span class="keyword">null</span> &amp;&amp; (n = tab.length) &gt; <span class="number">0</span> &amp;&amp;</span><br><span class="line">        (first = tab[(n - <span class="number">1</span>) &amp; hash]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (first.hash == hash &amp;&amp; <span class="comment">// always check first node</span></span><br><span class="line">            ((k = first.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            <span class="keyword">return</span> first;</span><br><span class="line">        <span class="keyword">if</span> ((e = first.next) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (first <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                <span class="keyword">return</span> ((TreeNode&lt;K,V&gt;)first).getTreeNode(hash, key);</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">return</span> e;</span><br><span class="line">            &#125; <span class="keyword">while</span> ((e = e.next) != <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    代码可以比较清晰的看到HashMap中<code>节点</code>这个概念的存储结构，先是找到哈希值所在的下标，再去判断节点的第一个到key是否相同（和上面所到判断方法一致），到这里，也就理解了：哈希值相同，eques方法不一定返回true。如果不是第一个元素，在开始遍历节点中的链表，一直到找到为止。到这里，最开始编写的代码也就全部解析完毕。中间的一些逻辑分支没有细说，东西都是大差不差，没有什么需要特别说的点。下面根据这个方法我找到了一个流程图。和下面的图片来源一样。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302141253511.png" alt="image-20210302141253511"></p>
+<p>​    最后开始填上面的坑，resize方法。这个方法是比较重要的，属于map的扩容机制。先提一点，通过上面的解析，现在也大致清楚了HashMap中的结构，不仅仅的是一个数组，是将链表和数组的形式结合了起来。类似于下面这个形式。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302110441809.png" alt="image-20210302110441809"></p>
+<p>​    这个图片来源于:<a target="_blank" rel="noopener" href="https://blog.csdn.net/login_sonata/article/details/76598675">Java8的HashMap详解（存储结构，功能实现，扩容优化，线程安全，遍历方法）</a>,后面的解析也参考了这个博客，讲解的比较清晰。</p>
+<p>​    当数组到了一定的容量后，需要对数组进行扩容，扩容后也需要对元素的下标进行重新计算，resize方法完成的就是这些内容。源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] oldTab = table;</span><br><span class="line">    <span class="keyword">int</span> oldCap = (oldTab == <span class="keyword">null</span>) ? <span class="number">0</span> : oldTab.length;</span><br><span class="line">    <span class="keyword">int</span> oldThr = threshold;</span><br><span class="line">    <span class="keyword">int</span> newCap, newThr = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">            threshold = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">return</span> oldTab;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                 oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">            newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// double threshold</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></span><br><span class="line">        newCap = oldThr;</span><br><span class="line">    <span class="keyword">else</span> &#123;               <span class="comment">// zero initial threshold signifies using defaults</span></span><br><span class="line">        newCap = DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">        newThr = (<span class="keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</span><br><span class="line">        newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?</span><br><span class="line">                  (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    threshold = newThr;</span><br><span class="line">    <span class="meta">@SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span></span><br><span class="line">        Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[newCap];</span><br><span class="line">    table = newTab;</span><br><span class="line">    <span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</span><br><span class="line">            Node&lt;K,V&gt; e;</span><br><span class="line">            <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                oldTab[j] = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</span><br><span class="line">                    newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                    ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap);</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="comment">// preserve order</span></span><br><span class="line">                    Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>;</span><br><span class="line">                    Node&lt;K,V&gt; next;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        next = e.next;</span><br><span class="line">                        <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</span><br><span class="line">                                loHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                loTail.next = e;</span><br><span class="line">                            loTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</span><br><span class="line">                                hiHead = e;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                                hiTail.next = e;</span><br><span class="line">                            hiTail = e;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</span><br><span class="line">                    <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        loTail.next = <span class="keyword">null</span>;</span><br><span class="line">                        newTab[j] = loHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        hiTail.next = <span class="keyword">null</span>;</span><br><span class="line">                        newTab[j + oldCap] = hiHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newTab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这里按照讲解put方法的方式分析，按照两种情况进行解析。1.数组没有初始化的时候扩容。2.数组负载系数达到阈值时，对数组进行扩容。</p>
+<ul>
+<li><p>当数组没有初始化，先是将数组长度和长度阈值设置好，然后直接创建数组，将数组给全局变量就完成这一步骤。初始化比较简单，主要就是各个参数的设置。</p>
+</li>
+<li><p>当数组需要扩容时就比较复杂了，判断是否需要扩容这一部分就不再细说了，就是各个逻辑的梳理，按照代码来即可，没有什么可说的点。只需要记得扩容后就是将原有数组长度乘2，所以HashMap的数组长度只能是2的幂次方（包括你自己设置为13，也会自动寻找最近的2的幂次方）需要重点说的就是扩容后，将原有数组移植到新数组中。这里有两个分支不需要讲：1.链表长度超过8时转换为红黑树的实现（这部分包括put方法里面涉及红黑树的会单独写一个博客，留坑）。2.链表只有一个节点时的情况，比较简单，重新计算下标即可。重点中的重点就是，链表节点树为多个的情况。就是最后一个else里面的代码。</p>
+<p>先看一个解析。</p>
+<p><img src="https://1162210866.oss-cn-beijing.aliyuncs.com/uPic/image-20210302113927205.png" alt="image-20210302113927205"></p>
+<p>这个解析比较清晰，所以判断一个链表中改位置需不需要移动，就可以直接用<code>(e.hash &amp; oldCap) == 0</code>来判断，即直接将数组长度和哈希值与一下就能判断出高位是否会变化。如果等于零就不需要移动，不等于零，就需要移动到新的位置，新的数组下标为多少，上面的解析也能看出来，就是加8，即加上旧数组长度。这样的话，看这段代码就比较容易看懂了。循环遍历链表，再判断该节点是否需要移动，需要移动就放到高位节点链表中，不需要移动就放到低位节点链表中。创建四个节点也是为了方便放入，最后遍历完毕，将高低位的头节点放入到指定下标即可，完成了数组的迁移。</p>
+</li>
+</ul>
+<p>​    至此，关于最开始编写的代码的解析都已经完毕了，剩下的红黑树实现和哈希表的原理因为能力有限，放到后面讲，要不然博客就太长了。在最后，欢迎各位大佬指正和批评。</p>
+<p>​    就这样吧，结束。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/14/Java%E5%9F%BA%E7%A1%80/HashMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" data-id="ckuqw9s6e0008xcupcpx89rx6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/14/Java%E5%9F%BA%E7%A1%80/HashMap%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/14/Java%E5%9F%BA%E7%A1%80/JUC%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C%E5%AD%A6%E4%B9%A0/">C学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker%E5%AD%A6%E4%B9%A0/">Docker学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/netty/">netty</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/storm%E5%AD%A6%E4%B9%A0/">storm学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/">ElasticSearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/">PostgreSQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/RabbitMQ/">RabbitMQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/">Redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/">协议</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%8F%E8%AE%AE/HTTP/">HTTP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E5%BE%97/">心得</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Dubbo%E6%A1%86%E6%9E%B6/">Dubbo框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A1%86%E6%9E%B6/Spring%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6/">Spring相关框架</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/ElasticSearch%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/ElasticSearch/elasticsearch%E6%90%AD%E5%BB%BA%E5%92%8Capi%E4%BD%BF%E7%94%A8/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/SQL%E8%AF%AD%E6%B3%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/14/%E4%B8%AD%E9%97%B4%E4%BB%B6/PostgreSQL/Centos%E5%AE%89%E8%A3%85Postgresql%E5%92%8Cposogis%E6%8F%92%E4%BB%B6/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
